@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -14,13 +15,22 @@
         </div>
         <div class="barra">
             <nav>
-                <li><button>lapiz</button></li>
-                <li><button>goma</button></li>
+                <button id="lapiz"><i class="fas fa-pencil-alt"></i></button>
+                <input type="range" min="1" max="100" id="tamanioLapiz">
+                <button id="goma"><i class="fas fa-eraser"></i></button>
+                <div class="contenedorEditor"></div>
+                <div id="btnRojo" class="btnL"></div>
+                <div id="btnVerde" class="btnL"></div>
+                <div id="btnAzul" class="btnL"></div>
+                <div id="btnAmarillo" class="btnL"></div>
+                <div id="btnNegro" class="btnL"></div>
                 <li><input type="file" id="inputImagen"></li>
                 <li><button id="limpiar">Limpiar</button></li>
+                <li><button id="negativo">Negativo</button></li>
+                <li><button id="brillo">Brillo</button></li>
                 <li><button id="binarizacion">Binarización</button></li>
                 <li><button id="sepia">Sepia</button></li>
-                <li><button>descargar</button></li>
+                <li><button id="descargar">Descargar</button></li>
             </nav>
         </div>
     </div>
