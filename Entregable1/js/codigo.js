@@ -10,30 +10,36 @@ let b = 0;
 let a = 255;
 
 function cargarPagina(){
-    //cargo la imagen con el evento change
+    //Cargo la imagen con el evento change
     document.getElementById("inputImagen").addEventListener("change", cargarImagen);
+    //Aplico cada filtro cuando hacen click en el botón del mismo
+    document.getElementById("negativo").addEventListener("click", filtroNegativo);
     document.getElementById("sepia").addEventListener("click", filtroSepia);
     document.getElementById("binarizacion").addEventListener("click", filtroBinarizacion);
+    //Limpio el canvas cuando hacen click en el botón
     document.getElementById("limpiar").addEventListener("click", limpiarCanvas);
+    document.getElementById("descargar").addEventListener("click", descargarImagen);
 }
-
+//Cuando carga el DOM cargo la página
 document.addEventListener("DOMContentLoaded", cargarPagina);
-//Este metodo carga la imagen seleccionada en el selector
+//Este metodo carga la imagen desde el disco
 function cargarImagen(e){
+    //Antes de cargar una imagen limpiamos el canvas
     limpiarCanvas();
     let urlImagen = e.target.files[0];
     let reader = new FileReader();
 
     let imagen = new Image();
     imagen.title = urlImagen.name;
-
+    //Cuando ya leyo la imagen
     reader.onload = function(e) {
+        //Tomo el src del resultado del evento
         imagen.src = e.target.result;
-
+        //Cuando la imagen ya cargo
         imagen.onload = function(){
             let imgW = imagen.width;
             let imgH = imagen.height;
-            
+            //Adapto la imagen al canvas
             if(imgW < imgH){
                 let porc = (canvasH * 100) / imgH;
                 imgW = imgW * (porc/100);
@@ -48,19 +54,19 @@ function cargarImagen(e){
                 imgW = imgW * (porcW/100);
                 imgH = imgH * (porcH/100);
             }
-
+            //Dibujo la imagen
             ctx.drawImage(imagen, 0, 0, imgW, imgH);
         }
     }
 
     reader.readAsDataURL(urlImagen);
 }
-
+//Este método se encarga de limpiar el canvas
 function limpiarCanvas(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function filtroSepia(){
+function filtroNegativo(){
     let imageData = ctx.getImageData(0,0,canvasW,canvasH);
     
     function drawRect(imageData, r, g, b, a){
@@ -81,6 +87,29 @@ function filtroSepia(){
         imageData.data[index + 0] = 255 - r;
         imageData.data[index + 1] = 255 - g;
         imageData.data[index + 2] = 255 - b;
+    }
+
+    drawRect(imageData, r, g, b, a);
+    ctx.putImageData( imageData, 0, 0 );
+}
+
+function filtroSepia(){
+    let imageData = ctx.getImageData(0,0,canvasW,canvasH);
+    
+    function drawRect(imageData, r, g, b, a){
+        for(let x=0; x < canvasW; x++){
+            for(let y=0; y < canvasH; y++){
+                setPixel(imageData, x, y, r, g, b, a);
+            }
+        }
+    }
+    function setPixel(imageData, x, y, r, g, b, a){
+        let index = (x+y*imageData.width) * 4;
+        
+        r=imageData.data[index + 0];
+        g=imageData.data[index + 1];
+        b=imageData.data[index + 2];
+        a=imageData.data[index + 3];
 
         imageData.data[index + 0] = ( r * .393 ) + ( g *.769 ) + ( b * .189 );
         imageData.data[index + 1] = ( r * .349 ) + ( g *.686 ) + ( b * .168 );
@@ -127,4 +156,17 @@ function filtroBinarizacion(){
     
     drawRect(imageData, r, g, b, a);
     ctx.putImageData( imageData, 0, 0 );
+}
+
+function descargarImagen(){
+    if(window.navigator.msSaveBlob){
+        window.navigator.msSaveBlob(canvas.msToBlob(), "canvas-image.png");
+    } else {
+        let a = document.createElement("a");
+
+        document.body.appendChild(a);
+        a.href = canvas.toDataURL();
+        a.download = "canvas-image.png";
+        a.click();
+    }
 }
