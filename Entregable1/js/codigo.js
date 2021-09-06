@@ -9,37 +9,58 @@ let g = 0;
 let b = 0;
 let a = 255;
 
+//variables
+let pintar = false;
+let lapiz = false;
+let goma = false;
+let colorSeteado = "black";
+let slider = document.getElementById("tamanioLapiz")
+let grosor = 50;
+
 function cargarPagina(){
-    //Cargo la imagen con el evento change
+
+    //EventListeners de pagina
+    //cargo la imagen con el evento change
     document.getElementById("inputImagen").addEventListener("change", cargarImagen);
-    //Aplico cada filtro cuando hacen click en el botón del mismo
     document.getElementById("negativo").addEventListener("click", filtroNegativo);
     document.getElementById("sepia").addEventListener("click", filtroSepia);
     document.getElementById("binarizacion").addEventListener("click", filtroBinarizacion);
-    //Limpio el canvas cuando hacen click en el botón
     document.getElementById("limpiar").addEventListener("click", limpiarCanvas);
+    document.getElementById("lapiz").addEventListener("click", activarLapiz);
+    slider.addEventListener("click", cambiarGrosor);
+    document.getElementById("goma").addEventListener("click", activarGoma);
     document.getElementById("descargar").addEventListener("click", descargarImagen);
+
+    document.getElementById("btnRojo").addEventListener("click", function(){ colorSeteado = "red"; } );
+    document.getElementById("btnVerde").addEventListener("click", function(){ colorSeteado = "green"; } );
+    document.getElementById("btnAzul").addEventListener("click", function(){ colorSeteado = "blue"; } );
+    document.getElementById("btnAmarillo").addEventListener("click", function(){ colorSeteado = "yellow"; } );
+    document.getElementById("btnNegro").addEventListener("click", function(){ colorSeteado = "black"; } );
+
+    //EventListener de canvas
+    canvas.addEventListener("mousedown", posicionInicio);
+    canvas.addEventListener("mouseup", posicionFin);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseleave", posicionFin);
 }
-//Cuando carga el DOM cargo la página
+
 document.addEventListener("DOMContentLoaded", cargarPagina);
-//Este metodo carga la imagen desde el disco
+//Este metodo carga la imagen seleccionada en el selector
 function cargarImagen(e){
-    //Antes de cargar una imagen limpiamos el canvas
     limpiarCanvas();
     let urlImagen = e.target.files[0];
     let reader = new FileReader();
 
     let imagen = new Image();
     imagen.title = urlImagen.name;
-    //Cuando ya leyo la imagen
+
     reader.onload = function(e) {
-        //Tomo el src del resultado del evento
         imagen.src = e.target.result;
-        //Cuando la imagen ya cargo
+
         imagen.onload = function(){
             let imgW = imagen.width;
             let imgH = imagen.height;
-            //Adapto la imagen al canvas
+            
             if(imgW < imgH){
                 let porc = (canvasH * 100) / imgH;
                 imgW = imgW * (porc/100);
@@ -54,16 +75,64 @@ function cargarImagen(e){
                 imgW = imgW * (porcW/100);
                 imgH = imgH * (porcH/100);
             }
-            //Dibujo la imagen
+
             ctx.drawImage(imagen, 0, 0, imgW, imgH);
         }
     }
 
     reader.readAsDataURL(urlImagen);
 }
-//Este método se encarga de limpiar el canvas
+
 function limpiarCanvas(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function activarLapiz(){
+    goma = false;
+    lapiz = true;
+}
+
+function activarGoma(){
+    lapiz = false;
+    goma = true;
+}
+
+function posicionInicio(e){
+    if(lapiz || goma){
+        pintar = true;
+        draw(e);
+    }
+}
+
+function posicionFin(){
+    pintar = false;
+    ctx.beginPath();
+}
+
+function draw(e){
+    if(pintar) {
+        ctx.lineWidth = grosor;
+        ctx.lineCap = "round";
+
+        ctx.lineTo(e.clientX, e.clientY);
+        ctx.stroke();
+        //Estas dos funciones se usan para que la linea no sea tan pixeleada
+        ctx.beginPath();
+        ctx.moveTo(e.clientX, e.clientY);
+        if(goma){
+            ctx.strokeStyle = "white";
+        } else{
+            ctx.strokeStyle = colorSeteado;
+        }
+    }
+}
+
+function cambiarColor(color){
+    colorSeteado = color;
+}
+
+function cambiarGrosor(){
+    grosor = slider.value;
 }
 
 function filtroNegativo(){

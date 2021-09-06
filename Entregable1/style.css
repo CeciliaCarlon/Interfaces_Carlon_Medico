@@ -5,6 +5,9 @@ body {
 li {
     list-style: none;
 }
+canvas {
+    background-color: white;
+}
 .contenedor {
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -12,9 +15,24 @@ li {
 .canvas {
     grid-row: 1;
     grid-column: 1;
-    background-color: white;
 }
 .barra {
     grid-row: 1;
     grid-column: 2;
 }
+.btnL {
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 2px;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+#btnRojo { background-color: red; }
+#btnVerde { background-color: green; }
+#btnAzul { background-color: blue; }
+#btnAmarillo { background-color: yellow; }
+#btnNegro { background-color: black; }
