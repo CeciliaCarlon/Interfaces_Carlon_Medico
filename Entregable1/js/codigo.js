@@ -14,7 +14,6 @@ let pintar = false;
 let lapiz = false;
 let goma = false;
 let colorSeteado = "black";
-let slider = document.getElementById("tamanioLapiz")
 let grosor = 50;
 
 function cargarPagina(){
@@ -25,14 +24,15 @@ function cargarPagina(){
     //filtros
     document.getElementById("negativo").addEventListener("click", filtroNegativo);
     document.getElementById("brillo").addEventListener("click", filtroBrillo);
-    document.getElementById("blur").addEventListener("click", filtroBlur);
     document.getElementById("sepia").addEventListener("click", filtroSepia);
     document.getElementById("binarizacion").addEventListener("click", filtroBinarizacion);
+    document.getElementById("blur").addEventListener("click", filtroBlur);
+    document.getElementById("bordes").addEventListener("click", filtroDeteccionDeBordes);
     //limpia el canvas
     document.getElementById("limpiar").addEventListener("click", limpiarCanvas);
     //lapiz y goma
     document.getElementById("lapiz").addEventListener("click", activarLapiz);
-    slider.addEventListener("click", cambiarGrosor);
+    document.getElementById("tamanioLapiz").addEventListener("click", cambiarGrosor);
     document.getElementById("goma").addEventListener("click", activarGoma);
     document.getElementById("descargar").addEventListener("click", descargarImagen);
     //paleta de colores
@@ -417,6 +417,56 @@ function filtroBinarizacion(){
         imageData.data[index + 0] = r;
         imageData.data[index + 1] = g;
         imageData.data[index + 2] = b;
+    }
+    
+    drawRect(imageData, r, g, b, a);
+    ctx.putImageData( imageData, 0, 0 );
+}
+
+function filtroDeteccionDeBordes(){
+    let imageData = ctx.getImageData(0,0,canvasW,canvasH);
+        
+    function drawRect(imageData, r, g, b){
+        for(let x=0; x < canvasW; x++){
+            for(let y=0; y < canvasH; y++){
+                setPixel(imageData, x, y, r, g, b);
+            }
+        }
+    }
+    function setPixel(imageData, x, y, r, g, b){
+        let index = (x+y*imageData.width) * 4;
+
+        let total = 0;
+
+        let l1= imageData.data[(x+1), (y-1)] * -1;
+        let l2= imageData.data[x, (y-1)] * -2;
+        let l3= imageData.data[(x-1), (y-1)] * -1;
+        let l4= imageData.data[(x+1), y] * 0;
+        let l5= imageData.data[x, y] * 0;
+        let l6= imageData.data[(x-1), y] * 0;
+        let l7= imageData.data[(x+1), (y+1)] * 1;
+        let l8= imageData.data[x, (y+1)] * 2;        
+        let l9= imageData.data[(x-1), (y+1)] * 1;
+
+        total = l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8 + l9;
+        
+        /*let pixels = [l1, l2, l3, l4, l5, l6, l7, l8, l9];
+        let sobel = [-1, -2, -1, 0, 0, 0, +1, +2, +1];
+
+        for(let m=0; m<=pixels.length; m++){
+            total += pixels[m] * sobel[m];
+        }*/
+
+        if(total > 0){
+            imageData.data[index + 0] = 255;
+            imageData.data[index + 1] = 255;
+            imageData.data[index + 2] = 255;
+        } else {
+            imageData.data[index + 0] = 0;
+            imageData.data[index + 1] = 0;
+            imageData.data[index + 2] = 0;
+        }
+        
     }
     
     drawRect(imageData, r, g, b, a);
