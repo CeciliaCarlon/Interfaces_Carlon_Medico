@@ -1,9 +1,13 @@
 "use strict";
+//variables del canvas
 let canvas = document.getElementById("miCanvas");
 let ctx = canvas.getContext("2d");
 let canvasW = canvas.width;
 let canvasH = canvas.height;
+let imgH = 0;
+let imgW = 0;
 
+//variables de los pixels
 let r = 0;
 let g = 0;
 let b = 0;
@@ -27,6 +31,7 @@ function cargarPagina(){
     document.getElementById("brillo").addEventListener("click", filtroBrillo);
     document.getElementById("sepia").addEventListener("click", filtroSepia);
     document.getElementById("binarizacion").addEventListener("click", filtroBinarizacion);
+    document.getElementById("saturar").addEventListener("click", filtroSaturacion);
     document.getElementById("blur").addEventListener("click", filtroBlur);
     document.getElementById("bordes").addEventListener("click", filtroDeteccionDeBordes);
     //limpia el canvas
@@ -59,14 +64,20 @@ function cargarImagen(e){
 
     let imagen = new Image();
     imagen.title = urlImagen.name;
+    //guardo el tamaño real de la imagen para después descargarla
+    
+    
 
+    //cuando haya cargado la imagen
     reader.onload = function(e) {
         imagen.src = e.target.result;
 
         imagen.onload = function(){
-            let imgW = imagen.width;
-            let imgH = imagen.height;
-            
+            console.log(imagen.width);
+            imgW = imagen.width;
+            imgH = imagen.height;
+
+            //adapato la imagen al tamaño del canvas sin deformarla
             if(imgW < imgH){
                 let porc = (canvasH * 100) / imgH;
                 imgW = imgW * (porc/100);
@@ -343,6 +354,35 @@ function filtroBinarizacion(){
     ctx.putImageData( imageData, 0, 0 );
 }
 
+function filtroSaturacion(){
+    let imageData = ctx.getImageData(0,0,canvasW,canvasH);
+        
+    function drawRect(imageData, r, g, b, a){
+        for(let x=0; x < canvasW; x++){
+            for(let y=0; y < canvasH; y++){
+                setPixel(imageData, x, y, r, g, b, a);
+            }
+        }
+    }
+    function setPixel(imageData, x, y, r, g, b, a){
+        let index = (x+y*imageData.width) * 4;
+        let contraste = 100;
+        let factor = (259*(contraste + 255)) / (255*(259-contraste));
+
+        r=imageData.data[index + 0];
+        g=imageData.data[index + 1];
+        b=imageData.data[index + 2];
+        a=imageData.data[index + 3];
+
+        imageData.data[index + 0] = factor * (r-128) +128;
+        imageData.data[index + 1] = factor * (g-128) +128;
+        imageData.data[index + 2] = factor * (b-128) +128;
+    }
+    
+    drawRect(imageData, r, g, b, a);
+    ctx.putImageData( imageData, 0, 0 );
+}
+
 function filtroDeteccionDeBordes(){
     let imageData = ctx.getImageData(0,0,canvasW,canvasH);
         
@@ -358,24 +398,35 @@ function filtroDeteccionDeBordes(){
 
         let total = 0;
 
-        let l1= imageData.data[(x+1), (y-1)] * -1;
-        let l2= imageData.data[x, (y-1)] * -2;
-        let l3= imageData.data[(x-1), (y-1)] * -1;
-        let l4= imageData.data[(x+1), y] * 0;
-        let l5= imageData.data[x, y] * 0;
-        let l6= imageData.data[(x-1), y] * 0;
-        let l7= imageData.data[(x+1), (y+1)] * 1;
-        let l8= imageData.data[x, (y+1)] * 2;        
-        let l9= imageData.data[(x-1), (y+1)] * 1;
-
-        total = l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8 + l9;
+        let l1= [(x+1), (y-1)];
+        let l2= [x, (y-1)];
+        let l3= [(x-1), (y-1)];
+        let l4= [(x+1), y]; 
+        let l5= [x, y];  
+        let l6= [(x-1), y]; 
+        let l7= [(x+1), (y+1)]; 
+        let l8= [x, (y+1)];     
+        let l9= [(x-1), (y+1)]; 
         
-        /*let pixels = [l1, l2, l3, l4, l5, l6, l7, l8, l9];
-        let sobel = [-1, -2, -1, 0, 0, 0, +1, +2, +1];
+        
+        let vecinosR = obtenerTotal(imageData, l1, l2, l3, l4, l5, l6, l7, l8, l9, 0);
+        let vecinosG = obtenerTotal(imageData, l1, l2, l3, l4, l5, l6, l7, l8, l9, 1);
+        let vecinosB = obtenerTotal(imageData, l1, l2, l3, l4, l5, l6, l7, l8, l9, 2);
+        
+        let sobel = [-1, -2, -1, 0, 0, 0, 1, 2, 1];
 
-        for(let m=0; m<=pixels.length; m++){
-            total += pixels[m] * sobel[m];
-        }*/
+        for(let m=0; m<=vecinosR.length; m++){
+            if(vecinosR[m] != null)
+                total += vecinosR[m] * sobel[m];
+        }
+        for(let m=0; m<=vecinosG.length; m++){
+            if(vecinosR[m] != null)
+                total += vecinosG[m] * sobel[m];
+        }
+        for(let m=0; m<=vecinosB.length; m++){
+            if(vecinosR[m] != null)
+                total += vecinosB[m] * sobel[m];
+        }
 
         if(total > 0){
             imageData.data[index + 0] = 255;
@@ -387,6 +438,31 @@ function filtroDeteccionDeBordes(){
             imageData.data[index + 2] = 0;
         }
         
+    }
+    function obtenerTotal(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, pos){
+        let vecinos = [];
+
+        let index1 = (l1[0]+l1[1]*image.width) * 4;
+        let index2 = (l2[0]+l2[1]*image.width) * 4;
+        let index3 = (l3[0]+l3[1]*image.width) * 4;
+        let index4 = (l4[0]+l4[1]*image.width) * 4;
+        let index5 = (l5[0]+l5[1]*image.width) * 4;
+        let index6 = (l6[0]+l6[1]*image.width) * 4;
+        let index7 = (l7[0]+l7[1]*image.width) * 4;
+        let index8 = (l8[0]+l8[1]*image.width) * 4;
+        let index9 = (l9[0]+l9[1]*image.width) * 4;
+
+        vecinos.push(image.data[index1 + pos]);
+        vecinos.push(image.data[index2 + pos]);
+        vecinos.push(image.data[index3 + pos]);
+        vecinos.push(image.data[index4 + pos]);
+        vecinos.push(image.data[index5 + pos]);
+        vecinos.push(image.data[index6 + pos]);
+        vecinos.push(image.data[index7 + pos]);
+        vecinos.push(image.data[index8 + pos]);
+        vecinos.push(image.data[index9 + pos]);
+
+        return vecinos;
     }
     
     drawRect(imageData, r, g, b, a);
@@ -400,7 +476,10 @@ function descargarImagen(){
         let a = document.createElement("a");
 
         document.body.appendChild(a);
-        a.href = canvas.toDataURL();
+        a.href = canvas.toDataURL();  
+        a.width = imgW;
+        a.height = imgH;
+        console.log(a.width + "imagen: " + imgW);
         a.download = "canvas-image.png";
         a.click();
     }
