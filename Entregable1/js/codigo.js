@@ -15,6 +15,7 @@ let lapiz = false;
 let goma = false;
 let colorSeteado = "black";
 let grosor = 50;
+let slider = document.getElementById("tamanioLapiz")
 
 function cargarPagina(){
 
@@ -32,7 +33,7 @@ function cargarPagina(){
     document.getElementById("limpiar").addEventListener("click", limpiarCanvas);
     //lapiz y goma
     document.getElementById("lapiz").addEventListener("click", activarLapiz);
-    document.getElementById("tamanioLapiz").addEventListener("click", cambiarGrosor);
+    slider.addEventListener("click", cambiarGrosor);
     document.getElementById("goma").addEventListener("click", activarGoma);
     document.getElementById("descargar").addEventListener("click", descargarImagen);
     //paleta de colores
@@ -184,128 +185,13 @@ function filtroBrillo(){
         g=imageData.data[index + 1];
         b=imageData.data[index + 2];
         a=imageData.data[index + 3];
-
-        let colores1 = RGBtoHSV(r, g, b);
-        let h = colores1[0];
-        let s = colores1[1];
-        let v = colores1[2]+1;
-
-        let colores2 = HSVtoRGB(h, s, v);
         
-        imageData.data[index + 0] = 255 - colores2[0];
-        imageData.data[index + 1] = 255 - colores2[1];
-        imageData.data[index + 2] = 255 - colores2[2];
-        /*
-        console.log("Valores rgb")
-        console.log("Rojo: "+r);
-        console.log("Verde: "+g);
-        console.log("Azul: "+b);
-        console.log("Valores hsv");
-        console.log("Hue: "+h);
-        console.log("Saturacion: "+s);
-        console.log("Value: "+colores1[2]+" - Value + 1: "+v);
-        console.log("Valores rgb con el brillo +1");
-        console.log("Rojo: "+colores2[0]);
-        console.log("Verde: "+colores2[1]);
-        console.log("Azul: "+colores2[2]);*/
+        imageData.data[index + 0] = r + 10;
+        imageData.data[index + 1] = g + 10;
+        imageData.data[index + 2] = b + 10;
+        
     }
-    function fmod(dividend, divisor){
-        var multiplier = 0;
-        while(divisor * multiplier < dividend){
-            ++multiplier;
-        }
-        --multiplier;
-        return dividend - (divisor * multiplier);
-    }
-    function HSVtoRGB(h, s, v) {
-        let rgbRange = 255;
-        let maxRGB = v;
-        let minRGB = rgbRange - v;
-        let hPrime = h / 60.0;
-        let x1 = fmod(hPrime, 1.0);
-        let x2 = 1.0 - fmod(hPrime, 1.0);
-
-        if((hPrime >= 0) && (hPrime < 1)){
-            r = maxRGB;
-            g = (x1 * rgbRange) + minRGB;
-            b = minRGB;
-        } 
-        else if ((hPrime >= 1) && (hPrime < 2)){
-            r = (x2 * rgbRange) + minRGB;
-            g = maxRGB;
-            b = minRGB;
-        }
-        else if ((hPrime >= 2) && (hPrime < 3)){
-            r = minRGB;
-            g = maxRGB;
-            b = (x1 * rgbRange) + minRGB;
-        }
-        else if ((hPrime >= 3) && (hPrime < 4)){
-            r = minRGB;
-            g = (x2 * rgbRange) + minRGB;
-            b = maxRGB;
-        }
-        else if ((hPrime >= 4) && (hPrime < 5)){
-            r = (x1 * rgbRange) + minRGB;
-            g = minRGB;
-            b = maxRGB; 
-        }
-        else if ((hPrime >= 5) && (hPrime < 6)){
-            r = maxRGB;
-            g = minRGB;
-            b = (x2 * rgbRange) + minRGB; 
-        } else{
-            r = 0.0;
-            g = 0.0;
-            b = 0.0;
-        }
-
-        r = Math.round(r);
-        g = Math.round(g);
-        b = Math.round(b);
-
-        let colores = [r, g, b];
-        return colores;
-    }
-    function RGBtoHSV (r, g, b) {
-        let rabs, gabs, babs, rr, gg, bb, h, s, v, diff, diffc, percentRoundFn;
-        rabs = r / 255;
-        gabs = g / 255;
-        babs = b / 255;
-        v = Math.max(rabs, gabs, babs),
-        diff = v - Math.min(rabs, gabs, babs);
-        diffc = c => (v - c) / 6 / diff + 1 / 2;
-        percentRoundFn = num => Math.round(num * 100) / 100;
-        if (diff == 0) {
-            h = s = 0;
-        } else {
-            s = diff / v;
-            rr = diffc(rabs);
-            gg = diffc(gabs);
-            bb = diffc(babs);
     
-            if (rabs === v) {
-                h = bb - gg;
-            } else if (gabs === v) {
-                h = (1 / 3) + rr - bb;
-            } else if (babs === v) {
-                h = (2 / 3) + gg - rr;
-            }
-            if (h < 0) {
-                h += 1;
-            }else if (h > 1) {
-                h -= 1;
-            }
-        }
-        h = Math.round(h * 360);
-        s = Math.round(s * 100);
-        v = Math.round(v * 100);
-
-        let colores = [h, s, v];
-        return colores;
-
-    }
-
     drawRect(imageData, r, g, b, a);
     ctx.putImageData( imageData, 0, 0 );
 }
@@ -313,49 +199,83 @@ function filtroBrillo(){
 function filtroBlur(){
     let imageData = ctx.getImageData(0,0,canvasW,canvasH);
     let copia = imageData;
-    function drawRect(imageData, r, g, b, a){
+    function drawRect(image, r, g, b, a){
         for(let x=0; x < canvasW; x++){
             for(let y=0; y < canvasH; y++){
-                setPixel(imageData, x, y, r, g, b, a);
+                setPixel(image, x, y, r, g, b, a);
             }
         }
     }
-    function setPixel(imageData, x, y, r, g, b, a){
-        let index = (x+y*imageData.width) * 4;
-        let promedio = 0; 
+    function setPixel(image, x, y, r, g, b, a){
+        let index = (x+y*image.width) * 4;
+        let promedioR = 0;
+        let promedioG = 0;
+        let promedioB = 0;
 
-        r=imageData.data[index + 0];
-        g=imageData.data[index + 1];
-        b=imageData.data[index + 2];
-        a=imageData.data[index + 3];
+        let l1= [x, y];  
+        let l2= [(x+1), y]; 
+        let l3= [(x-1), y]; 
+        let l4= [x, (y-1)]; 
+        let l5= [x, (y+1)]; 
+        let l6= [(x-1), (y-1)]; 
+        let l7= [(x+1), (y-1)]; 
+        let l8= [(x-1), (y+1)]; 
+        let l9= [(x+1), (y+1)]; 
+        
+        let valoresR = obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, 0);
+        let valoresG = obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, 1);
+        let valoresB = obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, 2);
 
-        let l1= imageData.data[x, y];
-        let l2= imageData.data[(x+1), y];
-        let l3= imageData.data[(x-1), y];
-        let l4= imageData.data[x, (y-1)];
-        let l5= imageData.data[x, (y+1)];
-        let l6= imageData.data[(x-1), (y-1)];
-        let l7= imageData.data[(x+1), (y-1)];
-        let l8= imageData.data[(x-1), (y+1)];
-        let l9= imageData.data[(x+1), (y+1)];
-        let pixelVecino = [l2, l3, l4, l5, l6, l7, l8, l9];
-        let todosLosVecinos = pixelVecino.length;
-        for(let m=0; m<todosLosVecinos; m++){
-            if(pixelVecino[m] != null){
-                promedio = promedio + pixelVecino[m];
-            } else{
-                pixelVecino.pop(m);
+        for(let m=0; m<valoresR.length; m++){
+            if(valoresR[m] != null){
+                promedioR = promedioR + valoresR[m];
             }
         }
-        promedio = promedio / pixelVecino.length;
+        for(let m=0; m<valoresG.length; m++){
+            if(valoresG[m] != null){
+                promedioG = promedioG + valoresG[m];
+            }
+        }
+        for(let m=0; m<valoresB.length; m++){
+            if(valoresB[m] != null){
+                promedioB = promedioB + valoresB[m];
+            }
+        }
+        promedioR = promedioR / valoresR.length;
+        promedioG = promedioG / valoresG.length;
+        promedioB = promedioB / valoresB.length;
 
-        copia.data[index + 0] = r - promedio;
-        copia.data[index + 1] = g - promedio;
-        copia.data[index + 2] = b - promedio;
+        copia.data[index + 0] = promedioR;
+        copia.data[index + 1] = promedioG;
+        copia.data[index + 2] = promedioB;
     }
+    function obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, poscicionColor){
+        let color = [];
 
+        let index1 = (l1[0]+l1[1]*image.width) * 4;
+        let index2 = (l2[0]+l2[1]*image.width) * 4;
+        let index3 = (l3[0]+l3[1]*image.width) * 4;
+        let index4 = (l4[0]+l4[1]*image.width) * 4;
+        let index5 = (l5[0]+l5[1]*image.width) * 4;
+        let index6 = (l6[0]+l6[1]*image.width) * 4;
+        let index7 = (l7[0]+l7[1]*image.width) * 4;
+        let index8 = (l8[0]+l8[1]*image.width) * 4;
+        let index9 = (l9[0]+l9[1]*image.width) * 4;
+
+        color.push(image.data[index1 + poscicionColor]);
+        color.push(image.data[index2 + poscicionColor]);
+        color.push(image.data[index3 + poscicionColor]);
+        color.push(image.data[index4 + poscicionColor]);
+        color.push(image.data[index5 + poscicionColor]);
+        color.push(image.data[index6 + poscicionColor]);
+        color.push(image.data[index7 + poscicionColor]);
+        color.push(image.data[index8 + poscicionColor]);
+        color.push(image.data[index9 + poscicionColor]);
+
+        return color;
+    }
     drawRect(imageData, r, g, b, a);
-    ctx.putImageData( imageData, 0, 0 );
+    ctx.putImageData( copia, 0, 0 );
 }
 //Metodo del filtro Sepia
 function filtroSepia(){
