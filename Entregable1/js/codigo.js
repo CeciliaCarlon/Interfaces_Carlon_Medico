@@ -18,8 +18,10 @@ let pintar = false;
 let lapiz = false;
 let goma = false;
 let colorSeteado = "black";
-let grosor = 50;
-let slider = document.getElementById("tamanioLapiz")
+let grosorLapiz = 50;
+let grosorGoma = 50;
+let sliderLapiz = document.getElementById("tamanioLapiz")
+let sliderGoma = document.getElementById("tamanioGoma")
 
 function cargarPagina(){
 
@@ -33,12 +35,13 @@ function cargarPagina(){
     document.getElementById("binarizacion").addEventListener("click", filtroBinarizacion);
     document.getElementById("saturar").addEventListener("click", filtroSaturacion);
     document.getElementById("blur").addEventListener("click", filtroBlur);
-    document.getElementById("bordes").addEventListener("click", filtroDeteccionDeBordes);
+    //document.getElementById("bordes").addEventListener("click", filtroDeteccionDeBordes);
     //limpia el canvas
     document.getElementById("limpiar").addEventListener("click", limpiarCanvas);
     //lapiz y goma
     document.getElementById("lapiz").addEventListener("click", activarLapiz);
-    slider.addEventListener("click", cambiarGrosor);
+    sliderLapiz.addEventListener("click", cambiarGrosorLapiz);
+    sliderGoma.addEventListener("click", cambiarGrosorGoma);
     document.getElementById("goma").addEventListener("click", activarGoma);
     document.getElementById("descargar").addEventListener("click", descargarImagen);
     //paleta de colores
@@ -46,6 +49,7 @@ function cargarPagina(){
     document.getElementById("btnVerde").addEventListener("click", function(){ colorSeteado = "green"; } );
     document.getElementById("btnAzul").addEventListener("click", function(){ colorSeteado = "blue"; } );
     document.getElementById("btnAmarillo").addEventListener("click", function(){ colorSeteado = "yellow"; } );
+    document.getElementById("btnNaranja").addEventListener("click", function(){ colorSeteado = "orangered"; } );
     document.getElementById("btnNegro").addEventListener("click", function(){ colorSeteado = "black"; } );
 
     //EventListener de canvas
@@ -128,9 +132,12 @@ function posicionFin(){
 //Metodo que pinta los pixeles que se encuentran en x, y de la posicion del mouse
 function draw(e){
     if(pintar) {
-        ctx.lineWidth = grosor;
+        if(lapiz) {
+            ctx.lineWidth = grosorLapiz;
+        }else {
+            ctx.lineWidth = grosorGoma;
+        }
         ctx.lineCap = "round";
-
         ctx.lineTo(e.clientX, e.clientY);
         ctx.stroke();
         //Estas dos funciones se usan para que la linea no sea tan pixeleada
@@ -148,8 +155,11 @@ function cambiarColor(color){
     colorSeteado = color;
 }
 //Metodo para cambiar el grosor del lapiz/goma
-function cambiarGrosor(){
-    grosor = slider.value;
+function cambiarGrosorLapiz(){
+    grosorLapiz = sliderLapiz.value;
+}
+function cambiarGrosorGoma(){
+    grosorGoma = sliderGoma.value;
 }
 //Metodo del filtro Negativo
 function filtroNegativo(){
