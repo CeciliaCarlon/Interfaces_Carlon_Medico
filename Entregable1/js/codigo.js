@@ -35,7 +35,7 @@ function cargarPagina(){
     document.getElementById("binarizacion").addEventListener("click", filtroBinarizacion);
     document.getElementById("saturar").addEventListener("click", filtroSaturacion);
     document.getElementById("blur").addEventListener("click", filtroBlur);
-    //document.getElementById("bordes").addEventListener("click", filtroDeteccionDeBordes);
+    document.getElementById("bordes").addEventListener("click", filtroDeteccionDeBordes);
     //limpia el canvas
     document.getElementById("limpiar").addEventListener("click", limpiarCanvas);
     //lapiz y goma
@@ -77,27 +77,29 @@ function cargarImagen(e){
         imagen.src = e.target.result;
 
         imagen.onload = function(){
-            console.log(imagen.width);
+            /*canvasH = imagen.height;
+            canvasW = imagen.width;
+            console.log(imagen.width);*/
             imgW = imagen.width;
             imgH = imagen.height;
 
             //adapato la imagen al tamaño del canvas sin deformarla
             if(imgW < imgH){
-                let porc = (canvasH * 100) / imgH;
-                imgW = imgW * (porc/100);
-                imgH = imgH * (porc/100);
+                let porc = canvasH / imgH;
+                imgW = imgW * porc;
+                imgH = imgH * porc;
             } else if (imgW > imgH){
-                let porc = (canvasW * 100) / imgW;
-                imgW = imgW * (porc/100);
-                imgH = imgH * (porc/100);
+                let porc = canvasW / imgW;
+                imgW = imgW * porc;
+                imgH = imgH * porc;
             } else {
-                let porcW = (canvasW * 100) / imgW;
-                let porcH = (canvasH * 100) / imgH;
-                imgW = imgW * (porcW/100);
-                imgH = imgH * (porcH/100);
+                let porcW = canvasW / imgW;
+                let porcH = canvasH  / imgH;
+                imgW = imgW * porcW;
+                imgH = imgH * porcH;
             }
 
-            ctx.drawImage(imagen, 0, 0, imgW, imgH);
+            ctx.drawImage(imagen, 0, 0, canvasW, canvasH);
         }
     }
 
@@ -138,11 +140,11 @@ function draw(e){
             ctx.lineWidth = grosorGoma;
         }
         ctx.lineCap = "round";
-        ctx.lineTo(e.clientX, e.clientY);
+        ctx.lineTo(e.layerX, e.layerY);
         ctx.stroke();
         //Estas dos funciones se usan para que la linea no sea tan pixeleada
         ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY);
+        ctx.moveTo(e.layerX, e.layerY);
         if(goma){
             ctx.strokeStyle = "white";
         } else{
@@ -395,7 +397,39 @@ function filtroSaturacion(){
 
 function filtroDeteccionDeBordes(){
     let imageData = ctx.getImageData(0,0,canvasW,canvasH);
+
+    //trato d pasarla a gris pa q ande
+    function gris(){
+        let imageData = ctx.getImageData(0,0,canvasW,canvasH);
         
+        function drawRect(imageData, r, g, b, a){
+            for(let x=0; x < canvasW; x++){
+                for(let y=0; y < canvasH; y++){
+                    setPixel(imageData, x, y, r, g, b, a);
+                }
+            }
+        }
+        function setPixel(imageData, x, y, r, g, b, a){
+            let index = (x+y*imageData.width) * 4;
+            
+            r=imageData.data[index + 0];
+            g=imageData.data[index + 1];
+            b=imageData.data[index + 2];
+            a=imageData.data[index + 3];
+
+            let grey = ( r + g + b ) / 3;
+
+            imageData.data[index + 0] = grey;
+            imageData.data[index + 1] = grey;
+            imageData.data[index + 2] = grey;
+        }
+        
+        drawRect(imageData, r, g, b, a);
+        ctx.putImageData( imageData, 0, 0 );
+    }
+    
+    gris();
+
     function drawRect(imageData, r, g, b){
         for(let x=0; x < canvasW; x++){
             for(let y=0; y < canvasH; y++){
@@ -406,18 +440,19 @@ function filtroDeteccionDeBordes(){
     function setPixel(imageData, x, y, r, g, b){
         let index = (x+y*imageData.width) * 4;
 
-        let total = 0;
+        let totalR = 0;
+        let totalG = 0;
+        let totalB = 0;
 
-        let l1= [(x+1), (y-1)];
-        let l2= [x, (y-1)];
+        let l1= [(x-1), (y+1)];
+        let l2= [(x-1), y];
         let l3= [(x-1), (y-1)];
-        let l4= [(x+1), y]; 
+        let l4= [x, (y+1)]; 
         let l5= [x, y];  
-        let l6= [(x-1), y]; 
+        let l6= [x, (y-1)]; 
         let l7= [(x+1), (y+1)]; 
-        let l8= [x, (y+1)];     
-        let l9= [(x-1), (y+1)]; 
-        
+        let l8= [(x+1), y];     
+        let l9= [(x+1), (y-1)];    
         
         let vecinosR = obtenerTotal(imageData, l1, l2, l3, l4, l5, l6, l7, l8, l9, 0);
         let vecinosG = obtenerTotal(imageData, l1, l2, l3, l4, l5, l6, l7, l8, l9, 1);
@@ -427,27 +462,29 @@ function filtroDeteccionDeBordes(){
 
         for(let m=0; m<=vecinosR.length; m++){
             if(vecinosR[m] != null)
-                total += vecinosR[m] * sobel[m];
+                totalR =  totalR + (vecinosR[m] * sobel[m]);
         }
         for(let m=0; m<=vecinosG.length; m++){
-            if(vecinosR[m] != null)
-                total += vecinosG[m] * sobel[m];
+            if(vecinosG[m] != null)
+                totalG = totalG + (vecinosG[m] * sobel[m]);
         }
         for(let m=0; m<=vecinosB.length; m++){
-            if(vecinosR[m] != null)
-                total += vecinosB[m] * sobel[m];
+            if(vecinosB[m] != null)
+                totalB = totalB + (vecinosB[m] * sobel[m]);
         }
-
-        if(total > 0){
-            imageData.data[index + 0] = 255;
-            imageData.data[index + 1] = 255;
-            imageData.data[index + 2] = 255;
-        } else {
-            imageData.data[index + 0] = 0;
-            imageData.data[index + 1] = 0;
-            imageData.data[index + 2] = 0;
-        }
+        /*console.log(totalR);
+        console.log(totalG);
+        console.log(totalB);*/
+        /*if(totalR >= 0) imageData.data[index + 0] = 255;
+        else imageData.data[index + 0] = 0;
+        if(totalG >= 0) imageData.data[index + 1] = 255;
+        else imageData.data[index + 1] = 0;
+        if(totalB >= 0) imageData.data[index + 2] = 255;
+        else imageData.data[index + 2] = 0;*/
         
+        imageData.data[index + 0] = totalR;
+        imageData.data[index + 1] = totalG;
+        imageData.data[index + 2] = totalB;
     }
     function obtenerTotal(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, pos){
         let vecinos = [];
@@ -462,15 +499,15 @@ function filtroDeteccionDeBordes(){
         let index8 = (l8[0]+l8[1]*image.width) * 4;
         let index9 = (l9[0]+l9[1]*image.width) * 4;
 
-        vecinos.push(image.data[index1 + pos]);
-        vecinos.push(image.data[index2 + pos]);
-        vecinos.push(image.data[index3 + pos]);
-        vecinos.push(image.data[index4 + pos]);
-        vecinos.push(image.data[index5 + pos]);
-        vecinos.push(image.data[index6 + pos]);
-        vecinos.push(image.data[index7 + pos]);
-        vecinos.push(image.data[index8 + pos]);
         vecinos.push(image.data[index9 + pos]);
+        vecinos.push(image.data[index8 + pos]);
+        vecinos.push(image.data[index7 + pos]);
+        vecinos.push(image.data[index6 + pos]);
+        vecinos.push(image.data[index5 + pos]);
+        vecinos.push(image.data[index4 + pos]);
+        vecinos.push(image.data[index3 + pos]);
+        vecinos.push(image.data[index2 + pos]);
+        vecinos.push(image.data[index1 + pos]);
 
         return vecinos;
     }
