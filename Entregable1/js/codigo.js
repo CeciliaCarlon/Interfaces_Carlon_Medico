@@ -19,13 +19,17 @@ let goma = false;
 let colorSeteado = "black";
 let grosorLapiz = 50;
 let grosorGoma = 50;
-let sliderLapiz = document.getElementById("tamanioLapiz")
-let sliderGoma = document.getElementById("tamanioGoma")
+let botonLapiz = document.getElementById("lapiz");
+let sliderLapiz = document.getElementById("tamanioLapiz");
+let botonGoma = document.getElementById("goma");
+let sliderGoma = document.getElementById("tamanioGoma");
 //Función para cargar la página
 function cargarPagina(){
     // ----------- EventListeners de pagina ------------
     //Cargo la imagen con el evento change
     document.getElementById("inputImagen").addEventListener("change", cargarImagen);
+    //Descarga de la imagen
+    document.getElementById("descargar").addEventListener("click", descargarImagen);
     //Filtros
     document.getElementById("negativo").addEventListener("click", filtroNegativo);
     document.getElementById("brillo").addEventListener("click", filtroBrillo);
@@ -38,11 +42,10 @@ function cargarPagina(){
     document.getElementById("borrar").addEventListener("click", limpiarCanvas);
     document.getElementById("limpiar").addEventListener("click", limpiarImagen);
     //Lapiz y goma
-    document.getElementById("lapiz").addEventListener("click", activarLapiz);
+    botonLapiz.addEventListener("click", actividadLapiz);
     sliderLapiz.addEventListener("click", cambiarGrosorLapiz);
     sliderGoma.addEventListener("click", cambiarGrosorGoma);
-    document.getElementById("goma").addEventListener("click", activarGoma);
-    document.getElementById("descargar").addEventListener("click", descargarImagen);
+    botonGoma.addEventListener("click", actividadGoma);
     //Paleta de colores para pintar
     document.getElementById("btnRojo").addEventListener("click", function(){ colorSeteado = "red"; } );
     document.getElementById("btnVerde").addEventListener("click", function(){ colorSeteado = "green"; } );
@@ -128,14 +131,36 @@ function limpiarImagen(){
     ctx.putImageData(copia, 0, 0);
 }
 //Función para activar el lapiz
-function activarLapiz(){
-    goma = false;
-    lapiz = true;
+function actividadLapiz(){
+    if(lapiz){
+        lapiz = false;
+    } else{
+        goma = false;
+        lapiz = true;   
+    }
+    cambiarColorBotonSeleccionado();
 }
 //Función para activas la goma
-function activarGoma(){
-    lapiz = false;
-    goma = true;
+function actividadGoma(){
+    if(goma){
+        goma = false;
+    } else{
+        lapiz = false;
+        goma = true;
+    }
+    cambiarColorBotonSeleccionado();
+}
+function cambiarColorBotonSeleccionado(){
+    if(lapiz) {
+        botonLapiz.style.backgroundColor = 'white';
+        botonLapiz.style.color = 'black';
+    }
+    else botonLapiz.style.backgroundColor = 'rgb(245, 179, 88)';
+    if(goma) {
+        botonGoma.style.backgroundColor = 'white';
+        botonGoma.style.color = 'black';
+    }
+    else botonGoma.style.backgroundColor = 'rgb(245, 179, 88)';
 }
 //Función que setea el atributo pintar en true e invoca a la funcion que dibuja
 function posicionInicio(e){

@@ -9,41 +9,48 @@
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <label class="boton">
+            <i class="fas fa-file-import"></i> Insertar Imagen
+            <input type="file" id="inputImagen">
+        </label>
+        <button class="boton" id="descargar"><i class="fas fa-download"></i> Descargar imagen</button>
+    </nav>
     <div class="contenedor"> 
         <div class="barra">
-            <nav>
-                <li><input type="file" class="boton" id="inputImagen"></li>
-                <li><button class="boton" id="descargar">Descargar</button></li>
+            <div>
                 <button class="boton" id="lapiz"><i class="fas fa-pencil-alt"></i></button>
                 <input type="range" min="1" max="100" id="tamanioLapiz">
+            </div>
+            <div>
                 <button class="boton" id="goma"><i class="fas fa-eraser"></i></button>
                 <input type="range" min="1" max="100" id="tamanioGoma">
-                <div class="contenedorEditor"></div>
-                <div id="btnRojo" class="btnL"></div>
-                <div id="btnVerde" class="btnL"></div>
-                <div id="btnAzul" class="btnL"></div>
-                <div id="btnAmarillo" class="btnL"></div>
-                <div id="btnNaranja" class="btnL"></div>
-                <div id="btnNegro" class="btnL"></div>
-                <div class="contenedorTitulo">
-                    <h2 class="titulo">Filtros</h2>
-                    <div class="contenedorFiltros">
-                        <div class="botonesFiltros">
-                            <li><button class="boton" id="negativo">Negativo</button></li>
-                            <li><button class="boton" id="brillo">Brillo</button></li>               
-                            <li><button class="boton" id="binarizacion">Binarización</button></li>
-                        </div>
-                        <div class="botonesFiltros">
-                            <li><button class="boton" id="sepia">Sepia</button></li>
-                            <li><button class="boton" id="saturar">Saturar</button></li>
-                            <li><button class="boton" id="blur">Blur</button></li>
-                        </div>
-                        <li><button class="boton" id="gris">Blanco y negro</button></li>
+            </div>
+            <div class="contenedorEditor"></div>
+            <div id="btnRojo" class="btnL"></div>
+            <div id="btnVerde" class="btnL"></div>
+            <div id="btnAzul" class="btnL"></div>
+            <div id="btnAmarillo" class="btnL"></div>
+            <div id="btnNaranja" class="btnL"></div>
+            <div id="btnNegro" class="btnL"></div>
+            <div class="contenedorTitulo">
+                <h2 class="titulo">Filtros</h2>
+                <div class="contenedorFiltros">
+                    <div class="botonesFiltros">
+                        <li><button class="boton" id="negativo">Negativo</button></li>
+                        <li><button class="boton" id="saturar">Saturar</button></li> 
+                        <li><button class="boton" id="brillo">Brillo</button></li>              
                     </div>
+                    <div class="botonesFiltros">
+                        <li><button class="boton" id="binarizacion">Binarización</button></li>
+                        <li><button class="boton" id="sepia">Sepia</button></li>
+                        <li><button class="boton" id="blur">Blur</button></li>
+                    </div>
+                    <li><button class="boton" id="gris">Blanco y negro</button></li>
                 </div>
-                <li><button class="boton" id="borrar">Borrar lienzo</button></li>
-                <li><button class="boton" id="limpiar">Limpiar imagen</button></li>
-            </nav>
+            </div>
+            <li><button class="boton" id="borrar"><i class="fas fa-snowplow"></i> Borrar lienzo</button></li>
+            <li><button class="boton" id="limpiar"><i class="fas fa-undo-alt"></i> Limpiar imagen</button></li>
         </div>
         <div class="canvas">
             <canvas width="700" height="500" id="miCanvas"></canvas>

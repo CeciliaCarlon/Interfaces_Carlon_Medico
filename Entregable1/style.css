@@ -2,11 +2,20 @@ body {
     background-color: rgb(181, 180, 250);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+h2 {
+    color: white;
+}
 li {
     list-style: none;
 }
 canvas {
     background-color: white;
+}
+nav.boton {
+    display: inline-block 
+}
+input[type="file"] {
+    display: none;
 }
 /*Estilo contendores de la página en general*/
 .contenedor {
@@ -53,7 +62,7 @@ canvas {
     font-size: 16px;
 }
 .boton:hover {
-    background-color: rgb(248, 197, 164);
+    background-color: rgb(240, 199, 143);
     color: black;
 }
 /*Posición de los botones de los filtros*/
