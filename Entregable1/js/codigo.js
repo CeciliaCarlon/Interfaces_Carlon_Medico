@@ -138,6 +138,7 @@ function actividadLapiz(){
         goma = false;
         lapiz = true;   
     }
+    //Cambia el color del boton si este está seleccionado o no
     cambiarColorBotonSeleccionado();
 }
 //Función para activas la goma
@@ -148,18 +149,24 @@ function actividadGoma(){
         lapiz = false;
         goma = true;
     }
+    //Cambia el color del boton si este está seleccionado o no
     cambiarColorBotonSeleccionado();
 }
+//Función para cambiar el background del boton seleccionado
 function cambiarColorBotonSeleccionado(){
+    //Si el lapiz esta en true cambia el css
     if(lapiz) {
         botonLapiz.style.backgroundColor = 'white';
         botonLapiz.style.color = 'black';
     }
+    //Si no lo vuelve a dejar en su color natural
     else botonLapiz.style.backgroundColor = 'rgb(245, 179, 88)';
+    //Si la goma esta en true cambia el css
     if(goma) {
         botonGoma.style.backgroundColor = 'white';
         botonGoma.style.color = 'black';
     }
+    //Si no lo vuelve a dejar en su color natural
     else botonGoma.style.backgroundColor = 'rgb(245, 179, 88)';
 }
 //Función que setea el atributo pintar en true e invoca a la funcion que dibuja
@@ -177,6 +184,7 @@ function posicionFin(){
 //Función que pinta los pixeles que se encuentran en x, y de la posicion del mouse
 function draw(e){
     if(pintar) {
+        //Setea el grosor del lapiz o la goma
         if(lapiz) {
             ctx.lineWidth = grosorLapiz;
         }else {
@@ -188,6 +196,7 @@ function draw(e){
         //Estas dos funciones se usan para que la linea no sea tan pixeleada
         ctx.beginPath();
         ctx.moveTo(e.layerX, e.layerY);
+        //Setea el color del lapiz/goma
         if(goma){
             ctx.strokeStyle = "white";
         } else{
@@ -195,14 +204,15 @@ function draw(e){
         }
     }
 }
-//Función para cambiar el color del lapiz/goma
+//Función para cambiar el color del lapiz
 function cambiarColor(color){
     colorSeteado = color;
 }
-//Función para cambiar el grosor del lapiz/goma
+//Función para cambiar el grosor del lapiz
 function cambiarGrosorLapiz(){
     grosorLapiz = sliderLapiz.value;
 }
+//Función para cambiar el grosor de la goma
 function cambiarGrosorGoma(){
     grosorGoma = sliderGoma.value;
 }
@@ -290,6 +300,7 @@ function filtroBlur(){
         let promedioG = 0;
         let promedioB = 0;
 
+        //Busco los pixeles de alrededor de x,y
         let l1= [x, y];  
         let l2= [(x+1), y]; 
         let l3= [(x-1), y]; 
@@ -299,11 +310,14 @@ function filtroBlur(){
         let l7= [(x+1), (y-1)]; 
         let l8= [(x-1), (y+1)]; 
         let l9= [(x+1), (y+1)]; 
-        
+
+        //Obtengo el r, g y b de cada pixel por separado y lo agrego a un array
+        //Le paso las posiciones seteadas arriba, la imagen y si es 0 (red), 1 (green) o 2 (blue)
         let valoresR = obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, 0);
         let valoresG = obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, 1);
         let valoresB = obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, 2);
 
+        //A cada arreglo lo recorro y lo agrego a la suma total sin contar los null
         for(let m=0; m<valoresR.length; m++){
             if(valoresR[m] != null){
                 promedioR = promedioR + valoresR[m];
@@ -319,17 +333,20 @@ function filtroBlur(){
                 promedioB = promedioB + valoresB[m];
             }
         }
+        //Divido el total general por cada color y lo divido por la cantidad de pixeles para sacar el promedio
         promedioR = promedioR / valoresR.length;
         promedioG = promedioG / valoresG.length;
         promedioB = promedioB / valoresB.length;
-
+        //Le seteo a una copia los valores del promedio en r, g y b 
         copia.data[index + 0] = promedioR;
         copia.data[index + 1] = promedioG;
         copia.data[index + 2] = promedioB;
     }
+    //Funcion para obtener un color especifico de los "vecinos" del pixel x,y
     function obtenerColor(image, l1, l2, l3, l4, l5, l6, l7, l8, l9, poscicionColor){
+        //Creo el arreglo para almacenar los resultados
         let color = [];
-
+        //Saco la cuenta de cual sería mi indice con respecto a cada "vecino"
         let index1 = (l1[0]+l1[1]*image.width) * 4;
         let index2 = (l2[0]+l2[1]*image.width) * 4;
         let index3 = (l3[0]+l3[1]*image.width) * 4;
@@ -340,6 +357,7 @@ function filtroBlur(){
         let index8 = (l8[0]+l8[1]*image.width) * 4;
         let index9 = (l9[0]+l9[1]*image.width) * 4;
 
+        //Agrego cada pixel a el arreglo color 
         color.push(image.data[index1 + poscicionColor]);
         color.push(image.data[index2 + poscicionColor]);
         color.push(image.data[index3 + poscicionColor]);
@@ -349,7 +367,7 @@ function filtroBlur(){
         color.push(image.data[index7 + poscicionColor]);
         color.push(image.data[index8 + poscicionColor]);
         color.push(image.data[index9 + poscicionColor]);
-
+        //Retorno el arreglo
         return color;
     }
     //Muestro la imagen en el contexto
