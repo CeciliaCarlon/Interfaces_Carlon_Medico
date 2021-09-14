@@ -39,6 +39,7 @@ function cargarPagina(){
     document.getElementById("saturar").addEventListener("click", filtroSaturacion);
     document.getElementById("blur").addEventListener("click", filtroBlur);
     document.getElementById("gris").addEventListener("click", filtroBlancoYNegro);
+    document.getElementById("sobel").addEventListener("click", filtroDeteccionDeBordes);
     //Limpia el canvas
     document.getElementById("borrar").addEventListener("click", limpiarCanvas);
     document.getElementById("limpiar").addEventListener("click", limpiarImagen);
@@ -472,7 +473,7 @@ function filtroBinarizacion(){
     //Muestro la imagen en el contexto
     ctx.putImageData( imageData, 0, 0 );
 }
-
+//Función del filtro de saturación
 function filtroSaturacion(){
     //Obtengo la información de la imagen que esta en el contexto del canvas
     let imageData = ctx.getImageData(0,0,canvasW,canvasH);
@@ -542,6 +543,72 @@ function filtroBlancoYNegro(){
     }
     //Muestro la imagen en el contexto 
     ctx.putImageData( imageData, 0, 0 );
+}
+//Función de detección de bordes con la matriz de sobel
+function filtroDeteccionDeBordes() {
+    //Paso la imagen a blanco y negro para que detecte mejor los bordes
+    filtroBlancoYNegro();
+    //Obtengo la información de la imagen que esta en el contexto del canvas y creo una copia
+    let imageData = ctx.getImageData(0, 0, canvasW, canvasH);
+    let imageDataCopy = ctx.getImageData(0, 0, canvasW, canvasH);
+    //Función que recorre la imagen y le setea los pixeles
+    function draw(imageData, r, g, b){
+        for(let x=0; x < canvasW; x++){
+            for(let y=0; y < canvasH; y++){
+                setPixel(imageData, x, y, r, g, b, canvasW, canvasH);
+            }
+        }
+    }
+    draw(imageData, r, g, b);
+    function setPixel(imageData, x, y, r, g, b, w, h){
+        //Obtengo la data de mi imagen y mi copia
+        let data = imageData.data;
+        let dataCopy= imageDataCopy.data;
+        //Creo las matrices de sobel para encontrar el gradiente
+        let sobelX = [[-1, 0, 1],
+                    [-2, 0, 2],
+                    [-1, 0, 1]];
+
+        let sobelY = [ [-1, -2, -1],
+                    [0, 0, 0],
+                    [1, 2, 1]];
+        //Posiciones en los ejes
+        let l1= [(x-1), (y-1)];
+        let l2= [x, (y-1)];
+        let l3= [(x+1), (y-1)];
+        let l4= [(x-1), y]; 
+        let l5= [x, y];  
+        let l6= [(x+1), y]; 
+        let l7= [(x-1), (y+1)]; 
+        let l8= [x, (y+1)];     
+        let l9= [(x+1), (y+1)];   
+        //Encuentro el indice por cada eje vecino
+        let index1 = (l1[0]+l1[1]*w) * 4;
+        let index2 = (l2[0]+l2[1]*w) * 4;
+        let index3 = (l3[0]+l3[1]*w) * 4;
+        let index4 = (l4[0]+l4[1]*w) * 4;
+        let index5 = (l5[0]+l5[1]*w) * 4;
+        let index6 = (l6[0]+l6[1]*w) * 4;
+        let index7 = (l7[0]+l7[1]*w) * 4;
+        let index8 = (l8[0]+l8[1]*w) * 4;
+        let index9 = (l9[0]+l9[1]*w) * 4;
+        //Sumo todos la data de los indices multiplicados por la matriz de sobel
+        let totalX = (data[index1]*sobelX[0][0])+(data[index2]*sobelX[0][1])+(data[index3]*sobelX[0][2])
+                    +(data[index4]*sobelX[1][0])+(data[index5]*sobelX[1][1])+(data[index6]*sobelX[1][2])
+                    +(data[index7]*sobelX[2][0])+(data[index8]*sobelX[2][1])+(data[index9]*sobelX[2][2]);
+        
+        let totalY = (data[index1]*sobelY[0][0])+(data[index2]*sobelY[0][1])+(data[index3]*sobelY[0][2])
+                    +(data[index4]*sobelY[1][0])+(data[index5]*sobelY[1][1])+(data[index6]*sobelY[1][2])
+                    +(data[index7]*sobelY[2][0])+(data[index8]*sobelY[2][1])+(data[index9]*sobelY[2][2]);
+        //Obtengo la raiz cuadrada sumando el total en x e y
+        let total = Math.sqrt(Math.pow(totalX, 2) + Math.pow(totalY, 2));
+        //Seteo el total a cada pixel r g y b
+        dataCopy[index5 + 0] = total;
+        dataCopy[index5 + 1] = total;
+        dataCopy[index5 + 2] = total;
+    }
+    //Muestro la imagen en el contexto 
+    ctx.putImageData(imageDataCopy, 0, 0);
 }
 //Función para descargar la imagen del canvas
 function descargarImagen(){
