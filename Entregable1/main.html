@@ -10,11 +10,17 @@
 </head>
 <body>
     <nav>
-        <label class="boton">
-            <i class="fas fa-file-import"></i> Insertar Imagen
-            <input type="file" id="inputImagen">
-        </label>
-        <button class="boton" id="descargar"><i class="fas fa-download"></i> Descargar imagen</button>
+        <ul>
+            <li>
+                <a href="img/paint.jpeg">
+                    <img src="img/paint.jpeg" width="150">
+                </a>
+            <li><label class="boton">
+                <i class="fas fa-file-import"></i> Insertar Imagen
+                <input type="file" id="inputImagen" onclick="this.value=null;">
+            </label></li>
+            <li><button class="boton" id="descargar"><i class="fas fa-download"></i> Descargar imagen</button></li>
+        </ul>   
     </nav>
     <div class="contenedor"> 
         <div class="barra">
@@ -26,36 +32,78 @@
                 <button class="boton" id="goma"><i class="fas fa-eraser"></i></button>
                 <input type="range" min="1" max="100" id="tamanioGoma">
             </div>
-            <div class="contenedorEditor"></div>
-            <div id="btnRojo" class="btnL"></div>
-            <div id="btnVerde" class="btnL"></div>
-            <div id="btnAzul" class="btnL"></div>
-            <div id="btnAmarillo" class="btnL"></div>
-            <div id="btnNaranja" class="btnL"></div>
-            <div id="btnNegro" class="btnL"></div>
+            <div class="colores">
+                <label class="boton">
+                    <i class="fas fa-palette"></i>
+                    <input type="color" id="btnColores" class="btnColores"/>
+                </label>
+                <div id="btnRojo" class="btnL"></div>
+                <div id="btnVerde" class="btnL"></div>
+                <div id="btnAzul" class="btnL"></div>
+                <div id="btnAmarillo" class="btnL"></div>
+                <div id="btnNaranja" class="btnL"></div>
+                <div id="btnNegro" class="btnL"></div>
+            </div>
             <div class="contenedorTitulo">
-                <h2 class="titulo">Filtros</h2>
                 <div class="contenedorFiltros">
                     <div class="botonesFiltros">
-                        <li><button class="boton" id="negativo">Negativo</button></li>
-                        <li><button class="boton" id="saturar">Saturar</button></li> 
-                        <li><button class="boton" id="brillo">Brillo</button></li>              
+                        <div class="filaFiltro">
+                            <p>Negativo</p>
+                            <button class="boton btnFiltros" id="negativo">
+                                <img src="img/negativo.png" width="70">
+                            </button>
+                        </div>
+                        <div class="filaFiltro">
+                            <p>Saturar</p>
+                            <button class="boton btnFiltros" id="saturar">
+                                <img src="img/saturar.png" width="70">
+                            </button>
+                        </div>
+                        <div class="filaFiltro">
+                            <p>Brillo</p>
+                            <button class="boton btnFiltros" id="brillo">
+                                <img src="img/brillo.png" width="70">
+                            </button>
+                        </div>         
                     </div>
                     <div class="botonesFiltros">
-                        <li><button class="boton" id="binarizacion">Binarización</button></li>
-                        <li><button class="boton" id="sepia">Sepia</button></li>
-                        <li><button class="boton" id="blur">Blur</button></li>
+                        <div class="filaFiltro">
+                            <p>Binarización</p>
+                            <button class="boton btnFiltros" id="binarizacion">
+                                <img src="img/binario.png" width="70">
+                            </button>
+                        </div>
+                        <div class="filaFiltro">
+                            <p>Sepia</p>
+                            <button class="boton btnFiltros" id="sepia">
+                                <img src="img/sepia.png" width="70">
+                            </button>
+                        </div>
+                        <div class="filaFiltro">
+                            <p>Blur</p>
+                            <button class="boton btnFiltros" id="blur">
+                                <img src="img/blur.png" width="70">
+                            </button>
+                        </div>
                     </div>
-                    <li><button class="boton" id="gris">Blanco y negro</button></li>
+                    <div class="filaFiltro">
+                        <p>B&N</p>
+                        <button class="boton btnFiltros" id="gris">
+                            <img src="img/byn.png" width="70">
+                        </button>
+                    </div>
                 </div>
             </div>
-            <li><button class="boton" id="borrar"><i class="fas fa-snowplow"></i> Borrar lienzo</button></li>
-            <li><button class="boton" id="limpiar"><i class="fas fa-undo-alt"></i> Limpiar imagen</button></li>
+            <div>
+                <button class="boton" id="borrar"><i class="fas fa-snowplow"></i> Borrar lienzo</button>
+                <button class="boton" id="limpiar"><i class="fas fa-undo-alt"></i> Limpiar imagen</button>
+            </div>
         </div>
         <div class="canvas">
             <canvas width="700" height="500" id="miCanvas"></canvas>
         </div>
     </div>
+    <footer><p class="titulo">© Developer by Cecilia Carlón & Magali Médico</p></footer>
     <script src="js/codigo.js"></script>
 </body>
 </html>

@@ -1,9 +1,11 @@
-body {
-    background-color: rgb(181, 180, 250);
+body { 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 h2 {
     color: white;
+    margin: 0;
 }
 li {
     list-style: none;
@@ -11,14 +13,38 @@ li {
 canvas {
     background-color: white;
 }
+nav{
+    background-color: rgb(148, 146, 253);
+    padding: 5px;
+}
+ul{
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
 nav.boton {
-    display: inline-block 
+    display: inline-block;
 }
 input[type="file"] {
     display: none;
 }
+input[type="color"] {
+    display: none;
+}
+footer{
+    background-color: rgb(148, 146, 253);
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 5px;
+}
+p{
+    margin: 0;
+    color: white;
+    text-align: center;
+}
 /*Estilo contendores de la página en general*/
 .contenedor {
+    background-color: rgb(181, 180, 250);
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
@@ -29,18 +55,31 @@ input[type="file"] {
 .barra {
     grid-row: 1;
     grid-column: 1;
+    width: 400px;
+    padding: 5px;
 }
 /*Estilo paleta de colores*/
+.colores {
+    display: inline-block;
+}
 .btnL {
     height: 40px;
     width: 40px;
     min-width: 40px;
     min-height: 40px;
     cursor: pointer;
-    display: inline-block;
     margin: 2px;
+    display: inline-block;
     box-sizing: border-box;
     border-radius: 50%;
+}
+.btnColores {
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
+    margin: 2px;
+    display: inline-block;
+    box-sizing: border-box;
 }
 #btnRojo { background-color: red; }
 #btnVerde { background-color: green; }
@@ -61,9 +100,15 @@ input[type="file"] {
     display: inline-block;
     font-size: 16px;
 }
+.boton.btnFiltros{
+    padding: 5px;
+}
 .boton:hover {
     background-color: rgb(240, 199, 143);
     color: black;
+}
+.filaFiltro{
+    padding: 0px 20px;
 }
 /*Posición de los botones de los filtros*/
 .titulo {
@@ -72,9 +117,10 @@ input[type="file"] {
 .contenedorFiltros {
     display: flex;
     flex-direction: row;
+    padding: 10px;
 }
 .contenedorTitulo{
     background-color: rgb(253, 202, 130);
-    margin: 7px;
+    margin: 0px;
     border-radius: 3px;
 }

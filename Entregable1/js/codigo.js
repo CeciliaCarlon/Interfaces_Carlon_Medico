@@ -23,6 +23,7 @@ let botonLapiz = document.getElementById("lapiz");
 let sliderLapiz = document.getElementById("tamanioLapiz");
 let botonGoma = document.getElementById("goma");
 let sliderGoma = document.getElementById("tamanioGoma");
+let inputColores = document.getElementById("btnColores")
 //Función para cargar la página
 function cargarPagina(){
     // ----------- EventListeners de pagina ------------
@@ -30,7 +31,7 @@ function cargarPagina(){
     document.getElementById("inputImagen").addEventListener("change", cargarImagen);
     //Descarga de la imagen
     document.getElementById("descargar").addEventListener("click", descargarImagen);
-    //Filtros
+    //Filtros 
     document.getElementById("negativo").addEventListener("click", filtroNegativo);
     document.getElementById("brillo").addEventListener("click", filtroBrillo);
     document.getElementById("sepia").addEventListener("click", filtroSepia);
@@ -53,6 +54,7 @@ function cargarPagina(){
     document.getElementById("btnAmarillo").addEventListener("click", function(){ colorSeteado = "yellow"; } );
     document.getElementById("btnNaranja").addEventListener("click", function(){ colorSeteado = "orangered"; } );
     document.getElementById("btnNegro").addEventListener("click", function(){ colorSeteado = "black"; } );
+    inputColores.addEventListener("change", function(){ colorSeteado = inputColores.value; } );
     //Seguimiento del mouse para dibujar
     canvas.addEventListener("mousedown", posicionInicio);
     canvas.addEventListener("mouseup", posicionFin);
@@ -95,8 +97,23 @@ function cargarImagen(e){
                 imgW = imgW * porcW;
                 imgH = imgH * porcH;
             }
-            //Dibujo la imagen en el contexto
-            ctx.drawImage(imagen, 0, 0, canvasW, canvasH);
+            //Dibujo la imagen en el contexto de forma centrada
+            if(imgW == canvasW && imgH == canvasH){
+                ctx.drawImage(imagen, 0, 0, imgW, imgH);
+            }   
+            else {
+                if(imgW != canvasW){
+                    let mitadCanvas = canvasW/2;
+                    let mitadImg = imgW/2;
+                    let x = mitadCanvas - mitadImg;
+                    ctx.drawImage(imagen, x, 0, imgW, imgH);
+                } else {
+                    let mitadCanvas = canvasH/2;
+                    let mitadImg = imgH/2;
+                    let y = mitadCanvas - mitadImg;
+                    ctx.drawImage(imagen, 0, y, imgW, imgH);
+                }
+            }
             //Guardo una copia de la imagen original para restaurarla
             copia = ctx.getImageData(0,0,canvasW,canvasH);
         }
@@ -160,14 +177,20 @@ function cambiarColorBotonSeleccionado(){
         botonLapiz.style.color = 'black';
     }
     //Si no lo vuelve a dejar en su color natural
-    else botonLapiz.style.backgroundColor = 'rgb(245, 179, 88)';
+    else{
+        botonLapiz.style.backgroundColor = 'rgb(245, 179, 88)';
+        botonLapiz.style.color = 'white';
+    } 
     //Si la goma esta en true cambia el css
     if(goma) {
         botonGoma.style.backgroundColor = 'white';
         botonGoma.style.color = 'black';
     }
     //Si no lo vuelve a dejar en su color natural
-    else botonGoma.style.backgroundColor = 'rgb(245, 179, 88)';
+    else{
+        botonGoma.style.backgroundColor = 'rgb(245, 179, 88)';
+        botonGoma.style.color = 'white';
+    } 
 }
 //Función que setea el atributo pintar en true e invoca a la funcion que dibuja
 function posicionInicio(e){
