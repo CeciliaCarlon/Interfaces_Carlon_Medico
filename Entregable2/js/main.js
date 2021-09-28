@@ -11,37 +11,35 @@ let isMouseDown = false;
 
 //Variables de las Fichas
 const CANT_FICHAS = 21;
-let fichas = [];
+let fichasP1 = [];
+let fichasP2 = [];
+let imgP1 = document.getElementById('imgP1');
+let imgP2 = document.getElementById('imgP2');
+let fichaP1X = 30;
+let fichaP1Y = 100;
+const MIN_FICHA_P1X = 0;
+const MAX_FICHA_P1X = width / 4;
+const MAX_FICHA_Y = height;
+const MIN_FICHA_P2X = MAX_FICHA_P1X * 3;
+const MAX_FICHA_P2X = width;
+let fichaP2X = MIN_FICHA_P2X + 30;
+let fichaP2Y = 100;
 
 //Variables del Tablero.
 const NUMBER_OF_ROWS = 5;
 const NUMBER_OF_COLS = 5;
 
-function addFichas(){
-    while(fichas.length < CANT_FICHAS){
-        addFicha();
-    }
-    drawFichas();
-}
-function drawFichas(){
-    clearCanvas();
-    for(let i=0; i<fichas.length; i++){
-        fichas[i].draw();
-    }
-}
-function addFicha(){
-    let ficha = new Ficha(c, ctx, width, height, CANT_FICHAS);
-    fichas.push(ficha);
-}
-function clearCanvas(){
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-}
-
-addFichas();
 
 let tablero = new Tablero(ctx, width, height, 6, 7);
 tablero.drawTablero();
+let player1 = new Jugador("Pepe", imgP1, fichasP1, CANT_FICHAS, fichaP1X, fichaP1Y, MIN_FICHA_P1X, MAX_FICHA_P1X, MAX_FICHA_Y);
+player1.addFichas();
+let player2 = new Jugador("Juan", imgP2, fichasP2, CANT_FICHAS, fichaP2X, fichaP2Y, MIN_FICHA_P2X, MAX_FICHA_P2X, MAX_FICHA_Y);
+player2.addFichas();
+window.onload = function () {
+    player1.drawFichas();
+    player2.drawFichas();
+}
 
 //-------- EVENTOS ---------
 function onMouseDown(e){
