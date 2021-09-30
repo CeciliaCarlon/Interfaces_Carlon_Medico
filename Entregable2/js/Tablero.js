@@ -18,12 +18,12 @@ class Tablero{
 
     drawTablero(){
         let xValueCambiante = this.xValue;
-        this.ctx.fill();
         for (let i = 0; i < this.NUMBER_OF_ROWS; i++) {
             for (let j = 0; j < this.NUMBER_OF_COLS; j++) {
                 this.ctx.beginPath();
                 this.ctx.fillStyle = ["#FF8D8D", "#8DA9FF"][(i + j) % 2];
                 this.ctx.fillRect(xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
+                this.ctx.fill();
                 this.ctx.closePath();
 
                 posicionesTablero.push(xValueCambiante);

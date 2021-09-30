@@ -4,33 +4,18 @@ let turno = false;
 let cont = 0;
 
 class Jugador{
-    constructor(nombre, imgFicha, fichas, CANT_FICHAS, fichaX, fichaY, MIN_FICHA_X, MAX_FICHA_X, MAX_FICHA_Y){
+    constructor(nombre, imgFicha, fichas){
         this.nombre = nombre;
         this.imgFicha = imgFicha;
-        this.fichas = fichas;
-        this.CANT_FICHAS = CANT_FICHAS;
-        this.fichaX = fichaX;
-        this.fichaY = fichaY;
-        this.MIN_FICHA_X = MIN_FICHA_X;
-        this.MAX_FICHA_X = MAX_FICHA_X;
-        this.MAX_FICHA_Y = MAX_FICHA_Y;
+        this.fichas = [];
     }
 
     setTurno(valor){
         turno = valor;
     }
-    //agrego las fichas al jugador
-    addFichas(){
-        while(this.fichas.length < this.CANT_FICHAS){
-            this.addFicha();
-        }
-    }
-    addFicha(){
-        let ficha = new Ficha(c, ctx, width, height, CANT_FICHAS);
-        this.fichas.push(ficha);
-    }
+
     //dibujo las fichas en pantalla
-    drawFichas(){
+    /*drawFichas(){
         cont = 0;
         for(let i=0; i < this.fichas.length; i++){
             ctx.beginPath();
@@ -59,6 +44,6 @@ class Jugador{
             }
             ctx.stroke();
         }
-    }
+    }*/
 
 }
