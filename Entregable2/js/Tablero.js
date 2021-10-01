@@ -2,6 +2,7 @@
 
 let yValue = 100;
 let posicionesTablero = [];
+let imgCasillero = document.getElementById("imgCasillero");
 
 class Tablero{
     constructor(ctx, width, height, NUMBER_OF_ROWS, NUMBER_OF_COLS){
@@ -13,7 +14,7 @@ class Tablero{
 
         this.SQUARE_SIZE = 90;//this.height / this.NUMBER_OF_ROWS;
         this.NUMBER_OF_SQUARES = 42;//this.NUMBER_OF_ROWS * this.NUMBER_OF_COLS;
-        this.xValue = width / 6;
+        this.xValue = width / 4.5;
     }
 
     drawTablero(){
@@ -22,7 +23,7 @@ class Tablero{
             for (let j = 0; j < this.NUMBER_OF_COLS; j++) {
                 this.ctx.beginPath();
                 this.ctx.fillStyle = ["#FF8D8D", "#8DA9FF"][(i + j) % 2];
-                this.ctx.fillRect(xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
+                this.ctx.drawImage(imgCasillero, xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
                 this.ctx.fill();
                 this.ctx.closePath();
 

@@ -1,16 +1,18 @@
 "use strict";
 
 class Ficha {
-    constructor(ctx, imgFicha){
+    constructor(ctx, imgFicha, posx, posy){
         this.ctx = ctx;
         this.imgFicha = imgFicha;
         this.radio = 35;
+        this.posX = posx;
+        this.posY = posy;
     }
 
-    draw(fichaX, fichaY){
+    draw(){
         this.ctx.beginPath();
-        this.ctx.arc(fichaX + this.radio, fichaY + this.radio, this.radio, 0, Math.PI * 2);
-        this.ctx.drawImage(this.imgFicha, fichaX, fichaY, this.radio*2, this.radio*2);
+        //this.ctx.arc(this.posX + this.radio, this.posY + this.radio, this.radio, 0, Math.PI * 2);
+        this.ctx.drawImage(this.imgFicha, this.posX, this.posY, this.radio*2, this.radio*2);
         this.ctx.closePath();
     }
 

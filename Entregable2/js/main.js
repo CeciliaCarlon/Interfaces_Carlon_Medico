@@ -16,8 +16,10 @@ const NUMBER_OF_ROWS = 6;//Para agrandar el tablero y que se agreguen mas fichas
 const NUMBER_OF_COLS = 7;//Por ej: que elija el valor de un select
 const CANT_FICHAS = NUMBER_OF_COLS*NUMBER_OF_ROWS;
 
+let juego = null;
+
 function crearJuego(){
-    let juego = new Juego(c);
+    juego = new Juego(c);
     juego.nuevoJuego();
 
     //Funciones que tienen que ver con la posición del mouse
@@ -33,7 +35,7 @@ function crearJuego(){
             lastClickedFigure = clickFig;
         }
 
-        //drawFigure();
+        juego.drawFichas();
     }
 
     function onMouseUp(e){
@@ -43,9 +45,10 @@ function crearJuego(){
     function onMouseMove(e){
         if(isMouseDown && lastClickedFigure != null){
             lastClickedFigure.setPosition(e.layerX, e.layerY);
-            //drawFigure();
+            juego.drawFichas();
         }
     }
+
 
     c.addEventListener('mousedown', onMouseDown, false);
     c.addEventListener('mouseup', onMouseUp, false);
@@ -53,6 +56,7 @@ function crearJuego(){
 }
 
 document.addEventListener("DOMContentLoaded", crearJuego());
+
 
 //-------- EVENTOS ---------
 /*function onMouseDown(e){
@@ -71,4 +75,5 @@ document.addEventListener("DOMContentLoaded", crearJuego());
 }
 
 c.addEventListener('mousedown', onMouseDown, false);*/
+
 
