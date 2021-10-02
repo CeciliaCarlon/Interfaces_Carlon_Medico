@@ -5,12 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
     <nav>
         <ul>
-            <li>acá va la barra de navegación</li>
+            <li><label class="botonP1">
+                <i class="fas fa-file-import"></i> Insertar Imagen
+                <input type="file" class="file" id="inputImagenP1" onclick="this.value=null;">
+            </label></li>
+            <li><label class="botonP1 botonP2">
+                <i class="fas fa-file-import"></i> Insertar Imagen
+                <input type="file" class="file" id="inputImagenP2" onclick="this.value=null;">
+            </label></li>
         </ul>
     </nav>
     <canvas id="myCanvas" width="1500" height="800"></canvas>

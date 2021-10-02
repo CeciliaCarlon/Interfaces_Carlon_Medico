@@ -13,6 +13,10 @@ class Juego {
         this.tablero = null;
     }
 
+    getTablero(){
+        return this.tablero;
+    }
+
     nuevoJuego(){
         this.setJugadores();
         this.dibujarTablero();
@@ -83,5 +87,20 @@ class Juego {
     clearCanvas(){
         this.ctx.fillStyle = 'white';
         this.tablero.drawTablero();
+    }
+
+    drawFichasP1(imagen){
+        this.clearCanvas();
+        for(let i=0; i<this.fichasP1.length; i++){
+            this.fichasP1[i].setImgFicha(imagen);
+            this.fichasP1[i].draw();
+        }
+    }
+    drawFichasP2(imagen){
+        this.clearCanvas();
+        for(let i=0; i<this.fichasP2.length; i++){
+            this.fichasP2[i].setImgFicha(imagen);
+            this.fichasP2[i].draw();
+        }
     }
 }

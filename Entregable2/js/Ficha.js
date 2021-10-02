@@ -9,9 +9,13 @@ class Ficha {
         this.posY = posy;
     }
 
+    setImgFicha(imgFicha){
+        this.imgFicha = imgFicha;
+    }
+
     draw(){
         this.ctx.beginPath();
-        //this.ctx.arc(this.posX + this.radio, this.posY + this.radio, this.radio, 0, Math.PI * 2);
+        //this.ctx.arc(this.posX + this.radio, this.posY + this.radio, this.radio, 0, Math.PI * 2);        
         this.ctx.drawImage(this.imgFicha, this.posX, this.posY, this.radio*2, this.radio*2);
         this.ctx.closePath();
     }

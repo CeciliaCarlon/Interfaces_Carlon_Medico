@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav{
+    background-color: navajowhite;
+    height: 100px;
+}
+
+ul{
+    display: flex;
+}
+
+li{
+    list-style: none;
+}
+
+nav.boton {
+    display: inline-block;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="color"] {
+    display: none;
+}
+
+.file{
+    border-radius: 10px;
+}
+
+.botonP1 {
+    background-color: rgb(245, 179, 88);
+    color: white;
+    border-radius: 5px;
+    padding: 15px 32px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+.botonP2 {
+    margin-left: 800px;
+}
