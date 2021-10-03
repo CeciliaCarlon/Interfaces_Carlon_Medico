@@ -4,8 +4,8 @@ class Juego {
     constructor(canvas){
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.width = canvas.width;//no me toma el this.ctx.width;
-        this.height = canvas.height;//no me toma el this.ctx.height;
+        this.width = canvas.width;
+        this.height = canvas.height;
         this.jugador1 = null;
         this.jugador2 = null;
         this.fichasP1 = [];
@@ -86,6 +86,7 @@ class Juego {
 
     clearCanvas(){
         this.ctx.fillStyle = 'white';
+        this.ctx.fillRect(0, 0, this.width, this.height);
         this.tablero.drawTablero();
     }
 

@@ -3,7 +3,7 @@
 let c = document.getElementById("myCanvas");
 
 //Variables de Eventos
-let ultimaFilaSeleccionada = null;
+let ultimaColumnaSeleccionada = null;
 let isMouseDown = false;
 let lastClickedFigure = null;
 
@@ -12,9 +12,11 @@ let imgP1 = document.getElementById('imgP1');
 let imgP2 = document.getElementById('imgP2');
 
 //Variables del Tablero.
-const NUMBER_OF_ROWS = 6;//Para agrandar el tablero y que se agreguen mas fichas esto puede hacerse dinamico
-const NUMBER_OF_COLS = 7;//Por ej: que elija el valor de un select
-const CANT_FICHAS = NUMBER_OF_COLS*NUMBER_OF_ROWS;
+//const NUMBER_OF_ROWS = 6;//Para agrandar el tablero y que se agreguen mas fichas esto puede hacerse dinamico
+//const NUMBER_OF_COLS = 7;//Por ej: que elija el valor de un select
+let NUMBER_OF_ROWS = 6;
+let NUMBER_OF_COLS = 7;
+const CANT_FICHAS = NUMBER_OF_COLS * NUMBER_OF_ROWS;
 
 let juego = null;
 
@@ -24,6 +26,8 @@ function crearJuego(){
 
     document.getElementById('inputImagenP1').addEventListener("change", nuevasFichasP1);
     document.getElementById('inputImagenP2').addEventListener("change", nuevasFichasP2);
+    //let valores = document.getElementById('selectTamanioTablero').value;
+    //let tamanios = valores.split("-");
 
     function nuevasFichasP1(e){
         //Luego tomo la URL de la imagen con el target del evento
@@ -68,6 +72,14 @@ function crearJuego(){
         //Leo los datos binarios y los codigico como la URL de la imagen
         reader.readAsDataURL(urlImagen);
     }
+    /*
+    function cambiarTamanioTablero(){
+        if(tamanios != null){
+            NUMBER_OF_ROWS = tamanios[0];
+            NUMBER_OF_COLS = tamanios[1];
+            juego.nuevoJuego();
+        }
+    }*/
 
     //Funciones que tienen que ver con la posición del mouse
     function onMouseDown(e){
@@ -86,6 +98,9 @@ function crearJuego(){
     }
 
     function onMouseUp(e){
+        if(lastClickedFigure != null){
+            posicionCorrectaDeFicha(e);
+        }
         isMouseDown = false;
     }
 
@@ -94,6 +109,7 @@ function crearJuego(){
             lastClickedFigure.setPosition(e.layerX, e.layerY);
             juego.drawFichas();
         }
+        //cambiarTamanioTablero();
     }
 
 
@@ -101,23 +117,19 @@ function crearJuego(){
     c.addEventListener('mouseup', onMouseUp, false);
     c.addEventListener('mousemove', onMouseMove, false);
 
-    //-------- EVENTOS ---------
-    function onMouseDownTablero(e){
-        isMouseDown = true;
-        if(ultimaFilaSeleccionada != null){
-            ultimaFilaSeleccionada = null;
+    function posicionCorrectaDeFicha(e){
+        if(ultimaColumnaSeleccionada != null){
+            ultimaColumnaSeleccionada = null;
         }
-
-        let clickFila = juego.getTablero().isPointInside(e.layerX, e.layerY);
-        
-        if(clickFila != null){
-            console.log("Se inserta ficha en la fila "+ clickFila);
-            //ultimaFilaSeleccionada = clickFila;
-        }
-
+        let columnaElegida = juego.getTablero().obtenerColumna(e.layerX, e.layerY);
+        if(columnaElegida != null){
+            let filaElegida = juego.getTablero().obtenerFila(columnaElegida);
+            if(filaElegida >= 0){
+                console.log("Se inserta ficha en la columna "+ columnaElegida + " y fila "+(1+filaElegida));
+                //ultimaColumnaSeleccionada = columnaElegida;
+            } else console.log("Ya no se pueden insertar mas fichas en esta columna");
+        } else console.log("La ficha no se encuentra en ninguna columna");
     }
-
-    c.addEventListener('mousedown', onMouseDownTablero, false);
 }
 
 document.addEventListener("DOMContentLoaded", crearJuego());
