@@ -4,14 +4,19 @@ let turno = false;
 let cont = 0;
 
 class Jugador{
-    constructor(nombre, imgFicha, fichas){
+    constructor(nombre, imgFicha, fichas, turno){
         this.nombre = nombre;
         this.imgFicha = imgFicha;
         this.fichas = [];
+        this.turno = turno;
+    }
+
+    getTurno(){
+        return this.turno;
     }
 
     setTurno(valor){
-        turno = valor;
+        this.turno = valor;
     }
 
     //dibujo las fichas en pantalla

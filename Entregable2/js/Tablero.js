@@ -19,6 +19,14 @@ class Tablero{
         this.xValue = width / 4.5;
     }
 
+    setNumberOfRows(newNumber){
+        this.NUMBER_OF_ROWS = newNumber;
+    }
+
+    setNumberOfCols(newNumber){
+        this.NUMBER_OF_COLS = newNumber;
+    }
+
     drawTablero(){
         let xValueCambiante = this.xValue;
         let yValue = yValueIncial;

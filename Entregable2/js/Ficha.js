@@ -15,8 +15,11 @@ class Ficha {
 
     draw(){
         this.ctx.beginPath();
-        //this.ctx.arc(this.posX + this.radio, this.posY + this.radio, this.radio, 0, Math.PI * 2);        
-        this.ctx.drawImage(this.imgFicha, this.posX, this.posY, this.radio*2, this.radio*2);
+        this.ctx.arc(this.posX, this.posY, this.radio, 0, Math.PI * 2);      
+        //let cargarImg = function () {
+            this.ctx.drawImage(this.imgFicha, this.posX, this.posY, this.radio * 2, this.radio * 2);
+        //};
+        //this.imgFicha.onload = cargarImg.bind(this);
         this.ctx.closePath();
     }
 

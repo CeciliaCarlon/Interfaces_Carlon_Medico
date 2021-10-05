@@ -13,6 +13,14 @@ class Juego {
         this.tablero = null;
     }
 
+    getJugador1(){
+        return this.jugador1;
+    }
+
+    getJugador2(){
+        return this.jugador2;
+    }
+
     getTablero(){
         return this.tablero;
     }
@@ -31,8 +39,8 @@ class Juego {
     }
 
     setJugadores(){
-        this.jugador1 = new Jugador("jugador1", imgP1, this.fichasP1);
-        this.jugador2 = new Jugador("jugador2", imgP2, this.fichasP2);
+        this.jugador1 = new Jugador("jugador1", imgP1, this.fichasP1, true);
+        this.jugador2 = new Jugador("jugador2", imgP2, this.fichasP2, false);
     }
 
     agregarFichas(){
@@ -70,16 +78,19 @@ class Juego {
     }
 
     findClickedFigure(x, y){//se le puede pasar por parametro el jugador para q no haya dos for
-        for(let i=0; i<this.fichasP1.length; i++){
-            const element = this.fichasP1[i];
-            if(element.isPointInside(x, y)){
-                return element;
+        if(this.jugador1.getTurno() == true){
+            for(let i=0; i<this.fichasP1.length; i++){
+                const element = this.fichasP1[i];
+                if(element.isPointInside(x, y)){
+                    return element;
+                }
             }
-        }
-        for(let i=0; i<this.fichasP2.length; i++){
-            const element = this.fichasP2[i];
-            if(element.isPointInside(x, y)){
-                return element;
+        } else {
+            for(let i=0; i<this.fichasP2.length; i++){
+                const element = this.fichasP2[i];
+                if(element.isPointInside(x, y)){
+                    return element;
+                }
             }
         }
     }
@@ -96,9 +107,15 @@ class Juego {
             this.fichasP1[i].setImgFicha(imagen);
             this.fichasP1[i].draw();
         }
+        for(let i=0; i<this.fichasP2.length; i++){
+            this.fichasP2[i].draw();
+        }
     }
     drawFichasP2(imagen){
         this.clearCanvas();
+        for(let i=0; i<this.fichasP1.length; i++){
+            this.fichasP1[i].draw();
+        }
         for(let i=0; i<this.fichasP2.length; i++){
             this.fichasP2[i].setImgFicha(imagen);
             this.fichasP2[i].draw();
