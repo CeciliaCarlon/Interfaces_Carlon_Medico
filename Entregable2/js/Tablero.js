@@ -2,7 +2,7 @@
 
 const yValueIncial = 100;
 let posicionesTablero = [];
-let imgCasillero = document.getElementById("imgCasillero");
+//let imgCasillero = document.getElementById("imgCasillero");
 let columnas = [];
 let tableroYaCreado = false;
 
@@ -30,29 +30,35 @@ class Tablero{
     drawTablero(){
         let xValueCambiante = this.xValue;
         let yValue = yValueIncial;
+        let nroColumna = 0;
         for (let i = 0; i < this.NUMBER_OF_ROWS; i++) {
+            let casilleros = [];
             for (let j = 0; j < this.NUMBER_OF_COLS; j++) {
+                let casillero = new Casillero(this.ctx, xValueCambiante, yValue);
+                casillero.draw(this.SQUARE_SIZE);
+                casilleros.push(casillero)/*
                 this.ctx.beginPath();
                 this.ctx.drawImage(imgCasillero, xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
-                this.ctx.closePath();
+                this.ctx.closePath();*/
 
                 posicionesTablero.push(xValueCambiante);
                 xValueCambiante += this.SQUARE_SIZE;
-                if(!tableroYaCreado){
-                    this.crearFilas(j);
-                }
+            }
+            if(!tableroYaCreado){
+                this.crearFilas(nroColumna, casilleros);
             }
             yValue += this.SQUARE_SIZE;
             xValueCambiante = this.xValue;
+            nroColumna = nroColumna + 1;
         }    
         if(!tableroYaCreado){ tableroYaCreado = true; }
     }
 
-    crearFilas(nroColumna){
+    crearFilas(nroColumna, casilleros){
         columnas[nroColumna] = new Array(   );
-        for(let i=0; i < this.NUMBER_OF_ROWS; i++){
-            columnas[nroColumna].push(i*0);
-        }
+        casilleros.forEach(function(casillero) {
+            columnas[nroColumna].push(casillero);
+        });
     }
 
     obtenerColumna(x, y){
@@ -70,17 +76,21 @@ class Tablero{
     obtenerFila(nroColumna){
         let fila = -1;
         let ultimaFila = 1;
+        let casillero = null;
+        let casilleroActual = casillero;
         for(let i=0; i < NUMBER_OF_ROWS; i++){
-            if(columnas[nroColumna][i] !== 0){
-                columnas[nroColumna][ultimaFila] = 1;
-                return fila;
+            casilleroActual = columnas[nroColumna][i]; 
+            if(casilleroActual.hasDuenio()){
+                casillero = casilleroActual;
+                casillero.setDuenio(1);//Se le pasa el 1 para jugador1 y 2 para jugador2
+                return casillero;
             }
             else{
-                fila = fila + 1;
+                casillero = casilleroActual;
             }
             ultimaFila = i;
         }
-        columnas[nroColumna][ultimaFila] = 1;
-        return fila;
+        casillero.setDuenio(1);//Se le pasa el 1 para jugador1 y 2 para jugador2
+        return casillero;
     }
 }

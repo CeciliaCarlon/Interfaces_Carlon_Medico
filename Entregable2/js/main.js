@@ -104,7 +104,7 @@ function crearJuego(){
 
     function onMouseUp(e){
         if(lastClickedFigure != null){
-            posicionCorrectaDeFicha(e);
+            posicionarFicha(e);
         }
         if(count%2==0){//Esto debería hacerse cuando la ficha ya esta posicionada en el tablero
             juego.getJugador1().setTurno(false);
@@ -131,17 +131,20 @@ function crearJuego(){
     c.addEventListener('mouseup', onMouseUp, false);
     c.addEventListener('mousemove', onMouseMove, false);
 
-    function posicionCorrectaDeFicha(e){
+    function posicionarFicha(e){
         if(ultimaColumnaSeleccionada != null){
             ultimaColumnaSeleccionada = null;
         }
         let columnaElegida = juego.getTablero().obtenerColumna(e.layerX, e.layerY);
         if(columnaElegida != null){
-            let filaElegida = juego.getTablero().obtenerFila(columnaElegida);
+            let casilleroElegido = juego.getTablero().obtenerFila(columnaElegida); //casillero donde debe ir la ficha
+            lastClickedFigure.setPosition(casilleroElegido.getPosXParaFicha(), casilleroElegido.getPosYParaFicha());
+            juego.drawFichas();
+            /*
             if(filaElegida >= 0){
                 console.log("Se inserta ficha en la columna "+ columnaElegida + " y fila "+(filaElegida));
                 //ultimaColumnaSeleccionada = columnaElegida;
-            } else console.log("Ya no se pueden insertar mas fichas en esta columna");
+            } else console.log("Ya no se pueden insertar mas fichas en esta columna");*/
         } else console.log("La ficha no se encuentra en ninguna columna");
     }
 }
