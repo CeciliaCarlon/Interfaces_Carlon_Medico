@@ -36,6 +36,8 @@ class Tablero{
             for (let j = 0; j < this.NUMBER_OF_COLS; j++) {
                 let casillero = new Casillero(this.ctx, xValueCambiante, yValue);
                 casillero.draw(this.SQUARE_SIZE);
+                casillero.setI(i);
+                casillero.setJ(j);
                 casilleros.push(casillero);/*
                 this.ctx.beginPath();
                 this.ctx.drawImage(imgCasillero, xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
@@ -53,7 +55,6 @@ class Tablero{
             }
             yValue -= this.SQUARE_SIZE;
             xValueCambiante = this.xValue;
-            nroColumna = nroColumna + 1;
         }    
         if(!tableroYaCreado){ tableroYaCreado = true; }
     }
@@ -77,17 +78,19 @@ class Tablero{
         }
     }
 
-    obtenerFila(nroColumna){
-        console.log(filas);
+    obtenerFila(nroColumna, jugador){
         let casillero = null; 
         for(let i=0; i < this.NUMBER_OF_ROWS; i++){
             casillero = filas[i][nroColumna]; 
             if(!casillero.hasDuenio()){
-                casillero.setDuenio(1);//Se le pasa el 1 para jugador1 y 2 para jugador2
+                casillero.setDuenio(jugador);
                 return casillero;
             }
         }
-        //console.log("No se pueden insertar mas fichas");
         return null;
+    }
+
+    getFilas(){
+        return filas;
     }
 }

@@ -10,6 +10,14 @@ class Ficha {
         this.bloqueado = false;
     }
 
+    getPosX(){
+        return this.posX;
+    }
+
+    getPosY(){
+        return this.posY;
+    }
+
     setImgFicha(imgFicha){
         this.imgFicha = imgFicha;
     }

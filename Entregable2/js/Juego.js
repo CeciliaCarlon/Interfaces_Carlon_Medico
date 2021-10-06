@@ -121,4 +121,60 @@ class Juego {
             this.fichasP2[i].draw();
         }
     }
+
+    checkGanador(ficha) {
+        if(ficha != null){
+            let posY = ficha.getPosY();
+            let posX = ficha.getPosX();
+            let i = this.tablero.obtenerColumna(posX, posY);
+            let j = 0;//no pude obtener la fila aún
+            return (this.checkVertical(j) || this.checkHorizontal(i) || this.checkDiagonalAsc(i, j) || this.checkDiagonalDesc(i, j));
+        } else return false;
+    }
+
+    checkVertical(j) {
+        let match = 1;
+        let pos = 0;
+        let filas = this.tablero.getFilas();
+        while (pos < this.tablero.NUMBER_OF_COLS) {
+            if (filas[j][pos] != null && filas[j][pos + 1] != null && filas[j][pos].getDuenio() != 0) {
+                if (filas[j][pos].getDuenio() == filas[j][pos + 1].getDuenio()) {
+                    match ++;
+                    if (match == 4)
+                        return true;
+                } else
+                    match = 1;
+            } else
+                match = 1;
+            pos ++;
+        }
+        return false;
+    }
+
+    checkHorizontal(i) {//funciona, tarda un
+        let match = 1;
+        let pos = 0;
+        let filas = this.tablero.getFilas();
+        while (pos < this.tablero.NUMBER_OF_ROWS) {
+            if (filas[pos][i] != null && filas[pos][i + 1] != null && filas[pos][i].getDuenio() != 0) {
+                if (filas[pos][i].getDuenio() == filas[pos][i + 1].getDuenio()) {
+                    match ++;
+                    if (match == 4)
+                        return true;
+                } else
+                    match = 1;
+            } else
+                match = 1;
+            pos ++;
+        }
+        return false;
+    }
+
+    checkDiagonalAsc(j, i) {
+        return false;
+    }
+
+    checkDiagonalDesc(j, i) {
+        return false;
+    }
 }

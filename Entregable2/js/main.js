@@ -20,10 +20,12 @@ const CANT_FICHAS = NUMBER_OF_COLS * NUMBER_OF_ROWS;
 
 let juego = null;
 let count = CANT_FICHAS;
+let win = false;
 
 function crearJuego(){
     juego = new Juego(c);
     juego.nuevoJuego();
+    
 
     document.getElementById('inputImagenP1').addEventListener("change", nuevasFichasP1);
     document.getElementById('inputImagenP2').addEventListener("change", nuevasFichasP2);
@@ -100,6 +102,10 @@ function crearJuego(){
         }
 
         juego.drawFichas();
+        win = juego.checkGanador(lastClickedFigure);
+        if(win){
+            console.log("gano un jugador!");
+        }
     }
 
     function onMouseUp(e){
@@ -108,12 +114,10 @@ function crearJuego(){
                 lastClickedFigure.setEstado(true);
                 if(count%2==0){//Esto debería hacerse cuando la ficha ya esta posicionada en el tablero
                     juego.getJugador1().setTurno(false);
-                    //juego.getJugador1().quitaFichaJuagada(lastClickedFigure);
                     juego.getJugador2().setTurno(true);
                     count--;
                 } else {
                     juego.getJugador1().setTurno(true);
-                    ///juego.getJugador2().quitaFichaJuagada(lastClickedFigure);
                     juego.getJugador2().setTurno(false);
                     count--;
                 }
@@ -143,7 +147,11 @@ function crearJuego(){
         }
         let columnaElegida = juego.getTablero().obtenerColumna(e.layerX, e.layerY);
         if(columnaElegida != null){
-            let casilleroElegido = juego.getTablero().obtenerFila(columnaElegida); //casillero donde debe ir la ficha
+            let jugadorActual = 0;
+            if(juego.getJugador1().getTurno()){
+                jugadorActual = 1;
+            } else jugadorActual = 2;
+            let casilleroElegido = juego.getTablero().obtenerFila(columnaElegida, jugadorActual); //casillero donde debe ir la ficha
             if(casilleroElegido != null){
                 lastClickedFigure.setPosition(casilleroElegido.getPosXParaFicha(), casilleroElegido.getPosYParaFicha());
                 juego.drawFichas();

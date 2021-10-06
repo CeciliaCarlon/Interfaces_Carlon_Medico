@@ -11,6 +11,24 @@ class Casillero {
         this.posXParaFicha = this.Xpos + 11;
         this.posYParaFicha = this.Ypos + 11;
         this.duenioCasillero = 0;
+        this.i = 0;
+        this.j = 0;
+    }
+
+    setI(i){
+        this.i = i;
+    }
+
+    setJ(j){
+        this.j = j;
+    }
+
+    getI(){
+        return this.i;
+    }
+
+    getJ(){
+        return this.j;
     }
 
     draw(SQUARE_SIZE){
