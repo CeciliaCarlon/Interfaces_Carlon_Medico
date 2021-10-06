@@ -89,13 +89,13 @@ function crearJuego(){
     //Funciones que tienen que ver con la posición del mouse
     function onMouseDown(e){
         isMouseDown = true;
-
+    
         if(lastClickedFigure != null){
             lastClickedFigure = null;
         }
 
         let clickFig = juego.findClickedFigure(e.layerX, e.layerY);
-        if(clickFig != null){
+        if(clickFig != null && !clickFig.getEstado()){
             lastClickedFigure = clickFig;
         }
 
@@ -104,18 +104,24 @@ function crearJuego(){
 
     function onMouseUp(e){
         if(lastClickedFigure != null){
-            posicionarFicha(e);
+            if(posicionarFicha(e)){
+                lastClickedFigure.setEstado(true);
+                if(count%2==0){//Esto debería hacerse cuando la ficha ya esta posicionada en el tablero
+                    juego.getJugador1().setTurno(false);
+                    //juego.getJugador1().quitaFichaJuagada(lastClickedFigure);
+                    juego.getJugador2().setTurno(true);
+                    count--;
+                } else {
+                    juego.getJugador1().setTurno(true);
+                    ///juego.getJugador2().quitaFichaJuagada(lastClickedFigure);
+                    juego.getJugador2().setTurno(false);
+                    count--;
+                }
+                isMouseDown = false;
+            } else {
+                isMouseDown = true;
+            }
         }
-        if(count%2==0){//Esto debería hacerse cuando la ficha ya esta posicionada en el tablero
-            juego.getJugador1().setTurno(false);
-            juego.getJugador2().setTurno(true);
-            count--;
-        } else {
-            juego.getJugador1().setTurno(true);
-            juego.getJugador2().setTurno(false);
-            count--;
-        }
-        isMouseDown = false;
     }
 
     function onMouseMove(e){
@@ -138,14 +144,17 @@ function crearJuego(){
         let columnaElegida = juego.getTablero().obtenerColumna(e.layerX, e.layerY);
         if(columnaElegida != null){
             let casilleroElegido = juego.getTablero().obtenerFila(columnaElegida); //casillero donde debe ir la ficha
-            lastClickedFigure.setPosition(casilleroElegido.getPosXParaFicha(), casilleroElegido.getPosYParaFicha());
-            juego.drawFichas();
+            if(casilleroElegido != null){
+                lastClickedFigure.setPosition(casilleroElegido.getPosXParaFicha(), casilleroElegido.getPosYParaFicha());
+                juego.drawFichas();
+                return true;
+            } else return false;
             /*
             if(filaElegida >= 0){
                 console.log("Se inserta ficha en la columna "+ columnaElegida + " y fila "+(filaElegida));
                 //ultimaColumnaSeleccionada = columnaElegida;
             } else console.log("Ya no se pueden insertar mas fichas en esta columna");*/
-        } else console.log("La ficha no se encuentra en ninguna columna");
+        } else return false;
     }
 }
 

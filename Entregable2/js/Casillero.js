@@ -1,7 +1,7 @@
 "use strict";
 
 let imgCasillero = document.getElementById("imgCasillero");
-let duenioCasillero = 0;
+
 
 class Casillero {
     constructor(ctx, Xpos, Ypos){
@@ -10,6 +10,7 @@ class Casillero {
         this.Ypos = Ypos;
         this.posXParaFicha = this.Xpos + 11;
         this.posYParaFicha = this.Ypos + 11;
+        this.duenioCasillero = 0;
     }
 
     draw(SQUARE_SIZE){
@@ -18,14 +19,14 @@ class Casillero {
         this.ctx.closePath();
     }
     hasDuenio(){
-        if(duenioCasillero == 0) return false;
+        if(this.duenioCasillero == 0) return false;
         else return true;
     }
     setDuenio(duenio){
-        duenioCasillero = duenio;
+        this.duenioCasillero = duenio;
     }
     getDuenio(){
-        return duenioCasillero;
+        return this.duenioCasillero;
     }
     getX(){
         return this.Xpos; 
@@ -39,4 +40,5 @@ class Casillero {
     getPosYParaFicha(){
         return this.posYParaFicha;
     }
+    
 }

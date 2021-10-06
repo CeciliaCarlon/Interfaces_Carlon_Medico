@@ -1,9 +1,9 @@
 "use strict";
 
-const yValueIncial = 100;
+const yValueIncial = 550;
 let posicionesTablero = [];
 //let imgCasillero = document.getElementById("imgCasillero");
-let columnas = [];
+let filas = [];
 let tableroYaCreado = false;
 
 class Tablero{
@@ -36,28 +36,32 @@ class Tablero{
             for (let j = 0; j < this.NUMBER_OF_COLS; j++) {
                 let casillero = new Casillero(this.ctx, xValueCambiante, yValue);
                 casillero.draw(this.SQUARE_SIZE);
-                casilleros.push(casillero)/*
+                casilleros.push(casillero);/*
                 this.ctx.beginPath();
                 this.ctx.drawImage(imgCasillero, xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
                 this.ctx.closePath();*/
 
-                posicionesTablero.push(xValueCambiante);
+                if(i == 0){
+                    posicionesTablero.push(xValueCambiante);
+                }
                 xValueCambiante += this.SQUARE_SIZE;
+                
             }
+            //console.log(casilleros);
             if(!tableroYaCreado){
-                this.crearFilas(nroColumna, casilleros);
+                this.crearFilas(i, casilleros);
             }
-            yValue += this.SQUARE_SIZE;
+            yValue -= this.SQUARE_SIZE;
             xValueCambiante = this.xValue;
             nroColumna = nroColumna + 1;
         }    
         if(!tableroYaCreado){ tableroYaCreado = true; }
     }
 
-    crearFilas(nroColumna, casilleros){
-        columnas[nroColumna] = new Array(   );
+    crearFilas(nroFilas, casilleros){
+        filas[nroFilas] = new Array(   );
         casilleros.forEach(function(casillero) {
-            columnas[nroColumna].push(casillero);
+            filas[nroFilas].push(casillero);
         });
     }
 
@@ -74,23 +78,16 @@ class Tablero{
     }
 
     obtenerFila(nroColumna){
-        let fila = -1;
-        let ultimaFila = 1;
-        let casillero = null;
-        let casilleroActual = casillero;
-        for(let i=0; i < NUMBER_OF_ROWS; i++){
-            casilleroActual = columnas[nroColumna][i]; 
-            if(casilleroActual.hasDuenio()){
-                casillero = casilleroActual;
+        console.log(filas);
+        let casillero = null; 
+        for(let i=0; i < this.NUMBER_OF_ROWS; i++){
+            casillero = filas[i][nroColumna]; 
+            if(!casillero.hasDuenio()){
                 casillero.setDuenio(1);//Se le pasa el 1 para jugador1 y 2 para jugador2
                 return casillero;
             }
-            else{
-                casillero = casilleroActual;
-            }
-            ultimaFila = i;
         }
-        casillero.setDuenio(1);//Se le pasa el 1 para jugador1 y 2 para jugador2
-        return casillero;
+        //console.log("No se pueden insertar mas fichas");
+        return null;
     }
 }

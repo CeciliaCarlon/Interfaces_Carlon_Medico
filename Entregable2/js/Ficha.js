@@ -7,6 +7,7 @@ class Ficha {
         this.radio = 35;
         this.posX = posx;
         this.posY = posy;
+        this.bloqueado = false;
     }
 
     setImgFicha(imgFicha){
@@ -32,5 +33,12 @@ class Ficha {
     setPosition(x, y){
         this.posX = x;
         this.posY = y;
+    }
+
+    getEstado(){
+        return this.bloqueado;
+    }
+    setEstado(estado){
+        this.bloqueado = estado;
     }
 }

@@ -26,11 +26,11 @@ class Juego {
     }
 
     nuevoJuego(){
-        this.setJugadores();
         this.dibujarTablero();
         setTimeout( () => {
             this.agregarFichas();
         }, 350);
+        this.setJugadores();
     }
 
     dibujarTablero(){
