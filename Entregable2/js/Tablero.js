@@ -59,6 +59,17 @@ class Tablero{
         if(!tableroYaCreado){ tableroYaCreado = true; }
     }
 
+    obtenerCasillero(x,y){
+        for(let i=0; i< this.NUMBER_OF_ROWS;i++){
+            for(let j=0; j<  this.NUMBER_OF_COLS; j++){
+                let casillero = filas[i][j];
+                if(casillero.getPosXParaFicha() == x && casillero.getPosYParaFicha() == y){
+                    return casillero;
+                }
+            }
+        }
+    }
+
     crearFilas(nroFilas, casilleros){
         filas[nroFilas] = new Array(   );
         casilleros.forEach(function(casillero) {

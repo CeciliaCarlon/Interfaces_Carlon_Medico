@@ -102,10 +102,7 @@ function crearJuego(){
         }
 
         juego.drawFichas();
-        win = juego.checkGanador(lastClickedFigure);
-        if(win){
-            console.log("gano un jugador!");
-        }
+        
     }
 
     function onMouseUp(e){
@@ -125,6 +122,10 @@ function crearJuego(){
             } else {
                 isMouseDown = true;
             }
+        }
+        win = juego.checkGanador(lastClickedFigure);
+        if(win){
+            console.log("gano un jugador!");
         }
     }
 

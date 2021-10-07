@@ -127,12 +127,37 @@ class Juego {
             let posY = ficha.getPosY();
             let posX = ficha.getPosX();
             let i = this.tablero.obtenerColumna(posX, posY);
-            let j = 0;//no pude obtener la fila aún
-            return (this.checkVertical(j) || this.checkHorizontal(i) || this.checkDiagonalAsc(i, j) || this.checkDiagonalDesc(i, j));
+            let j =0;//no pude obtener la x
+            //let casillero = this.tablero.obtenerCasillero(posX, posY);
+            //let i = casillero.getI();
+            //let j = casillero.getJ();
+            return (this.checkVertical(i) || this.checkHorizontal(j) || this.checkDiagonalAsc(j, i) || this.checkDiagonalDesc(j, i));
         } else return false;
     }
 
-    checkVertical(j) {
+    checkVertical(i) {
+        let match = 1;
+        let pos = 0;
+        let filas = this.tablero.getFilas();
+        while (pos < this.tablero.NUMBER_OF_ROWS) {
+            if (filas[pos][i] != null && filas[pos+1][i] != null && filas[pos][i].getDuenio() != 0) {
+                if (filas[pos][i].getDuenio() == filas[pos+1][i].getDuenio()) {
+                    match ++;
+                    if (match == 4){
+                        return true;
+                    }
+                } else{
+                    match = 1;
+                } 
+            } else{
+                match = 1;
+            }
+            pos ++;
+        }
+        return false;
+    }
+
+    checkHorizontal(j) {
         let match = 1;
         let pos = 0;
         let filas = this.tablero.getFilas();
@@ -140,41 +165,68 @@ class Juego {
             if (filas[j][pos] != null && filas[j][pos + 1] != null && filas[j][pos].getDuenio() != 0) {
                 if (filas[j][pos].getDuenio() == filas[j][pos + 1].getDuenio()) {
                     match ++;
-                    if (match == 4)
+                    if (match == 4){
                         return true;
-                } else
+                    }
+                } else{
                     match = 1;
-            } else
+                }
+                    
+            } else{
                 match = 1;
+            } 
             pos ++;
         }
         return false;
     }
 
-    checkHorizontal(i) {//funciona, tarda un
+    checkDiagonalDesc(j, i) {
         let match = 1;
-        let pos = 0;
-        let filas = this.tablero.getFilas();
-        while (pos < this.tablero.NUMBER_OF_ROWS) {
-            if (filas[pos][i] != null && filas[pos][i + 1] != null && filas[pos][i].getDuenio() != 0) {
-                if (filas[pos][i].getDuenio() == filas[pos][i + 1].getDuenio()) {
+        if(j != 0 || i != 0){
+            j--;
+            i--;
+        }
+        while(j < this.tablero.NUMBER_OF_ROWS || i < this.tablero.NUMBER_OF_COLS){
+            if(filas[j][i] != null && filas[j+1][i+1] != null && filas[j][i].getDuenio() != 0){
+                if(filas[j][i].getDuenio() == filas[j+1][i+1].getDuenio()){
                     match ++;
-                    if (match == 4)
+                    if (match == 4){
                         return true;
-                } else
-                    match = 1;
-            } else
-                match = 1;
-            pos ++;
+                    }
+                } else {
+                    match = 1
+                }
+            } else {
+                match = 1
+            }
+            j++;
+            i++;
         }
         return false;
     }
 
     checkDiagonalAsc(j, i) {
-        return false;
-    }
-
-    checkDiagonalDesc(j, i) {
+        let match = 1;
+        if(j != 0 || i != 6){
+            j--;
+            i++;
+        }
+        while(j < this.tablero.NUMBER_OF_ROWS || i > 0){
+            if(filas[j][i] != null && filas[j+1][i-1] != null && filas[j][i].getDuenio() != 0){
+                if(filas[j][i].getDuenio() == filas[j+1][i-1].getDuenio()){
+                    match ++;
+                    if (match == 4){
+                        return true;
+                    }
+                } else {
+                    match = 1
+                }
+            } else {
+                match = 1
+            }
+            j++;
+            i--;
+        }
         return false;
     }
 }
