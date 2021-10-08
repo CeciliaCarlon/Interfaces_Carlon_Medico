@@ -1,8 +1,7 @@
 "use strict";
 
-const yValueIncial = 550;
+const yValueIncial = 100;
 let posicionesTablero = [];
-//let imgCasillero = document.getElementById("imgCasillero");
 let filas = [];
 let tableroYaCreado = false;
 
@@ -14,8 +13,8 @@ class Tablero{
         this.NUMBER_OF_ROWS = NUMBER_OF_ROWS;
         this.NUMBER_OF_COLS = NUMBER_OF_COLS;
 
-        this.SQUARE_SIZE = 90;//this.height / this.NUMBER_OF_ROWS;
-        this.NUMBER_OF_SQUARES = 42;//this.NUMBER_OF_ROWS * this.NUMBER_OF_COLS;
+        this.SQUARE_SIZE = 90;
+        this.NUMBER_OF_SQUARES = 42;
         this.xValue = width / 4.5;
     }
 
@@ -30,18 +29,15 @@ class Tablero{
     drawTablero(){
         let xValueCambiante = this.xValue;
         let yValue = yValueIncial;
-        let nroColumna = 0;
+        let nroFila = this.NUMBER_OF_ROWS - 1;
         for (let i = 0; i < this.NUMBER_OF_ROWS; i++) {
             let casilleros = [];
             for (let j = 0; j < this.NUMBER_OF_COLS; j++) {
                 let casillero = new Casillero(this.ctx, xValueCambiante, yValue);
                 casillero.draw(this.SQUARE_SIZE);
-                casillero.setI(i);
+                casillero.setI(nroFila);
                 casillero.setJ(j);
-                casilleros.push(casillero);/*
-                this.ctx.beginPath();
-                this.ctx.drawImage(imgCasillero, xValueCambiante, yValue, this.SQUARE_SIZE, this.SQUARE_SIZE);
-                this.ctx.closePath();*/
+                casilleros.push(casillero);
 
                 if(i == 0){
                     posicionesTablero.push(xValueCambiante);
@@ -49,12 +45,12 @@ class Tablero{
                 xValueCambiante += this.SQUARE_SIZE;
                 
             }
-            //console.log(casilleros);
             if(!tableroYaCreado){
-                this.crearFilas(i, casilleros);
+                this.crearFilas(nroFila, casilleros);
             }
-            yValue -= this.SQUARE_SIZE;
+            yValue += this.SQUARE_SIZE;
             xValueCambiante = this.xValue;
+            nroFila--;
         }    
         if(!tableroYaCreado){ tableroYaCreado = true; }
     }
