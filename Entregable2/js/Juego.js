@@ -2,7 +2,7 @@
 
 class Juego {
     //Constructores
-    constructor(canvas, CANT_FICHAS, img1, img2){
+    constructor(canvas, CANT_FICHAS, img1, img2, nJ1, nJ2){
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.width = canvas.width;
@@ -15,6 +15,8 @@ class Juego {
         this.CANT_FICHAS = CANT_FICHAS;
         this.imgP1 = img1;
         this.imgP2 = img2;
+        this.nJ1 = nJ1;
+        this.nJ2 = nJ2;
     }
     /*constructor(){
         this.jugador1 = null;
@@ -41,15 +43,13 @@ class Juego {
     }
 
     setJugadores(){
-        this.jugador1 = new Jugador("jugador1", this.imgP1, this.fichasP1, true);
-        this.jugador2 = new Jugador("jugador2", this.imgP2, this.fichasP2, false);
+        this.jugador1 = new Jugador(this.nJ1, this.imgP1, this.fichasP1, true);
+        this.jugador2 = new Jugador(this.nJ2, this.imgP2, this.fichasP2, false);
     }
     //Función que llama a todo lo necesario para un nuevo juego
     nuevoJuego(){
         this.dibujarTablero();
-        setTimeout( () => {
-            this.agregarFichas();
-        }, 350);
+        this.agregarFichas();
         this.setJugadores();
     }
     //Función que dibuja el tablero
@@ -145,9 +145,12 @@ class Juego {
                 let f = casillero.getI();
                 let c = casillero.getJ();
                 //retorno true si cumple 4 en alguna linea
-                return (this.checkVertical(c) || this.checkHorizontal(f) || this.checkDiagonalIzq(c, f) || this.checkDiagonalDer(c, f));
-            } else return false;
-        } else return false;
+                if(this.checkVertical(c) || this.checkHorizontal(f) || this.checkDiagonalIzq(c, f) || this.checkDiagonalDer(c, f)){
+                    if(casillero.getDuenio() == 1) return this.nJ1;
+                    else return this.nJ2;
+                };
+            } else return null;
+        } else return null;
     }
     //Checkeo si hay X en vertical
     checkVertical(c) {

@@ -41,9 +41,15 @@ input[type="color"] {
 p{
     color: white;
     display: inline-flex;
-    font-size: 70px;
+    font-size: 40px;
     height: 70px;
     width: 200px;
+    margin: 20px;
+}
+
+p.reloj{
+    margin: 0;
+    font-size: 70px;
 }
 
 span{
@@ -78,12 +84,11 @@ img{
 
 div.personalizacion {
     background-color: rgb(245, 179, 88);
+    margin: auto;
+    width: 50%;
     height: 500px;
-    width: 900px;
     padding: 50px;
-    text-align: center;
     border-radius: 15px;
     display: table-cell;
-    vertical-align: middle;
     text-align: center;
   }

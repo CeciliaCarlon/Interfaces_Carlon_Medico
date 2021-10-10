@@ -1,8 +1,14 @@
 "use strict";
+//Divs
+const divPersonalizacion = document.getElementById("divPersonalizacion");
+const divJuego = document.getElementById("divJuego");
+const divGanador = document.getElementById("divGanador");
+
 //Variables del Canvas
 let c = document.getElementById("myCanvas");
 
 //Variables de Eventos
+let jugando = false;
 let ultimaColumnaSeleccionada = null;
 let isMouseDown = false;
 let lastClickedFigure = null;
@@ -17,36 +23,44 @@ let juego = null;
 let count = CANT_FICHAS;
 let win = false;
 let jugadorActual = 1;
+let jugador1 = "Jugador 1";
+let jugador2 = "Jugador 2";
 //Variables de las Fichas
 let imgP1 = document.getElementById('imgN');
 let imgP2 = document.getElementById('imgT');
 
-function cambiarLocation(url){
-    window.location = url+".html";
-    mostrar();
-}
 
 function mostrar(){
-    if(window.location.href === "file:///C:/xampp/htdocs/Interfaces_Carlon_Medico/Entregable2/juego.html"){
+    if(jugando){
+        divPersonalizacion.style.display = 'none';
+        divJuego.style.display = 'block';
+        divGanador.style.display = 'none'
         crearJuego();
-    } else mostrarPersonalizacion();
+    } else {
+        divPersonalizacion.style.display = 'block';
+        divJuego.style.display = 'none';
+        divGanador.style.display = 'none'
+        mostrarPersonalizacion();
+    }
 }
 
 function mostrarPersonalizacion(){
     //Eventos
     //document.getElementById("jugar").addEventListener("click", cambiarLocation.bind("juego"));
     document.getElementById("jugar").addEventListener("click", function(){ 
-                                                                    window.location === "juego.html"; 
-                                                                    crearJuego(); 
-                                                                });
-    
+        jugando = true;
+        if(document.getElementById("nombreJ1").value !== "") jugador1 = document.getElementById("nombreJ1").value;
+        if(document.getElementById("nombreJ2").value !== "") jugador2 = document.getElementById("nombreJ2").value;
+        mostrar();
+    });
+
     //Fichas jugador 1
     let fichaN = document.getElementById('imgN');
     let fichaH = document.getElementById('imgH');
     let fichaO = document.getElementById('imgO');
     //fichaN.addEventListener("click", cambiarFichas.bind("N"));
-    fichaN.addEventListener("click", function(){ imgP1 = fichaN; console.log(imgP1)});
-    fichaH.addEventListener("click", function(){ imgP1 = fichaH; console.log(imgP1)});
+    fichaN.addEventListener("click", function(){ imgP1 = fichaN; });
+    fichaH.addEventListener("click", function(){ imgP1 = fichaH; });
     fichaO.addEventListener("click", function(){ imgP1 = fichaO; });
 
     //Fichas jugador 2
@@ -59,20 +73,23 @@ function mostrarPersonalizacion(){
 }
 
 function crearJuego(){
-    //Inicializo el juego
-    let imagen1 = new Image();
-    imagen1 = imgP1;
-    console.log(imgP1.src);
-    let imagen2 = new Image();
-    imagen2 = imgP2;
-    juego = new Juego(c, CANT_FICHAS, imagen1, imagen2);
+    juego = new Juego(c, CANT_FICHAS, imgP1, imgP2, jugador1, jugador2);
+    //new Tiempo(2, document.getElementById("countdown"));
     juego.nuevoJuego();
+
+    document.getElementById("nombreJugador1").innerHTML = jugador1;
+    document.getElementById("nombreJugador2").innerHTML = jugador2;
     //Eventos
     //document.getElementById('selectTamanioTablero').addEventListener('change', cambiarTamanioTablero);
     //document.getElementById('reiniciarJuego').addEventListener('click', cambiarLocation("index"), fasle);
     c.addEventListener('mousedown', onMouseDown, false);
     c.addEventListener('mouseup', onMouseUp, false);
     c.addEventListener('mousemove', onMouseMove, false);
+
+    document.getElementById("reiniciarJuego").addEventListener('click', function(){ 
+        jugando = false;
+        mostrar();
+    })
 
     function onMouseDown(e){
         isMouseDown = true;
@@ -113,8 +130,10 @@ function crearJuego(){
         //Checkeo si ya hay un ganador
         win = juego.checkGanador(lastClickedFigure);
         //Si hay redirijo la página
-        if(win){
-            window.location = "ganador.html";
+        if(win != null){
+            divJuego.style.display = 'none';
+            divGanador.style.display = 'block';
+            divGanador.innerHTML = win+" ganó el juego!!!";
         }
     }
 
@@ -172,50 +191,5 @@ function crearJuego(){
 //         break;
 //     }
 // }
-
-function nuevasFichasP1(e){
-    //Luego tomo la URL de la imagen con el target del evento
-    let urlImagen = e.target.files[0];
-    let reader = new FileReader();
-    //Creo una nueva imagen con la URL como titulo
-    let imagen = new Image();
-    imagen.title = urlImagen.name;
-    //Cuando haya cargado el reader
-    reader.onload = function(e) {
-        //Asigno el resultado del target como el src de la imagen
-        imagen.src = e.target.result;
-        //Cuando haya cargado la imagen
-        imagen.onload = function(){
-            //Dibujo las fichas nuevamente      
-            let img = imagen;
-            //img.addClass('file');
-            juego.drawFichasP1(img);
-        }
-    }
-    //Leo los datos binarios y los codigico como la URL de la imagen
-    reader.readAsDataURL(urlImagen);
-}
-
-function nuevasFichasP2(e){
-    //Luego tomo la URL de la imagen con el target del evento
-    let urlImagen = e.target.files[0];
-    let reader = new FileReader();
-    //Creo una nueva imagen con la URL como titulo
-    let imagen = new Image();
-    imagen.title = urlImagen.name;
-    //Cuando haya cargado el reader
-    reader.onload = function(e) {
-        //Asigno el resultado del target como el src de la imagen
-        imagen.src = e.target.result;
-        //Cuando haya cargado la imagen
-        imagen.onload = function(){
-            //Dibujo las fichas nuevamente
-            let img = imagen;
-            juego.drawFichasP2(img);
-        }
-    }
-    //Leo los datos binarios y los codigico como la URL de la imagen
-    reader.readAsDataURL(urlImagen);
-}
 
 document.addEventListener("DOMContentLoaded", mostrar());

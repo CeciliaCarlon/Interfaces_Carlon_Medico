@@ -19,6 +19,9 @@ class Jugador{
     setTurno(valor){
         this.turno = valor;
     }
+    getNombre(){
+        this.nombre;
+    }
     //Quitar fila cuando ya fue usada
     quitaFichaJuagada(ficha){
         this.fichas.splice(ficha);
