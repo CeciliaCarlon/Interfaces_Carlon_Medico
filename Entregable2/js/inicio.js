@@ -4,6 +4,10 @@ function inicio(){
     //juego = new Juego();
     //Eventos
     document.getElementById("jugar").addEventListener("click", cambiarLocation);
+    //Fichas jugador 1
+    document.getElementById('imagenP1N').addEventListener("click", nuevasFichasP1);
+    document.getElementById('imagenP1H').addEventListener("click", nuevasFichasP1);
+    document.getElementById('imagenP1O').addEventListener("click", nuevasFichasP1);
     /*document.getElementById('inputImagenP1').addEventListener("change", nuevasFichasP1);
     document.getElementById('inputImagenP2').addEventListener("change", nuevasFichasP2);
     document.getElementById('selectTamanioTablero').addEventListener('change', cambiarTamanioTablero);*/
@@ -12,7 +16,7 @@ function inicio(){
         window.location = "juego.html";
     }
     
-    /*function nuevasFichasP1(e){
+    function nuevasFichasP1(e){
         //Luego tomo la URL de la imagen con el target del evento
         let urlImagen = e.target.files[0];
         let reader = new FileReader();
@@ -34,7 +38,7 @@ function inicio(){
         //Leo los datos binarios y los codigico como la URL de la imagen
         reader.readAsDataURL(urlImagen);
     }
-
+    /*
     function nuevasFichasP2(e){
         //Luego tomo la URL de la imagen con el target del evento
         let urlImagen = e.target.files[0];

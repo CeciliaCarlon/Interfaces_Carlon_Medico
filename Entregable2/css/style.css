@@ -4,6 +4,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body{
+    background-color: lightgrey;
+}
+
 nav{
     background-color: navajowhite;
     height: 100px;
@@ -15,6 +19,11 @@ ul{
 
 li{
     list-style: none;
+    display: inline-flex;
+}
+
+li.imgFichas{
+    margin-bottom: 15px;
 }
 
 nav.boton {
@@ -27,6 +36,26 @@ input[type="file"] {
 
 input[type="color"] {
     display: none;
+}
+
+p{
+    color: white;
+    display: inline-flex;
+    font-size: 70px;
+    height: 70px;
+    width: 200px;
+}
+
+span{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    margin: 2px;
 }
 
 .file{
@@ -46,3 +75,15 @@ input[type="color"] {
 .botonP2 {
     margin-left: 350px;
 }
+
+div.personalizacion {
+    background-color: rgb(245, 179, 88);
+    height: 500px;
+    width: 900px;
+    padding: 50px;
+    text-align: center;
+    border-radius: 15px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }

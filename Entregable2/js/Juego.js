@@ -2,7 +2,7 @@
 
 class Juego {
     //Constructores
-    constructor(canvas, CANT_FICHAS){
+    constructor(canvas, CANT_FICHAS, img1, img2){
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.width = canvas.width;
@@ -13,6 +13,8 @@ class Juego {
         this.fichasP2 = [];
         this.tablero = null;
         this.CANT_FICHAS = CANT_FICHAS;
+        this.imgP1 = img1;
+        this.imgP2 = img2;
     }
     /*constructor(){
         this.jugador1 = null;
@@ -39,8 +41,8 @@ class Juego {
     }
 
     setJugadores(){
-        this.jugador1 = new Jugador("jugador1", imgP1, this.fichasP1, true);
-        this.jugador2 = new Jugador("jugador2", imgP2, this.fichasP2, false);
+        this.jugador1 = new Jugador("jugador1", this.imgP1, this.fichasP1, true);
+        this.jugador2 = new Jugador("jugador2", this.imgP2, this.fichasP2, false);
     }
     //Función que llama a todo lo necesario para un nuevo juego
     nuevoJuego(){
@@ -66,11 +68,11 @@ class Juego {
         //Mientras las fichas no sean mayores al total de fichas
         while(fichasTotales < this.CANT_FICHAS){
             //Agrego y dibujo ficha de jugador 1
-            fichaJ1 = new Ficha(this.ctx, imgP1, fichaX, fichaY);
+            fichaJ1 = new Ficha(this.ctx, this.imgP1, fichaX, fichaY);
             this.fichasP1.push(fichaJ1);
             fichaJ1.draw();
             //Agrego y dibujo ficha de jugador 2
-            fichaJ2 = new Ficha(this.ctx, imgP2, fichaX + 1000, fichaY);
+            fichaJ2 = new Ficha(this.ctx, this.imgP2, fichaX + 1000, fichaY);
             this.fichasP2.push(fichaJ2);
             fichaJ2.draw();
             //Sumo dos a las fichas totales
@@ -111,30 +113,22 @@ class Juego {
     }
 
     clearCanvas(){
-        this.ctx.fillStyle = 'white';
+        this.ctx.fillStyle = 'lightgrey';
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.tablero.drawTablero();
     }
 
-    drawFichasP1(imagen){
+    drawFichasJugadores(imagen1, imagen2){
         this.clearCanvas();
         for(let i=0; i<this.fichasP1.length; i++){
-            this.fichasP1[i].setImgFicha(imagen);
+            this.fichasP1[i].setImgFicha(imagen1);
             this.fichasP1[i].draw();
         }
         for(let i=0; i<this.fichasP2.length; i++){
+            this.fichasP2[i].setImgFicha(imagen2);
             this.fichasP2[i].draw();
         }
-    }
-    drawFichasP2(imagen){
-        this.clearCanvas();
-        for(let i=0; i<this.fichasP1.length; i++){
-            this.fichasP1[i].draw();
-        }
-        for(let i=0; i<this.fichasP2.length; i++){
-            this.fichasP2[i].setImgFicha(imagen);
-            this.fichasP2[i].draw();
-        }
+        
     }
     //Busco un ganador con la última ficha insertada
     checkGanador(ficha) {

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <!-- <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script> -->
+    <title>4 en Linea</title>
 </head>
 <body>
     <nav>
@@ -24,15 +24,15 @@
                     <option value="9-10">9-10</option>
                 </select>
             </label></li>
+            <p id="countdown">10:00</p>
             <li><label class="botonP1 botonP2">
-                <i class="fas fa-file-import"></i> Insertar Imagen
-                <input type="file" class="file" id="inputImagenP2" onclick="this.value=null;">
+                <button id="reiniciarJuego"><i class="fas fa-undo-alt"></i> Reiniciar juego</button>
             </label></li>
         </ul>
     </nav>
     <canvas id="myCanvas" width="1500" height="800"></canvas>
-    <img src="img/nishi.png" alt="nishinoya" id="imgP1" hidden>
-    <img src="img/tsuki.png" alt="tsukishima" id="imgP2" hidden>
+    <!-- <img src="img/nishi.png" alt="nishinoya" id="imgP1" hidden>
+    <img src="img/tsuki.png" alt="tsukishima" id="imgP2" hidden> -->
     <img src="img/casillero.jpg" alt="casillero" id="imgCasillero" hidden>
 
     <script src="js/Juego.js"></script>
@@ -41,5 +41,6 @@
     <script src="js/Casillero.js"></script>
     <script src="js/Jugador.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/Tiempo.js"></script>
 </body>
 </html>
