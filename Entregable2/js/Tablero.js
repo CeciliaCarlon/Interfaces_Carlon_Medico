@@ -1,11 +1,12 @@
 "use strict";
-
+//Variables de clase
 const yValueIncial = 100;
 let posicionesTablero = [];
 let filas = [];
 let tableroYaCreado = false;
 
 class Tablero{
+    //Constructor
     constructor(ctx, width, height, NUMBER_OF_ROWS, NUMBER_OF_COLS){
         this.width = width;
         this.height = height;
@@ -14,8 +15,11 @@ class Tablero{
         this.NUMBER_OF_COLS = NUMBER_OF_COLS;
 
         this.SQUARE_SIZE = 90;
-        this.NUMBER_OF_SQUARES = 42;
-        this.xValue = width / 4.5;
+        this.xValue = width / 3.5;
+    }
+    //Getter y setters
+    getFilas(){
+        return filas;
     }
 
     setNumberOfRows(newNumber){
@@ -25,7 +29,7 @@ class Tablero{
     setNumberOfCols(newNumber){
         this.NUMBER_OF_COLS = newNumber;
     }
-
+    //Función que dibuja el tablero
     drawTablero(){
         let xValueCambiante = this.xValue;
         let yValue = yValueIncial;
@@ -54,10 +58,10 @@ class Tablero{
         }    
         if(!tableroYaCreado){ tableroYaCreado = true; }
     }
-
+    //Función que obtiene un casillero
     obtenerCasillero(x,y){
-        for(let i=0; i< this.NUMBER_OF_ROWS;i++){
-            for(let j=0; j<  this.NUMBER_OF_COLS; j++){
+        for(let i=0; i < this.NUMBER_OF_ROWS;i++){
+            for(let j=0; j < this.NUMBER_OF_COLS; j++){
                 let casillero = filas[i][j];
                 if(casillero.getPosXParaFicha() == x && casillero.getPosYParaFicha() == y){
                     return casillero;
@@ -65,26 +69,30 @@ class Tablero{
             }
         }
     }
-
+    //Función que crea el arreglo de filas
     crearFilas(nroFilas, casilleros){
         filas[nroFilas] = new Array(   );
         casilleros.forEach(function(casillero) {
             filas[nroFilas].push(casillero);
         });
     }
-
+    //Función que obtiene una columna según una posición x e y
     obtenerColumna(x, y){
         if((y > (100 - 90)) && (y < 100)){
-            if((x > posicionesTablero[0]) && (x < posicionesTablero[1]))return 0;
-            else if((x > posicionesTablero[1]) && (x < posicionesTablero[2]))return 1;
-            else if((x > posicionesTablero[2]) && (x < posicionesTablero[3]))return 2;
-            else if((x > posicionesTablero[3]) && (x < posicionesTablero[4]))return 3;
-            else if((x > posicionesTablero[4]) && (x < posicionesTablero[5]))return 4;
-            else if((x > posicionesTablero[5]) && (x < posicionesTablero[6]))return 5;
-            else if((x > posicionesTablero[6]) && (x < (posicionesTablero[6] + 90)))return 6;
+            for(let i = 0; i < posicionesTablero.length; i++){
+                if(posicionesTablero[i+1] != null){
+                    if((x > posicionesTablero[i]) && (x < posicionesTablero[i+1])){
+                        return i;
+                    }
+                } else {
+                    if((x > posicionesTablero[i]) && (x < posicionesTablero[i]+90)){
+                        return this.NUMBER_OF_COLS - 1;
+                    }
+                } 
+            }
         }
     }
-
+    //Función que obtiene una fila
     obtenerFila(nroColumna, jugador){
         let casillero = null; 
         for(let i=0; i < this.NUMBER_OF_ROWS; i++){
@@ -95,9 +103,5 @@ class Tablero{
             }
         }
         return null;
-    }
-
-    getFilas(){
-        return filas;
     }
 }

@@ -18,13 +18,6 @@ class Juego {
         this.nJ1 = nJ1;
         this.nJ2 = nJ2;
     }
-    /*constructor(){
-        this.jugador1 = null;
-        this.jugador2 = null;
-        this.fichasP1 = [];
-        this.fichasP2 = [];
-        this.tablero = null;
-    }*/
     //Getters y setters
     getJugador1(){
         return this.jugador1;
@@ -72,7 +65,7 @@ class Juego {
             this.fichasP1.push(fichaJ1);
             fichaJ1.draw();
             //Agrego y dibujo ficha de jugador 2
-            fichaJ2 = new Ficha(this.ctx, this.imgP2, fichaX + 1000, fichaY);
+            fichaJ2 = new Ficha(this.ctx, this.imgP2, fichaX + (NUMBER_OF_COLS * 180), fichaY);
             this.fichasP2.push(fichaJ2);
             fichaJ2.draw();
             //Sumo dos a las fichas totales
@@ -111,15 +104,19 @@ class Juego {
             }
         }
     }
-
+    //Función que limpia el cambias
     clearCanvas(){
+        //Limpio el canvas
         this.ctx.fillStyle = 'lightgrey';
         this.ctx.fillRect(0, 0, this.width, this.height);
+        //Redibujo el tablero
         this.tablero.drawTablero();
     }
-
+    //Función que dibuja las fichas con imagenes nuevas
     drawFichasJugadores(imagen1, imagen2){
+        //Limpio el canvas
         this.clearCanvas();
+        //Recorro las fichas de cada jugador y las voy dibujando
         for(let i=0; i<this.fichasP1.length; i++){
             this.fichasP1[i].setImgFicha(imagen1);
             this.fichasP1[i].draw();
@@ -168,7 +165,7 @@ class Juego {
                     //Sumo uno al match
                     match ++;
                     //Cuando el match sea X retorno true y dejo de buscar
-                    if (match == 4){
+                    if (match == MATCH_WIN){
                         return true;
                     }
                 } else {
@@ -197,7 +194,7 @@ class Juego {
                     //Sumo uno al match
                     match ++;
                     //Cuando el match sea X retorno true y dejo de buscar
-                    if (match == 4){
+                    if (match == MATCH_WIN){
                         return true;
                     }
                 } else{
@@ -232,7 +229,7 @@ class Juego {
                     //Sumo uno al match
                     match ++;
                     //Cuando el match sea X retorno true y dejo de buscar
-                    if (match == 4){
+                    if (match == MATCH_WIN){
                         return true;
                     }
                 } else {
@@ -251,7 +248,7 @@ class Juego {
         //Seteo el match en 1
         let match = 1;
         //Me posiciono lo más a la derecha posible
-        while(c != 6 && f != 0){
+        while(c != this.NUMBER_OF_COLS && f != 0){
             c++;
             f--;
         }
@@ -267,7 +264,7 @@ class Juego {
                     //Sumo uno al match
                     match ++;
                     //Cuando el match sea X retorno true y dejo de buscar
-                    if (match == 4){
+                    if (match == MATCH_WIN){
                         return true;
                     }
                 } else {

@@ -30,7 +30,7 @@
             <div><img src="img/kuro.png" alt="kuro" id="imgK"></div>
             <div><img src="img/bokuto.png" alt="bokuto" id="imgB"></div>
         </li>
-        <li><label class="botonP1 tamanioTablero">
+        <li><label class="btn tamanioTablero">
             Tamaño
             <select id="selectTamanioTablero" onchange="">
                 <option value="6-7">-</option>
@@ -39,29 +39,30 @@
                 <option value="9-10">9-10</option>
             </select>
         </label></li>
-        <input type="text" id="nombreJ2" name="nombre jugador 1">
-        <button id="jugar">Jugar</button>
+        <label class="btn" id="jugar">Jugar</label>
     </div>
 
     <div id="divJuego">
         <nav>
             <ul>
-                <p id="nombreJugador1"></p>
-                <p class="reloj" id="countdown">1:00</p>
-                <p id="nombreJugador2"></p>
-                <label id="reiniciarJuego" class="botonP1">Reiniciar</label>
+                <p class="p" id="nombreJugador1"></p>
+                <p class="p reloj" id="countdown">20:00</p>
+                <p class="p" id="nombreJugador2"></p>
+                <label id="reiniciarJuego" class="btn reiniciar">Reiniciar</label>
             </ul>
         </nav>
-        <canvas id="myCanvas" width="1500" height="800"></canvas>
+        <canvas id="myCanvas" width="1800" height="1000"></canvas>
 
         <img src="img/casillero.jpg" alt="casillero" id="imgCasillero" hidden>
+            
+        <footer><p class="footer">© Developed by Cecilia Carlón & Magali Médico</p></footer>
     </div>
 
-    <div id="divGanador">
-        <p id="ganadorDelJuego"></p>
-        <label id="reiniciarJuegoTotal" class="botonP1">Reiniciar Juego</label>
+    <div class="personalizacion" id="divGanador">
+        <h1>Felicitaciones!</h1>
+        <p class="p" id="ganadorDelJuego"></p>
+        <label id="reiniciarJuegoTotal" class="btn reiniciarJuego" >Reiniciar Juego</label>
     </div>
-
     <script src="js/Juego.js"></script>
     <script src="js/Ficha.js"></script>
     <script src="js/Tablero.js"></script>
@@ -69,6 +70,5 @@
     <script src="js/Jugador.js"></script>
     <script src="js/main.js"></script>
     <script src="js/Tiempo.js"></script>
-
 </body>
 </html>
