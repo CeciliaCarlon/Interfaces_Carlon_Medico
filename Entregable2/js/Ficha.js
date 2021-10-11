@@ -14,24 +14,19 @@ class Ficha {
     getPosX(){
         return this.posX;
     }
-
     getPosY(){
         return this.posY;
     }
-
     getEstado(){
         return this.bloqueado;
     }
-
     setPosition(x, y){
         this.posX = x;
         this.posY = y;
-    }
-    
+    }   
     setEstado(estado){
         this.bloqueado = estado;
     }
-
     setImgFicha(imgFicha){
         this.imgFicha = imgFicha;
     }

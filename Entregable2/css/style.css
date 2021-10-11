@@ -49,7 +49,12 @@ input[type="color"] {
 
 p.reloj{
     margin: 0;
+    margin-right: 200px;
     font-size: 70px;
+}
+
+.p.nav{
+    margin-right: 200px;
 }
 
 span{
