@@ -171,7 +171,7 @@ function crearJuego(){
     //Función que deteca cuando moves el mouse
     function onMouseMove(e){
         if(isMouseDown && lastClickedFigure != null){
-            lastClickedFigure.setPosition(e.layerX, e.layerY);
+            lastClickedFigure.setPosition(e.layerX - 30, e.layerY - 25);
             juego.drawFichas();
         }
     }
@@ -189,7 +189,7 @@ function crearJuego(){
             let casilleroElegido = juego.getTablero().obtenerFila(columnaElegida, jugadorActual); //casillero donde debe ir la ficha
             //Checkeo que no se null
             if(casilleroElegido != null){
-                //Le seteo la posición a la última ficha selecciona
+                //Le seteo la posición a la última ficha seleccionada
                 lastClickedFigure.setPosition(casilleroElegido.getPosXParaFicha(), casilleroElegido.getPosYParaFicha());
                 juego.drawFichas();
                 return true;
