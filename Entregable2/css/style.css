@@ -1,0 +1,109 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    background-color: lightgrey;
+}
+
+nav{
+    background-color: navajowhite;
+    height: 100px;
+}
+
+ul{
+    display: flex;
+}
+
+li{
+    list-style: none;
+    display: inline-flex;
+}
+
+li.imgFichas{
+    margin-bottom: 15px;
+}
+
+nav.boton {
+    display: inline-block;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="color"] {
+    display: none;
+}
+
+.p{
+    color: white;
+    display: inline-flex;
+    font-size: 40px;
+    height: 70px;
+    width: 200px;
+    margin: 20px;
+}
+
+p.reloj{
+    margin: 0;
+    font-size: 70px;
+}
+
+span{
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    margin: 2px;
+}
+
+.file{
+    border-radius: 35px;
+}
+
+.btn{
+    background-color: rgb(250, 164, 44);
+    color: white;
+    border-radius: 5px;
+    padding: 15px 32px;
+    display: inline-block;
+}
+
+.reiniciar{
+    margin-top: 15px;
+    height: 30px;
+}
+
+.reiniciarJuego{
+    display: inherit;
+    margin-top: 200px;
+}
+
+div.personalizacion {
+    background-color: rgb(245, 179, 88);
+    margin: auto;
+    width: 50%;
+    height: 500px;
+    padding: 50px;
+    border-radius: 15px;
+    display: table-cell;
+    text-align: center;
+}
+
+footer{
+    background-color: rgb(245, 179, 88);
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 5px;
+}
+
+.footer {
+    text-align: center;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script> -->
+    <title>4 en Linea</title>
+</head>
+<body>
+    <div id="divPersonalizacion" class="personalizacion">
+        <div class="input-group mb-3">
+            <span id="basic-addon1">Nombre de jugador 1</span>
+            <input type="text" id="nombreJ1" class="form-control" placeholder="Username">
+        </div>
+        <span>Estilo de fichas para jugador 1</span>
+        <li class="imgFichas">
+            <img id="imgN" src="img/nishi.png" alt="nishinoya">
+            <img id="imgH" src="img/hinata.png" alt="hinata">
+            <img id="imgO" src="img/oikawa.png" alt="oikawa">
+        </li>
+        <div class="input-group mb-3">
+            <span id="basic-addon1">Nombre de jugador 2</span>
+            <input type="text" id="nombreJ2" class="form-control" placeholder="Username">
+        </div>
+        <span>Estilo de fichas para jugador 2</span>
+        <li class="imgFichas">
+            <div><img src="img/tsuki.png" alt="tsuki" id="imgT"></div>
+            <div><img src="img/kuro.png" alt="kuro" id="imgK"></div>
+            <div><img src="img/bokuto.png" alt="bokuto" id="imgB"></div>
+        </li>
+        <li><label class="btn tamanioTablero">
+            Tamaño
+            <select id="selectTamanioTablero" onchange="">
+                <option value="6-7">-</option>
+                <option value="7-8">7-8</option>
+                <option value="8-9">8-9</option>
+                <option value="9-10">9-10</option>
+            </select>
+        </label></li>
+        <label class="btn" id="jugar">Jugar</label>
+    </div>
+
+    <div id="divJuego">
+        <nav>
+            <ul>
+                <p class="p" id="nombreJugador1"></p>
+                <p class="p reloj" id="countdown">20:00</p>
+                <p class="p" id="nombreJugador2"></p>
+                <label id="reiniciarJuego" class="btn reiniciar">Reiniciar</label>
+            </ul>
+        </nav>
+        <canvas id="myCanvas" width="1800" height="1000"></canvas>
+
+        <img src="img/casillero.jpg" alt="casillero" id="imgCasillero" hidden>
+            
+        <footer><p class="footer">© Developed by Cecilia Carlón & Magali Médico</p></footer>
+    </div>
+
+    <div class="personalizacion" id="divGanador">
+        <h1>Felicitaciones!</h1>
+        <p class="p" id="ganadorDelJuego"></p>
+        <label id="reiniciarJuegoTotal" class="btn reiniciarJuego" >Reiniciar Juego</label>
+    </div>
+    <script src="js/Juego.js"></script>
+    <script src="js/Ficha.js"></script>
+    <script src="js/Tablero.js"></script>
+    <script src="js/Casillero.js"></script>
+    <script src="js/Jugador.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/Tiempo.js"></script>
+</body>
+</html>
