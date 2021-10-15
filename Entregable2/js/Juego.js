@@ -57,7 +57,8 @@ class Juego {
         let fichaJ2;
         let fichasTotales = 0;
         let fichaX = 30;
-        let fichaY = 100;
+        let fichaY = 70;
+        let fichasParciales = 0;
         //Mientras las fichas no sean mayores al total de fichas
         while(fichasTotales < this.CANT_FICHAS){
             //Agrego y dibujo ficha de jugador 1
@@ -65,17 +66,19 @@ class Juego {
             this.fichasP1.push(fichaJ1);
             fichaJ1.draw();
             //Agrego y dibujo ficha de jugador 2
-            fichaJ2 = new Ficha(this.ctx, this.imgP2, fichaX + (NUMBER_OF_COLS * 180), fichaY);
+            fichaJ2 = new Ficha(this.ctx, this.imgP2, fichaX + (NUMBER_OF_COLS*SIZE), fichaY);
             this.fichasP2.push(fichaJ2);
             fichaJ2.draw();
             //Sumo dos a las fichas totales
             fichasTotales += 2;
+            fichasParciales++;
             //Muevo el y para dibujarlas en distintas posiciones y que se vean todas
-            fichaY += 60;
+            fichaY += 40;
             //Cada 7 fichas cambio x e y
-            if (fichasTotales % 7 == 0) {
-                fichaX += 90;
-                fichaY = 100;
+            if (fichasParciales == NUMBER_OF_ROWS) {
+                fichaX += 50;
+                fichaY = 70;
+                fichasParciales = 0;
             }
         }
     }

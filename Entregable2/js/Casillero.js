@@ -8,8 +8,8 @@ class Casillero {
         this.ctx = ctx;
         this.Xpos = Xpos;
         this.Ypos = Ypos;
-        this.posXParaFicha = this.Xpos + 11;
-        this.posYParaFicha = this.Ypos + 11;
+        this.posXParaFicha = this.Xpos + 8;
+        this.posYParaFicha = this.Ypos + 8;
         this.duenioCasillero = 0;
         this.i = 0;
         this.j = 0;

@@ -17,6 +17,7 @@ let lastClickedFigure = null;
 let NUMBER_OF_ROWS = 6;
 let NUMBER_OF_COLS = 7;
 let CANT_FICHAS = NUMBER_OF_COLS * NUMBER_OF_ROWS;
+let SIZE = 110;
 
 //Variables del juego
 let juego = null;
@@ -26,6 +27,7 @@ let jugadorActual = 1;
 let jugador1 = "Jugador 1";
 let jugador2 = "Jugador 2";
 let inter = null;
+let xValue = 250;
 //Variables de las Fichas
 let imgP1 = document.getElementById('imgN');
 let imgP2 = document.getElementById('imgT');
@@ -83,24 +85,21 @@ function mostrarPersonalizacion(){
             NUMBER_OF_ROWS = tamanios[0];
             CANT_FICHAS = tamanios[1]*tamanios[0];
             //Reasigno match y atributos
-            if(tamanios[0]==7){
+            if(tamanios[0]==5){
+                MATCH_WIN = 3;
+                SIZE = 130;             
+            } else if(tamanios[0]==7){
                 MATCH_WIN = 5;
-                c.setAttribute('width', 2000);
-            } else if(tamanios[0]==8){
-                MATCH_WIN = 6;
-                c.setAttribute('width', 2300);
+                SIZE = 100;
             } else {
-                MATCH_WIN = 7;
-                c.setAttribute('width', 2500);
+                MATCH_WIN = 6;
+                SIZE = 92; 
             }
         }
     }
 }
 
 function crearJuego(){
-    //Creo un nuevo juego
-    juego = new Juego(c, CANT_FICHAS, imgP1, imgP2, jugador1, jugador2);
-    juego.nuevoJuego();
     //Creo el timer
     reloj = new Tiempo(20, document.getElementById("countdown"));
     window.setInterval(function(){
@@ -109,6 +108,10 @@ function crearJuego(){
     //Asigno nombres
     document.getElementById("nombreJugador1").innerHTML = jugador1;
     document.getElementById("nombreJugador2").innerHTML = jugador2;
+    document.getElementById("nombreJugador1").style.color = 'black';
+    //Creo un nuevo juego
+    juego = new Juego(c, CANT_FICHAS, imgP1, imgP2, jugador1, jugador2);
+    juego.nuevoJuego();
     //Eventos    
     c.addEventListener('mousedown', onMouseDown, false);
     c.addEventListener('mouseup', onMouseUp, false);
@@ -146,11 +149,15 @@ function crearJuego(){
                     juego.getJugador1().setTurno(false);
                     juego.getJugador2().setTurno(true);
                     jugadorActual = 2;
+                    document.getElementById("nombreJugador1").style.color = 'white';
+                    document.getElementById("nombreJugador2").style.color = 'black';
                     count--;
                 } else {
                     juego.getJugador1().setTurno(true);
                     juego.getJugador2().setTurno(false);
                     jugadorActual = 1;
+                    document.getElementById("nombreJugador1").style.color = 'black';
+                    document.getElementById("nombreJugador2").style.color = 'white';
                     count--;
                 }
                 isMouseDown = false;
@@ -171,7 +178,7 @@ function crearJuego(){
     //Función que deteca cuando moves el mouse
     function onMouseMove(e){
         if(isMouseDown && lastClickedFigure != null){
-            lastClickedFigure.setPosition(e.layerX - 30, e.layerY - 25);
+            lastClickedFigure.setPosition(e.layerX - 15, e.layerY - 15);
             juego.drawFichas();
         }
     }

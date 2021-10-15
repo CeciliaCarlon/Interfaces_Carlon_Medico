@@ -10,7 +10,9 @@ body{
 
 nav{
     background-color: navajowhite;
-    height: 100px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
 ul{
@@ -41,20 +43,26 @@ input[type="color"] {
 .p{
     color: white;
     display: inline-flex;
-    font-size: 40px;
+    font-size: 20px;
     height: 70px;
-    width: 200px;
-    margin: 20px;
+    width: 100px;
+    margin: 10px;
 }
 
 p.reloj{
-    margin: 0;
-    margin-right: 200px;
-    font-size: 70px;
+    margin-top: 5px;
+    margin-left: 200px;
+    font-size: 30px;
 }
 
 .p.nav{
-    margin-right: 200px;
+    margin-right: 150px;
+    margin-left: 50px;
+}
+
+.p.nav.j2{ 
+    margin-left: 180px;
+    color: white;
 }
 
 span{
@@ -82,8 +90,9 @@ img{
 }
 
 .reiniciar{
-    margin-top: 15px;
-    height: 30px;
+    margin-top: 2px;
+    margin-left: 0;
+    height: 15px;
 }
 
 .reiniciarJuego{

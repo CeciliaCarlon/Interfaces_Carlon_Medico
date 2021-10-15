@@ -1,6 +1,6 @@
 "use strict";
 //Variables de clase
-const yValueIncial = 100;
+const yValueIncial = 70;
 let posicionesTablero = [];
 let filas = [];
 let tableroYaCreado = false;
@@ -14,8 +14,8 @@ class Tablero{
         this.NUMBER_OF_ROWS = NUMBER_OF_ROWS;
         this.NUMBER_OF_COLS = NUMBER_OF_COLS;
 
-        this.SQUARE_SIZE = 90;
-        this.xValue = width / 3.5;
+        this.SQUARE_SIZE = 60;
+        this.xValue = 300;
     }
     //Getter y setters
     getFilas(){

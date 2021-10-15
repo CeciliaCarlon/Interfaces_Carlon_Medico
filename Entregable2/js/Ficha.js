@@ -5,7 +5,7 @@ class Ficha {
     constructor(ctx, imgFicha, posx, posy){
         this.ctx = ctx;
         this.imgFicha = imgFicha;
-        this.radio = 35;
+        this.radio = 22.5;
         this.posX = posx;
         this.posY = posy;
         this.bloqueado = false;

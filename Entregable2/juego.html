@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
     <title>4 en Linea</title>
 </head>
 <body>
@@ -33,10 +33,10 @@
         <li><label class="btn tamanioTablero">
             Tamaño
             <select id="selectTamanioTablero" onchange="">
-                <option value="6-7">-</option>
+                <option value="5-6">5-6</option>
+                <option value="6-7" selected>6-7</option>
                 <option value="7-8">7-8</option>
-                <option value="8-9">8-9</option>
-                <option value="9-10">9-10</option>
+                <option value="8-9">8-9</option>              
             </select>
         </label></li>
         <label class="btn" id="jugar">Jugar</label>
@@ -45,13 +45,13 @@
     <div id="divJuego">
         <nav>
             <ul>
-                <p class="p nav" id="nombreJugador1"></p>
+                <p class="p nav color" id="nombreJugador1"></p>
                 <p class="p reloj" id="countdown">20:00</p>
-                <p class="p nav" id="nombreJugador2"></p>
-                <label id="reiniciarJuego" class="btn reiniciar">Reiniciar</label>
+                <label id="reiniciarJuego" class="btn reiniciar"><i class="fas fa-undo-alt"></i></label>
+                <p class="p nav j2 color" id="nombreJugador2"></p>
             </ul>
         </nav>
-        <canvas id="myCanvas" width="1800" height="1000"></canvas>
+        <canvas id="myCanvas" width="1300" height="550"></canvas>
 
         <img src="img/casillero.jpg" alt="casillero" id="imgCasillero" hidden>
             
