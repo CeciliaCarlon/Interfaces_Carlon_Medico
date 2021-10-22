@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+}
+
+/* #character {
+    width:547px;
+    height:481px;
+    margin:auto;  
+    position:relative;
+    background: url(img/spritesheetsDIE.png) repeat-x;
+    animation:walk 2s steps(8) infinite;
+} */
+
+/* @keyframes walk {
+    0% { background-position:0 }
+    100% { background-position:-4376px }
+} */
+/* tamaño normal / 6 */
+
+#raven {
+    width:82px;
+    height:74px;
+    margin:0;  
+    position:relative;
+    top: 400px;
+    left:600px;
+    background: url(img/raven.png) repeat-x;
+    animation:fly .5s steps(4) infinite; 
+}
+
+#character {
+    width:155px;
+    height:120px;
+    margin:0;  
+    position:relative;
+    top: 400px;
+    left:100px;
+    background: url(img/personaje/spritesheetsRUNsmaller.png) repeat-x;
+    animation:walk 1s steps(8) infinite;
+}
+
+#huesito {
+    width: 40px;
+    height: 38px;
+    margin:0;  
+    position:relative;
+    top: 320px;
+    left:300px;
+    background: url(img/huesitoSmaller.png) repeat-x;
+    animation:move 2s steps(0) infinite;
+}
+
+#lapida {
+    width:50px;
+    height:63px;
+    margin:0;  
+    position:relative;
+    top: 290px;
+    left:500px;
+    background: url(img/lapida.png) repeat-x;
+}
+
+@keyframes walk {
+    0% { background-position:0 }
+    100% { background-position:-1094px }
+}
+
+@keyframes fly {
+    0% { background-position:0 }
+    100% { background-position:-332px }
+}
