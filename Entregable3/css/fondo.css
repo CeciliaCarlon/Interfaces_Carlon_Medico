@@ -1,55 +1,7 @@
-@keyframes scroll {
-    0% { background-position: 0px;}
-    100% { background-position: -1920px;}
-}
-
-.fondo{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-repeat: repeat-x;
-    background-size: cover;
-}
-
-.fondo1 {
-    background: url("../img/fondo/fondo_piso.png");
-    animation: scroll 7s infinite linear;
-}
-
-.fondo2 {
-    background: url("../img/fondo/fondo_yuyos.png");
-    animation: scroll 7s infinite linear;
-    z-index: -8;
-}
-
-.fondo3 {
-    background: url("../img/fondo/fondo_arbol01.png");
-    animation: scroll 25s infinite linear;
-    z-index: -10;
-}
-
-.fondo4 {
-    background: url("../img/fondo/fondo_arbol02.png");
-    animation: scroll 25s infinite linear;
-    z-index: -12;
-}
-
-.fondo5 {
-    background: url("../img/fondo/fondo_arbol03.png");
-    animation: scroll 25s infinite linear;
-    z-index: -15;
-}
-
-.fondo6 {
-    background: url("../img/fondo/fondo_estrellas.png");
-    z-index: -18;
-}
-
-.fondo7 {
-    background: url("../img/fondo/fondo_luna.png");
-    z-index: -20;
+#juego{
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
 }
 
 #lapida {
@@ -57,8 +9,7 @@
     height:63px;
     margin:0;  
     position:relative;
-    top: 290px;
-    left:500px;
+    top: 230px;
     background: url(../img/lapida.png) repeat-x;
     animation: move 7s infinite linear;
 }
@@ -68,7 +19,7 @@
     height:74px;
     margin:0;  
     position:relative;
-    top: 430px;
+    top: 380px;
     background: url(../img/raven.png) repeat-x;
     animation: fly 1s steps(4) infinite, move 7s infinite linear; 
 }
@@ -78,12 +29,11 @@
     height: 38px;
     margin:0;  
     position:relative;
-    top: 320px;
+    top: 280px;
     background: url(../img/huesitoSmaller.png) repeat-x;
     animation:move 5s infinite linear;
 }
 
-/* Se le agrega un scroll al inicio */
 @keyframes move {
     0% { left: 100% }
     100% { left: 0% }

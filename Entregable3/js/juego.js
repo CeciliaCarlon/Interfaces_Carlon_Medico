@@ -1,36 +1,57 @@
 "use strict";
 let posXObstaculo = 275;
 let posXHueso = 384;
+let cantidadHuesitos = 0;
 class Juego {
     //Constructor
-    constructor(personaje){
+    constructor(personaje, fondos, puntaje){
         this.personaje = personaje;
+        this.fondos = fondos;
         this.obstaculos = [];
-        this.jugador = new Jugador(100, 400, personaje);
+        this.huesitos = [];
+        this.jugador = new Jugador(100, 350, personaje);
         this.isGameOver = false;
+        this.puntaje = puntaje;
     }
 
     getJugador(){
         return this.jugador;
     }
 
-    empezarJuego(obstaculo){
+    gameOver(){
+        this.isGameOver = true;
+        this.jugador.dead();
+        /*for(let i=0; i < fondos.length; i++){
+            fondos[i].style.setProperty('endPostition', '0px');
+        }*/
+    }
+
+    checkHuesito(){     
+        if(this.huesitos[0].isColision(this.jugador)){
+            cantidadHuesitos++;
+            this.puntaje.innerHTML = "<img src='img/huesitoSmaller.png'></img> " + cantidadHuesitos;
+            this.huesitos.pop(this.huesitos[0]);
+        }
+
+    }
+
+    checkObstaculos(){
+        //cada 1s movemos la posX del obstaculo en 275px
+        //con el hueso lo mismo but con 384px
+        if(this.obstaculos[0].isColision(this.jugador)){
+            //si es un obstaculo gameover
+            this.gameOver();
+        }  
+    }
+    
+    empezarJuego(obstaculo, huesito){
+        this.huesitos.push(huesito);
         this.obstaculos.push(obstaculo);
         setInterval( () => {
             if(this.isGameOver) return;
-            //cada 1s movemos la posX del obstaculo en 275px
-            let posXO = this.obstaculos[0].setPositionX(this.obstaculos[0].getPositionX() - posXObstaculo);
-            let posXJ = this.jugador.getPositionX();
-            //con el hueso lo mismo but con 384px
-            if(posXJ - 60 > posXO < posXJ + 60){
-                //si es un obstaculo gameover
-                console.log("perdiste");
-        }    
-        }, 1000);
+            //this.checkObstaculos();
+            this.checkHuesito();
+        }, 100);
     }
 
-    gameOver(){
-        this.isGameOver = true;
-        console.log(perdiste);
-    }
 }

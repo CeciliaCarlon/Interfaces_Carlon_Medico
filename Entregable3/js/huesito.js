@@ -7,6 +7,7 @@ class Huesito {
         this.positionY = positionY;
     }
 
+    //Getters y Setters
     getPosX(){
         return this.positionX;
     }
@@ -15,5 +16,19 @@ class Huesito {
     }
     getPosY(){
         return this.positionY;
+    }
+
+    //Función que se fija dada la posición X del jugador si coincide con la posX del Huesito
+    isColision(jugador){
+        console.log(this.getPosX());
+        if(jugador.getPositionX() < this.positionX && jugador.getPositionX() + 135 > this.positionX){
+            return true;
+            
+        } else {
+            if(this.positionX > 0){
+                this.positionX = this.positionX - 38;
+            } else this.positionX = 1920;
+            return false;
+        }
     }
 }

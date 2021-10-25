@@ -1,6 +1,8 @@
 body {
-    margin: 0;
+    margin: 0 !important;
     overflow: hidden;
+    width: 1920px;
+    height: 1080px;
 }
 
 @font-face{
@@ -11,7 +13,6 @@ body {
 #puntaje {
     font-family: arcade;
     font-size: 20px;
-    margin: 2%;
     color: white;
     text-shadow: -2px 0 0 #fdff2a,
     -4px 0 0 #df4a42,
@@ -44,7 +45,7 @@ body {
     height:120px;
     margin:0;  
     position:relative;
-    top: 400px;
+    top: 350px;
     left: 100px;
     background: url(../img/personaje/spritesheetsRUNsmaller.png) repeat-x;
     animation:walk 1s steps(8) infinite;
@@ -55,3 +56,12 @@ body {
     100% { background-position:-1094px }
 }
 
+/* @keframe jump {
+    0% { top: 350px }
+    100% { top: 250px }
+}
+
+@keframe fall {
+    0% { top: 250px }
+    100% { top: 350px }
+} */
