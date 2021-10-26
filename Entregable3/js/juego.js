@@ -31,6 +31,20 @@ class Juego {
     //Función que checkea si agarro un huesito
     checkHuesito(){     
         if(this.huesitos[0].isColision(this.jugador)){
+            // this.huesitos[0].animate([
+            //     {
+            //         width: '40px;',
+            //         height: '38px;',
+            //         transform: 'rotate(0deg);',
+            //     },
+            //     {
+            //         width: '5px;',
+            //         height: '3px;',
+            //         transform: 'width: 40px;'
+            //     }
+            // ], 2000);
+            this.hueso.classList.remove("huesito");
+            this.hueso.classList.add("huesitoObtenido");
             cantidadHuesitos++;
             this.puntaje.innerHTML = "<img src='img/huesitoSmaller.png'></img> " + cantidadHuesitos;
             this.huesitos.pop(this.huesitos[0]);
@@ -58,8 +72,8 @@ class Juego {
         //le pongo la clase
         setInterval( () => {
             if(this.isGameOver) return;
-            //this.checkObstaculos();
-            //this.checkHuesito();
+            this.checkObstaculos();
+            if(cantidadHuesitos==0) this.checkHuesito();
         }, 100);
     }
 }

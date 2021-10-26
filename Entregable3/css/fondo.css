@@ -24,7 +24,7 @@
     animation: fly 1s steps(4) infinite, move 7s infinite linear; 
 }
 
-.huesito {
+#huesito {
     width: 40px;
     height: 38px;
     margin:0;  
@@ -32,6 +32,17 @@
     top: 280px;
     background: url(../img/huesitoSmaller.png) repeat-x;
     animation:move 5s infinite linear;
+}
+
+#huesitoObtenido {
+    width: 40px;
+    height: 38px;
+    margin:0;  
+    position:relative;
+    top: 280px;
+    left: 200px;
+    background: url(../img/huesitoSmaller.png) repeat-x;
+    animation:getHuesito 2s infinite linear;
 }
 
 @keyframes move {
@@ -42,4 +53,17 @@
 @keyframes fly {
     0% { background-position:0 }
     100% { background-position:-332px }
+}
+
+@keyframes getHuesito {
+    0% {
+        width: 40px;
+        height: 38px;
+        transform: rotate(0deg);
+    }
+    100% {
+        width: 0px;
+        height: 0px;
+        transform: rotate(360deg);
+    }
 }
