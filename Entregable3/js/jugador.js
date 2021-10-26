@@ -21,7 +21,7 @@ class Jugador {
     }
     //Función que se encarga de cambiar el spritesheet y la animacion cuando salta
     jump(){
-        this.personaje.style.background = "url(img/personaje/spritesheetsJUMPsmaller.png) repeat-x"
+        this.personaje.style.background = "url(img/personaje/spritesheetsJUMPsmaller.png) repeat-x";
         this.setPositionY(250);
         this.personaje.style.top = "250px";
         // this.personaje.style.animation= "jump 3s infinite";

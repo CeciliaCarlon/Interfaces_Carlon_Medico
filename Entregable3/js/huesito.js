@@ -20,7 +20,6 @@ class Huesito {
 
     //Función que se fija dada la posición X del jugador si coincide con la posX del Huesito
     isColision(jugador){
-        console.log(this.getPosX());
         if(jugador.getPositionX() < this.positionX && jugador.getPositionX() + 135 > this.positionX){
             return true;
             

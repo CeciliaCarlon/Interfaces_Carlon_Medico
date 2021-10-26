@@ -1,5 +1,5 @@
 body {
-    margin: 0 !important;
+    margin: 0;
     overflow: hidden;
     width: 1920px;
     height: 1080px;
@@ -10,7 +10,7 @@ body {
     src: url(fuentes/PressStart2P.ttf);
 }
 
-#puntaje {
+.puntaje {
     font-family: arcade;
     font-size: 20px;
     color: white;
@@ -18,9 +18,12 @@ body {
     -4px 0 0 #df4a42,
     2px 0 0 #91fcfe,
     4px 0 0 #4405fc;
-    animation: blink 1s steps(4, start) infinite;
-
 }
+
+.puntaje-animation {
+    animation: blink 1s steps(4, start) infinite;
+}
+
 @keyframes blink{
     to{ visibility: hidden; }
 }
@@ -40,14 +43,14 @@ body {
 } */
 /* tamaño normal / 6 */
 
-#character {
+.character {
     width:130px;
     height:120px;
     margin:0;  
     position:relative;
     top: 350px;
     left: 100px;
-    background: url(../img/personaje/spritesheetsRUNsmaller.png) repeat-x;
+    background: url(../img/personaje/spritesheetsIDLEsmaller.png) repeat-x;
     animation:walk 1s steps(8) infinite;
 }
 
@@ -65,3 +68,36 @@ body {
     0% { top: 250px }
     100% { top: 350px }
 } */
+/*Estilo del div inicial*/
+.inicio {
+    margin: 2.5px;
+    padding: 10px;
+    width: 700px;
+    height: 600px;
+    opacity: 0.8;
+    background-color: black;
+    position: absolute;
+    justify-content: center;
+    left: 20%;
+    z-index: 20;
+}
+
+.juego {
+    position: relative;
+    z-index: 10;
+}
+
+.fuente {
+    margin: 30px;
+    color: white;
+    visibility: visible;
+    display: list-item;
+    list-style: none;
+    padding: 10px;
+    font-family: arcade;
+}
+
+.empezar {
+    margin-left: 300px;
+    background-color: black;
+}
