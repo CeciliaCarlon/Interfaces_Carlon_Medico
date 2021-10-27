@@ -21,7 +21,7 @@ class Obstaculo {
     }
     //Función que se fija dada la posición X del jugador si coincide con la posX del Obstaculo
     isColision(jugador){
-        /*if(this.tipo == 0){
+        if(this.tipo == 0){
             if(jugador.getPositionX() < this.positionX && jugador.getPositionX() + 135 > this.positionX 
                 && jugador.getPositionY() == this.positionY){
                 return true;
@@ -31,7 +31,7 @@ class Obstaculo {
                 } else this.positionX = 1920;
                 return false;
             }
-        } else {*/
+        } else {
             if(jugador.getPositionX() < this.positionX && jugador.getPositionX() + 135 > this.positionX 
                 && jugador.getPositionY() > this.positionY - 70 && jugador.getPositionY() < this.positionY){
                 return true;
@@ -41,6 +41,6 @@ class Obstaculo {
                 } else this.positionX = 1920;
                 return false;
             }
-        /*}*/
+        }
     }
 }

@@ -8,8 +8,8 @@
     width:50px;
     height:63px;
     margin:0;  
-    position:relative;
-    top: 230px;
+    position:absolute;
+    top: 440px;
     background: url(../img/lapida.png) repeat-x;
     animation: move 7s infinite linear;
 }
@@ -18,7 +18,7 @@
     width:82px;
     height:74px;
     margin:0;  
-    position:relative;
+    position:absolute;
     top: 380px;
     background: url(../img/raven.png) repeat-x;
     animation: fly 1s steps(4) infinite, move 7s infinite linear; 
@@ -28,7 +28,7 @@
     width: 40px;
     height: 38px;
     margin:0;  
-    position:relative;
+    position:absolute;
     top: 280px;
     background: url(../img/huesitoSmaller.png);
     animation:move 5s infinite linear;
@@ -38,7 +38,7 @@
     width: 40px;
     height: 38px;
     margin:0;  
-    position:relative;
+    position:absolute;
     top: 280px;
     left: 150px;
     background: url(../img/huesitoSmaller.png);
