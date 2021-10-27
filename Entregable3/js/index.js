@@ -8,21 +8,16 @@ function inicio(){
         divInicio.style.visibility = 'hidden';
         divInicio.style.display = 'none';
         //Variables
+        let divJuego = document.getElementById("juego");
         let personaje = document.getElementById("character");
-        let cuervo = document.getElementById("raven");
-        let lapida = document.getElementById("lapida");
-        let hueso = document.getElementById("huesito");
-        let obstaculo = new Obstaculo(1920, 350, 0);
-        let obstaculo2 = new Obstaculo(1920, 380, 1);
-        let huesito = new Huesito(1920, 290);
         let puntaje = document.getElementById("puntaje");
         let fondos = [document.getElementsByClassName("fondo1"), document.getElementsByClassName("fondo2"),
         document.getElementsByClassName("fondo3"), document.getElementsByClassName("fondo4"), 
         document.getElementsByClassName("fondo5"), document.getElementsByClassName("fondo6"), 
         document.getElementsByClassName("fondo7")];
-        let juego = new Juego(personaje, fondos, puntaje, raven, lapida, hueso);
+        let juego = new Juego(divJuego, personaje, fondos, puntaje);
         //Empieza el juego
-        juego.empezarJuego(obstaculo2, huesito);
+        juego.empezarJuego();
         //Función que llama a los eventos cuando se hace keydown sobre una tecla
         document.addEventListener("keydown", function(e){
             switch(e.keyCode){
