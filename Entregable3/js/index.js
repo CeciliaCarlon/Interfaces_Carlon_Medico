@@ -1,7 +1,7 @@
 "use strict";
 
 function inicio(){
-    //Cuando aprieto el botón en el div principal empieza el juego
+    //Cuando apreto el botón en el div principal empieza el juego
     document.getElementById("empezar").addEventListener('click', () => {
         //Hago invisible el div de comienzo
         let divInicio = document.getElementById("inicio");
@@ -28,16 +28,14 @@ function inicio(){
             switch(e.keyCode){
                 case 38: juego.getJugador().jump(); 
                 break;
-                case 32: juego.getJugador().dead();
-                break;
                 case 39: juego.getJugador().slide();
                 break;
             }
         });
         //Función que llama a el evento cuando se hace keyup sobre una tecla
-        document.addEventListener("keyup", function(){
-            juego.getJugador().run();
-        })
+        // document.addEventListener("keyup", function(){
+        //     juego.getJugador().run();
+        // })
     });
 }
 

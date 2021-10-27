@@ -21,17 +21,19 @@ class Jugador {
     }
     //Función que se encarga de cambiar el spritesheet y la animacion cuando salta
     jump(){
-        this.personaje.style.background = "url(img/personaje/spritesheetsJUMPsmaller.png) repeat-x";
         this.setPositionY(250);
-        this.personaje.style.top = "250px";
-        // this.personaje.style.animation= "jump 3s infinite";
+        if(this.personaje.classList != "characterSaltando"){
+            this.personaje.style.background = "url(img/personaje/spritesheetsJUMPsmaller.png) repeat-x";
+            this.personaje.classList.remove("character");
+            this.personaje.classList.add("characterSaltando");
+
+            setTimeout(()=>{
+                this.personaje.classList.remove("characterSaltando");
+                this.personaje.classList.add("character");
+                this.run();
+            }, 1000);
+        }
     }
-    //Función que se encarga de cambiar el spritesheet y la animacion cuando cae
-    // fall(){
-    //     this.personaje.style.background = "url(img/personaje/spritesheetsJUMPsmaller.png) repeat-x"
-    //     this.personaje.style.top = "200px";
-    //     // this.personaje.style.animation= "fall 3s infinite";
-    // }
     //Función que se encarga de cambiar el spritesheet y el top cuando corre
     run(){
         this.personaje.style.background = "url(img/personaje/spritesheetsRUNsmaller.png) repeat-x";
@@ -44,7 +46,12 @@ class Jugador {
     }
     //Función que se encarga de cambiar el spritesheet cuando se desliza
     slide(){
-        this.personaje.style.background = "url(img/personaje/spritesheetsSLIDEsmaller.png) repeat-x";
-        this.setPositionY(450);
+        if(this.personaje.style.background != "url(img/personaje/spritesheetsSLIDEsmaller.png) repeat-x"){
+            this.setPositionY(450);
+            this.personaje.style.background = "url(img/personaje/spritesheetsSLIDEsmaller.png) repeat-x";
+            setTimeout(()=>{
+                this.run();
+            }, 1000);
+        }  
     }
 }
