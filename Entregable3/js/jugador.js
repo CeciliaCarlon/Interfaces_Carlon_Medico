@@ -37,17 +37,21 @@ class Jugador {
     //Función que se encarga de cambiar el spritesheet y el top cuando corre
     run(){
         this.personaje.style.background = "url(img/personaje/spritesheetsRUNsmaller.png) repeat-x";
-        this.personaje.style.top = "350px";
-        this.setPositionY(350);
+        this.personaje.style.top = "375px";
+        this.setPositionY(375);
     }
     //Función que se encarga de cambiar el spritesheet cuando muere
     dead(){
-        this.personaje.style.background = "url(img/personaje/spritesheetsDIEsmaller.png) repeat-x";
+        this.personaje.style.background = "url(img/personaje/spritesheetsDIEsmaller.png)";
+        setTimeout(() => {
+            this.personaje.style.diplay = "none";
+            this.personaje.style.visibility = "hidden";
+        }, 2000);
     }
     //Función que se encarga de cambiar el spritesheet cuando se desliza
     slide(){
         if(this.personaje.style.background != "url(img/personaje/spritesheetsSLIDEsmaller.png) repeat-x"){
-            this.setPositionY(450);
+            this.setPositionY(420);
             this.personaje.style.background = "url(img/personaje/spritesheetsSLIDEsmaller.png) repeat-x";
             setTimeout(()=>{
                 this.run();

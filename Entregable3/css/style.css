@@ -2,13 +2,11 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    width: 1920px;
-    height: 700px;
 }
 
-@font-face{
-    font-family: arcade; 
-    src: url(fuentes/PressStart2P.ttf);
+.total {
+    width: 1400px;
+    height: 700px;
 }
 
 .puntaje {
@@ -23,10 +21,6 @@ body {
 
 .puntaje-animation {
     animation: blink 1s steps(4, start) infinite;
-}
-
-@keyframes blink{
-    to{ visibility: hidden; }
 }
    
 /* #character {
@@ -49,7 +43,7 @@ body {
     height:120px;
     margin:0;  
     position:relative;
-    top: 350px;
+    top: 375px;
     left: 100px;
     background: url(../img/personaje/spritesheetsIDLEsmaller.png) repeat-x;
     animation:run 1s steps(8) infinite;
@@ -60,7 +54,7 @@ body {
     height:120px;
     margin:0;  
     position:relative;
-    top: 350px;
+    top: 375px;
     left: 100px;
     background: url(../img/personaje/spritesheetsJUMPsmaller.png) repeat-x;
     animation:jump 1s steps(8);
@@ -73,13 +67,13 @@ body {
 
 @keyframes jump {
     0% { 
-        top: 350px;
+        top: 375px;
         background-position:0;
     }
-    30% { top: 250px; }
-    70% { top: 250px; }
+    30% { top: 290px; }
+    70% { top: 290px; }
     100% { 
-        top: 350px; 
+        top: 375px; 
         background-position:-1094px;
     }
 }
@@ -96,6 +90,18 @@ body {
     justify-content: center;
     left: 20%;
     z-index: 20;
+}
+
+.gameOver {
+    margin: 200px;
+    font-family: arcade;
+    font-size: 100px;
+    color: white;
+    text-shadow: -2px 0 0 #fdff2a,
+    -4px 0 0 #df4a42,
+    2px 0 0 #91fcfe,
+    4px 0 0 #4405fc;
+    animation: blink 1s steps(4, start) infinite;
 }
 
 .juego {
@@ -120,4 +126,18 @@ body {
 .empezar {
     margin-left: 300px;
     background-color: black;
+}
+
+#reiniciar {
+    display: none;
+    visibility: hidden;
+}
+
+@font-face{
+    font-family: arcade; 
+    src: url(fuentes/PressStart2P.ttf);
+}
+
+@keyframes blink{
+    to{ visibility: hidden; }
 }
