@@ -4,6 +4,7 @@ let posXHueso = 384;
 let cantidadHuesitos = 0;
 let cant = 0;
 let j = 0;
+let intervalos = [];
 class Juego {
     //Constructor
     constructor(juego, personaje, fondos, arrayFondos, puntaje, gameFinal){
@@ -30,11 +31,11 @@ class Juego {
         console.log("murió");
         for(let i=0; i < this.arrayFondos.length; i++){
             let fondoActual = i+1;
-            console.log("fondo"+fondoActual);
             this.arrayFondos[i].classList.remove("fondo"+fondoActual);
         }
         this.juego.classList.add("fondos");
-        setTimeout(()=> {
+        let timeOutId = setTimeout(()=> {
+            intervalos.push(timeOutId);
             let h1 = document.createElement('h1');
             this.gameFinal.appendChild(h1);
             h1.classList = 'gameOver';
@@ -42,6 +43,8 @@ class Juego {
             let button = document.getElementById('reiniciar');
             button.style.visibility = 'visible';
             button.style.display = 'flex';
+            this.clearIntervalos();
+            this.reestablecerValores();
         }, 3000);
     }
 
@@ -52,6 +55,8 @@ class Juego {
     checkHuesito(huesoDiv){
         console.log("entre");
         let intervalId = setInterval( () => {
+            if(j == 0) intervalos.push(intervalId);
+
             if(this.isGameOver || this.isGameWin){
                 if(huesoDiv.parentNode!=null){
                     this.juego.removeChild(huesoDiv);
@@ -63,7 +68,10 @@ class Juego {
                 if(this.huesitos[i].isColision(this.jugador)){
                     huesoDiv.classList.remove("huesito");
                     huesoDiv.classList.add("huesitoObtenido");
-                    setTimeout(() => {this.juego.removeChild(huesoDiv);}, 2000);
+                    let timeOutId = setTimeout(() => {
+                        intervalos.push(timeOutId);
+                        this.juego.removeChild(huesoDiv);
+                    }, 2000);
                     cantidadHuesitos++;
                     this.puntaje.innerHTML = "<img src='img/huesitoSmaller.png'></img> " + cantidadHuesitos;
                     this.huesitos.pop(this.huesitos[i]);
@@ -76,7 +84,9 @@ class Juego {
                 else {
                     if(this.huesitos[i].getPosX() < 20){
                         this.huesitos.pop(this.huesitos[i]);
-                        this.juego.removeChild(huesoDiv);
+                        if(huesoDiv.parentNode!=null){
+                            this.juego.removeChild(huesoDiv);
+                        }
                         console.log("Removi el div");
                     }
                 }
@@ -86,6 +96,7 @@ class Juego {
     //Función que checkea si se choco un obstaculo
     checkObstaculos(div){
         let intervalId2 = setInterval( () => {
+            if(j == 0) intervalos.push(intervalId2);
             if(this.isGameOver || this.isGameWin) {
                 if(div.parentNode!=null){
                     this.juego.removeChild(div);
@@ -97,7 +108,8 @@ class Juego {
                 if(this.obstaculos[i].isColision(this.jugador)){
                     this.gameOver();
                 }  
-                setTimeout(()=>{
+                let timeOutId = setTimeout(()=>{
+                    intervalos.push(timeOutId);
                     this.obstaculos.pop(this.obstaculos[i]);
                     if(div.parentNode!=null){
                         this.juego.removeChild(div);
@@ -118,6 +130,7 @@ class Juego {
         console.log("entre gameLoop");
         //Generador de obtaculos (lapidas o cuervos)
         let intervalId = setInterval(() => {
+            if(j == 0) intervalos.push(intervalId);
             if(this.isGameOver){
                 clearInterval(intervalId);
             }
@@ -141,12 +154,17 @@ class Juego {
                 cuervoDiv.className = "raven";
                 this.obstaculos.push(obstCuervo);
                 console.log("inserte un cuervo");
-                this.checkObstaculos(div)
+                this.checkObstaculos(div);
             }
             
         }, Math.floor(Math.random() * (8000 - 7000)) + 7000);
-        setInterval(()=>{
+        let intervalId2 = setInterval(()=>{
+            if(j == 0) intervalos.push(intervalId2);
+            if(this.isGameOver){
+                clearInterval(intervalId);
+            }
             if(cantidadHuesitos == 15){
+                this.gameWin();
                 clearInterval(intervalId);
             }
             //Generador de huesitos
@@ -160,6 +178,19 @@ class Juego {
             this.checkHuesito(huesoDiv);
             j++;
         }, Math.floor(Math.random() * (9000 - 6000)) + 6000);
+    }
+
+    clearIntervalos(){
+        for(let i=0; i < intervalos.length; i++){
+            clearInterval(intervalos[i]);
+        }
+    }
+
+    reestablecerValores(){
+        cantidadHuesitos = 0;
+        cant = 0;
+        j = 0;
+        intervalos = [];
     }
 
 }

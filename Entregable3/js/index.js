@@ -28,10 +28,10 @@ function inicio(){
         });
     });
     document.getElementById("reiniciar").addEventListener("click", () => {
-        //Hago invisible el div de comienzo
-        let divInicio = document.getElementById("inicio");
-        divInicio.style.visibility = 'hidden';
-        divInicio.style.display = 'none';
+        //Hago visible el div de comienzo
+        // let divInicio = document.getElementById("inicio");
+        // divInicio.style.visibility = 'visible';
+        // divInicio.style.display = 'flex';
         //Variables
         let divJuego = document.getElementById("juego");
         let personaje = document.getElementById("character");
@@ -39,6 +39,12 @@ function inicio(){
         let arrayFondos = document.getElementsByClassName("fondo");
         let fondos = document.getElementById("fondos");
         let gameOver = document.getElementById("gameOver"); 
+        for(let i=0; i < this.arrayFondos.length; i++){
+            let fondoActual = i+1;
+            this.arrayFondos[i].classList.add("fondo"+fondoActual);
+        }
+        divJuego.classList.remove("fondos");
+
         let juego = new Juego(divJuego, personaje, fondos, arrayFondos, puntaje, gameOver);
         //Empieza el juego
         juego.empezarJuego();
