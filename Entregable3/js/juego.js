@@ -1,10 +1,13 @@
- "use strict";
+"use strict";
+
+// Variables generales
 let posXObstaculo = 275;
 let posXHueso = 384;
 let cantidadHuesitos = 0;
 let cant = 0;
 let j = 0;
 let intervalos = [];
+
 class Juego {
     //Constructor
     constructor(juego, personaje, fondos, arrayFondos, puntaje, gameFinal, personajeSeleccionado){
@@ -21,13 +24,21 @@ class Juego {
         this.juego = juego;
         this.personajeSeleccionado = personajeSeleccionado;
     }
-    //Getter
+
+    //Getters
     getJugador(){
         return this.jugador;
     }
+    getisGameOver(){
+        return this.isGameOver;
+    }
+    getisGameWin(){
+        return this.isGameWin;
+    }
+
     //Función que controla el fin del juego
     gameOver(){
-        //Cambio la variable gameover a true
+        //Cambio la variable isGameOver a true
         this.isGameOver = true;
         //Le pongo el estilo de muerte
         this.jugador.dead(this.personajeSeleccionado);
@@ -37,9 +48,10 @@ class Juego {
         //Seteo el mensaje
         this.mensaje("Game Over");
     }
+
     //Función que controla cuando se gana
     gameWin(){
-        //Cambio la variable gameover a true
+        //Cambio la variable isGameWin a true
         this.isGameWin = true;
         //Remuevo los fondos
         this.quitarFondos();
@@ -47,6 +59,7 @@ class Juego {
         //Seteo el mensaje
         this.mensaje("Ganaste!");
     }
+
     //Función que muestra el mensaje si ganaste o perdiste
     mensaje(m){
         //Tengo la variable time para el contador del reinicio
@@ -79,6 +92,7 @@ class Juego {
             this.reestablecerValores();            
         }, 3000);
     }
+
     //Función que quita los fondos
     quitarFondos(){
         //Seteo el puntaje en vacio
@@ -89,6 +103,7 @@ class Juego {
             this.arrayFondos[i].classList.remove("fondo"+fondoActual);
         }
     }
+
     //Función que checkea si agarro un huesito
     checkHuesito(huesoDiv){
         //Cada 1 milisegundo checkeo si lo agarre o no
@@ -145,6 +160,7 @@ class Juego {
             } 
         }, 100);
     }
+
     //Función que checkea si se choco un obstaculo
     checkObstaculos(div){
         //Cada un milisegundo voy chequeando
@@ -182,12 +198,14 @@ class Juego {
         }, 100);
         
     }
+
     //Función que empieza el juego
     empezarJuego(){
         this.jugador.run(this.personajeSeleccionado);
         this.moverFondo();
         this.gameLoop();
     }
+
     //Función que es disparada al iniciar el juego    
     gameLoop(){
         //Generador de obtaculos (lapidas o cuervos)
@@ -247,12 +265,14 @@ class Juego {
             j++;
         }, Math.floor(Math.random() * (9000 - 6000)) + 6000);
     }
+
     //Función que limpia los intervalos
     clearIntervalos(){
         for(let i=0; i < intervalos.length; i++){
             clearInterval(intervalos[i]);
         }
     }
+
     //Función que restablece los valores
     reestablecerValores(){
         cantidadHuesitos = 0;
@@ -260,6 +280,7 @@ class Juego {
         j = 0;
         intervalos = [];
     }
+
     //Función que mueve el fondo
     moverFondo(){
         this.personaje.style.top = "375px";

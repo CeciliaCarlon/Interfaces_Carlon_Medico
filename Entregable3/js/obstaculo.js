@@ -7,18 +7,18 @@ class Obstaculo {
         this.positionX = positionX;
         this.positionY = positionY;
     }
+
     //Getters y setters
     getPositionX(){
         return this.positionX;
     }
- 
     getPositionY(){
         return this.positionY;
     }
-
     setPositionX(posX){
         this.positionX = posX;
     }
+    
     //Función que se fija dada la posición X del jugador si coincide con la posX del Obstaculo
     isColision(jugador){
         //Tipo 0 son las lapidas y tipo 1 son los cuervos

@@ -6,6 +6,7 @@ class Huesito {
         this.positionX = positionX;
         this.positionY = positionY;
     }
+
     //Getter y Setters
     getPosX(){
         return this.positionX;
@@ -16,6 +17,7 @@ class Huesito {
     getPosY(){
         return this.positionY;
     }
+    
     //Función que se fija dada la posición X del jugador si coincide con la posX del Huesito
     isColision(jugador){
         //Checkeo la posición x e y del jugador y si esta dentro de los valores del muñeco retorno true

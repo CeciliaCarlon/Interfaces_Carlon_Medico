@@ -7,18 +7,18 @@ class Jugador {
         this.positionY = positionY;
         this.personaje = personaje;
     }
+
     //Getters y setter
     getPositionX(){
         return this.positionX;
     }
-
     getPositionY(){
         return this.positionY;
     }
-
     setPositionY(posY){
         this.positionY = posY;
     }
+
     //Función que se encarga de cambiar el spritesheet y la animacion cuando salta
     jump(personajeSeleccionado){
         //Se setea la posición y
@@ -37,12 +37,14 @@ class Jugador {
             }, 1200);
         }
     }
+
     //Función que se encarga de cambiar el spritesheet y el top cuando corre
     run(personajeSeleccionado){
         this.personaje.style.background = "url(img/personaje/personaje" + personajeSeleccionado + "RUN.png) repeat-x";
         this.personaje.style.top = "375px";
         this.setPositionY(375);
     }
+
     //Función que se encarga de cambiar el spritesheet cuando muere
     dead(personajeSeleccionado){
         this.personaje.style.background = "url(img/personaje/personaje"+personajeSeleccionado+"DIE.png)";
@@ -52,6 +54,7 @@ class Jugador {
             this.personaje.style.visibility = "hidden";
         }, 1500);
     }
+    
     //Función que se encarga de cambiar el spritesheet cuando se desliza
     slide(personajeSeleccionado){
         //Si en el backgroun no se esta deslizando
