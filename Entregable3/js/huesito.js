@@ -18,11 +18,12 @@ class Huesito {
     }
     //Función que se fija dada la posición X del jugador si coincide con la posX del Huesito
     isColision(jugador){
+        //Checkeo la posición x e y del jugador y si esta dentro de los valores del muñeco retorno true
         if(jugador.getPositionX() < this.positionX && jugador.getPositionX() + 135 > this.positionX && 
-        jugador.getPositionY() != 420){
-            return true;
-            
+        (jugador.getPositionY() == 375 || jugador.getPositionY() == 420)){
+            return true;     
         } else {
+            //Si la posicón es mayor a 0 resto 27 y sino la seteo de nuevo en 1400
             if(this.positionX > 0){
                 this.positionX = this.positionX - 27;
             } else this.positionX = 1400;

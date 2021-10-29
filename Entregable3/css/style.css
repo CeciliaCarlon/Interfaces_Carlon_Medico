@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: black;
 }
 
 .total {
@@ -28,9 +29,9 @@ body {
     height:120px;
     margin:0;  
     position:relative;
-    top: 375px;
+    top: 390px;
     left: 100px;
-    background: url(../img/personaje/spritesheetsIDLEsmaller.png) repeat-x;
+    background: url(../img/personaje/personaje01IDLE.png) repeat-x;
     animation:run 1s steps(8) infinite;
 }
 
@@ -77,16 +78,10 @@ body {
     z-index: 20;
 }
 
-.gameOver {
-    padding: 200px;
-    font-family: arcade;
-    font-size: 100px;
-    color: white;
-    text-shadow: -2px 0 0 #fdff2a,
-    -4px 0 0 #df4a42,
-    2px 0 0 #91fcfe,
-    4px 0 0 #4405fc;
-    animation: blink 1s steps(4, start) infinite;
+.btnPersonaje {
+    margin-left: 30px;
+    background-color: black;
+    border: none;
 }
 
 .contador {
@@ -103,6 +98,18 @@ body {
 .juego {
     position: relative;
     z-index: 10;
+}
+
+.gameOver {
+    padding-left: 200px;
+    font-family: arcade;
+    font-size: 100px;
+    color: white;
+    text-shadow: -2px 0 0 #fdff2a,
+    -4px 0 0 #df4a42,
+    2px 0 0 #91fcfe,
+    4px 0 0 #4405fc;
+    animation: blink 1s steps(4, start) infinite;
 }
 
 .fuente {

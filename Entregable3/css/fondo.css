@@ -14,7 +14,7 @@
     width: 1400px;
     height: 700px;
     position: absolute; 
-    background: url("../img/fondo/fondo.png");
+    background: url("../img/fondo/fondo1.png");
 }
 
 .fondo{
@@ -27,51 +27,93 @@
 }
 
 .fondo1 {
-    background: url("../img/fondo/fondo_piso.png");
+    background: url("../img/fondo/fondo1_piso.png");
     background-size: cover;
     animation: scroll 7s infinite linear;
     z-index: 0;
 }
 
 .fondo2 {
-    background: url("../img/fondo/fondo_yuyos.png");
+    background: url("../img/fondo/fondo1_yuyos.png");
     background-size: cover;
     animation: scroll 7s infinite linear;
     z-index: -8;
 }
 
 .fondo3 {
-    background: url("../img/fondo/fondo_arbol01.png");
+    background: url("../img/fondo/fondo1_arbol01.png");
     background-size: cover;
     animation: scroll 25s infinite linear;
     z-index: -10;
 }
 
 .fondo4 {
-    background: url("../img/fondo/fondo_arbol02.png");
+    background: url("../img/fondo/fondo1_arbol02.png");
     background-size: cover;
     animation: scroll 25s infinite linear;
     z-index: -12;
 }
 
 .fondo5 {
-    background: url("../img/fondo/fondo_arbol03.png");
+    background: url("../img/fondo/fondo1_arbol03.png");
     background-size: cover;
     animation: scroll 25s infinite linear;
     z-index: -15;
 }
 
 .fondo6 {
-    background: url("../img/fondo/fondo_estrellas.png");
+    background: url("../img/fondo/fondo1_estrellas.png");
     background-size: cover;
     z-index: -18;
 }
 
 .fondo7 {
-    background: url("../img/fondo/fondo_luna.png");
+    background: url("../img/fondo/fondo1_luna.png");
     background-size: cover;
     z-index: -20;
 }
+
+/*.fondo1 {
+    background: url("../img/fondo/fondo2_piso.png");
+    background-size: cover;
+    animation: scroll 7s infinite linear;
+    z-index: 0;
+}
+
+.fondo2 {
+    background: url("../img/fondo/fondo2_niebla.png");
+    background-size: cover;
+    animation: scroll 7s infinite linear;
+    z-index: -8;
+}
+
+.fondo3 {
+    background: url("../img/fondo/fondo2_arbol03.png");
+    background-size: cover;
+    animation: scroll 25s infinite linear;
+    z-index: -10;
+}
+
+.fondo4 {
+    background: url("../img/fondo/fondo2_luz.png");
+    background-size: cover;
+    animation: scroll 25s infinite linear;
+    z-index: -12;
+}
+
+.fondo5 {
+    background: url("../img/fondo/fondo2_arbol02.png");
+    background-size: cover;
+    animation: scroll 25s infinite linear;
+    z-index: -15;
+}
+
+.fondo6 {
+    background: url("../img/fondo/fondo2_arbol01.png");
+    background-size: cover;
+    z-index: -18;
+} */
+
 #juego{
     margin: 0;
     width: 1400px;
