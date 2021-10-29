@@ -48,11 +48,11 @@ class Jugador {
     //Función que se encarga de cambiar el spritesheet cuando muere
     dead(personajeSeleccionado){
         this.personaje.style.background = "url(img/personaje/personaje"+personajeSeleccionado+"DIE.png)";
-        //Oculto el personaje después de 1 segundo y medio
+        //Oculto el personaje después de 2 segundos
         setTimeout(() => {
             this.personaje.style.diplay = "none";
             this.personaje.style.visibility = "hidden";
-        }, 1500);
+        }, 2000);
     }
     
     //Función que se encarga de cambiar el spritesheet cuando se desliza

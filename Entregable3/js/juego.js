@@ -53,6 +53,7 @@ class Juego {
     gameWin(){
         //Cambio la variable isGameWin a true
         this.isGameWin = true;
+        this.personaje.style.background = "url(img/personaje/personaje" + this.personajeSeleccionado + "IDLE.png)";
         //Remuevo los fondos
         this.quitarFondos();
         this.juego.classList.add("fondos");
@@ -83,8 +84,8 @@ class Juego {
             p.innerHTML = "El juego se reiniciara en " + time;
             //Cada 1 segundo cambio el texto
             setInterval(() => {
-                p.innerHTML = "El juego se reiniciara en " + time;
                 time--;
+                p.innerHTML = "El juego se reiniciara en " + time;
             }, 1000);
             //Limpio los intervalos y restablezco los valores
             clearTimeout(timeOutId);      
@@ -156,7 +157,7 @@ class Juego {
                         clearTimeout(timeOutId2);
                         return;
                     }
-                }, 5000);
+                }, 3000);
             } 
         }, 100);
     }
@@ -180,23 +181,22 @@ class Juego {
             //Por cada uno de mis obstaculos
             for(let i=0; i < this.obstaculos.length; i++){
                 //Checkeo si colisione, y si es asi pierdo el juego
-                if(this.obstaculos[i].isColision(this.jugador)){
+                if(this.obstaculos[i].isColision(this.jugador)){                  
                     this.gameOver();
-                }  
-                //A los 7 segundo si no lo colisione lo elimino
-                let timeOutId = setTimeout(()=>{
-                    intervalos.push(timeOutId);
-                    if(div.parentNode!=null){
-                        this.obstaculos.pop(this.obstaculos[i]);
-                        this.juego.removeChild(div);
-                        clearInterval(intervalId2);
-                        clearTimeout(timeOutId);
-                        return;
-                    }
-                }, 7000);
+                }
             }
         }, 100);
-        
+        //A los 7 segundo si no lo colisione lo elimino
+        let timeOutId = setTimeout(()=>{
+            intervalos.push(timeOutId);
+            if(div.parentNode!=null){
+                this.obstaculos.pop(this.obstaculos[0]);
+                this.juego.removeChild(div);
+                clearInterval(intervalId2);
+                clearTimeout(timeOutId);
+                return;
+            }
+        }, 5000);
     }
 
     //Función que empieza el juego
@@ -242,7 +242,7 @@ class Juego {
                 //Checkeo si me lo choco o no
                 this.checkObstaculos(div);
             }
-        }, Math.floor(Math.random() * (8000 - 7000)) + 7000);
+        }, Math.floor(Math.random() * (6000 - 5000)) + 5000);
         //Intervalo de los huesos
         let intervalId2 = setInterval(()=>{
             //Agrego el intervalo al arreglo
@@ -263,7 +263,7 @@ class Juego {
             this.huesitos.push(huesito);
             this.checkHuesito(huesoDiv);
             j++;
-        }, Math.floor(Math.random() * (9000 - 6000)) + 6000);
+        }, Math.floor(Math.random() * (6000 - 3000)) + 3000);
     }
 
     //Función que limpia los intervalos

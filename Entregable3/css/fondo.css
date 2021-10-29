@@ -73,47 +73,6 @@
     z-index: -20;
 }
 
-/*.fondo1 {
-    background: url("../img/fondo/fondo2_piso.png");
-    background-size: cover;
-    animation: scroll 7s infinite linear;
-    z-index: 0;
-}
-
-.fondo2 {
-    background: url("../img/fondo/fondo2_niebla.png");
-    background-size: cover;
-    animation: scroll 7s infinite linear;
-    z-index: -8;
-}
-
-.fondo3 {
-    background: url("../img/fondo/fondo2_arbol03.png");
-    background-size: cover;
-    animation: scroll 25s infinite linear;
-    z-index: -10;
-}
-
-.fondo4 {
-    background: url("../img/fondo/fondo2_luz.png");
-    background-size: cover;
-    animation: scroll 25s infinite linear;
-    z-index: -12;
-}
-
-.fondo5 {
-    background: url("../img/fondo/fondo2_arbol02.png");
-    background-size: cover;
-    animation: scroll 25s infinite linear;
-    z-index: -15;
-}
-
-.fondo6 {
-    background: url("../img/fondo/fondo2_arbol01.png");
-    background-size: cover;
-    z-index: -18;
-} */
-
 #juego{
     margin: 0;
     width: 1400px;
@@ -127,7 +86,7 @@
     position:absolute;
     top: 460px;
     background: url(../img/lapida.png) repeat-x;
-    animation: move 7s infinite linear;
+    animation: move 5s infinite linear;
 }
 
 .raven {
@@ -137,7 +96,7 @@
     position:absolute;
     top: 380px;
     background: url(../img/raven.png) repeat-x;
-    animation: fly 1s steps(4) infinite, move 7s infinite linear; 
+    animation: fly 1s steps(4) infinite, move 5s infinite linear; 
 }
 
 .huesito {
@@ -147,7 +106,7 @@
     position:absolute;
     top: 450px;
     background: url(../img/huesitoSmaller.png);
-    animation:move 5s infinite linear;
+    animation:move 3s infinite linear;
 }
 
 .huesitoObtenido {

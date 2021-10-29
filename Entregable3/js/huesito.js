@@ -25,9 +25,9 @@ class Huesito {
         (jugador.getPositionY() == 375 || jugador.getPositionY() == 420)){
             return true;     
         } else {
-            //Si la posicón es mayor a 0 resto 27 y sino la seteo de nuevo en 1400
+            //Si la posicón es mayor a 0 resto 46.6 y sino la seteo de nuevo en 1400
             if(this.positionX > 0){
-                this.positionX = this.positionX - 27;
+                this.positionX = this.positionX - 46.6;
             } else this.positionX = 1400;
             return false;
         }

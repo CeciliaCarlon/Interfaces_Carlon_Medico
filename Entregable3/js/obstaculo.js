@@ -28,9 +28,9 @@ class Obstaculo {
                 && jugador.getPositionY() == this.positionY){
                 return true;
             } else {
-                //Si la posicón es mayor a 0 resto 20 y sino la seteo de nuevo en 1400
+                //Si la posicón es mayor a 0 resto 28 y sino la seteo de nuevo en 1400
                 if(this.positionX > 0){
-                    this.positionX = this.positionX - 20;
+                    this.positionX = this.positionX - 28;
                 } else this.positionX = 1400;
                 return false;
             }
@@ -40,9 +40,9 @@ class Obstaculo {
                 && (jugador.getPositionY() == 375 || jugador.getPositionY() == 250)){
                 return true;
             } else {
-                //Si la posicón es mayor a 0 resto 20 y sino la seteo de nuevo en 1400
+                //Si la posicón es mayor a 0 resto 28 y sino la seteo de nuevo en 1400
                 if(this.positionX > 0){
-                    this.positionX = this.positionX - 20;
+                    this.positionX = this.positionX - 28;
                 } else this.positionX = 1400;
                 return false;
             }
