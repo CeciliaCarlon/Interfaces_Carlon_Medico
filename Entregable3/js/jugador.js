@@ -7,7 +7,7 @@ class Jugador {
         this.positionY = positionY;
         this.personaje = personaje;
     }
-    //Getters
+    //Getters y setter
     getPositionX(){
         return this.positionX;
     }

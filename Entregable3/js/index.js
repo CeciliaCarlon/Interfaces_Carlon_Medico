@@ -39,11 +39,6 @@ function inicio(){
         let arrayFondos = document.getElementsByClassName("fondo");
         let fondos = document.getElementById("fondos");
         let gameOver = document.getElementById("gameOver"); 
-        for(let i=0; i < this.arrayFondos.length; i++){
-            let fondoActual = i+1;
-            this.arrayFondos[i].classList.add("fondo"+fondoActual);
-        }
-        divJuego.classList.remove("fondos");
 
         let juego = new Juego(divJuego, personaje, fondos, arrayFondos, puntaje, gameOver);
         //Empieza el juego

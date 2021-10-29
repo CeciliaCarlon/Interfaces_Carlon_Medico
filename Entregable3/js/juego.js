@@ -29,31 +29,51 @@ class Juego {
         this.isGameOver = true;
         this.jugador.dead();
         console.log("murió");
-        for(let i=0; i < this.arrayFondos.length; i++){
-            let fondoActual = i+1;
-            this.arrayFondos[i].classList.remove("fondo"+fondoActual);
-        }
+        this.quitarFondos();
         this.juego.classList.add("fondos");
+        this.mensaje("Game Over");
+    }
+    //Función que controla cuando se gana
+    gameWin(){
+        this.isGameWin = true;
+        this.quitarFondos();
+        this.juego.classList.add("fondos");
+        this.mensaje("Ganaste!");
+    }
+    //Función que muestra el mensaje si ganaste o perdiste
+    mensaje(m){
+        let time = 10;
         let timeOutId = setTimeout(()=> {
+            let timeOutId2 = setTimeout(()=>{
+                window.location.reload();
+                clearTimeout(timeOutId2);
+            }, 10000);
             intervalos.push(timeOutId);
             let h1 = document.createElement('h1');
             this.gameFinal.appendChild(h1);
             h1.classList = 'gameOver';
-            h1.innerHTML = "Game Over";
-            let button = document.getElementById('reiniciar');
-            button.style.visibility = 'visible';
-            button.style.display = 'flex';
+            h1.innerHTML = m;
+            let p = document.createElement('p');
+            this.gameFinal.appendChild(p);
+            p.classList = 'contador';
+            p.innerHTML = "El juego se reiniciara en " + time;
+            setInterval(() => {
+                p.innerHTML = "El juego se reiniciara en " + time;
+                time--;
+            }, 1000);        
             this.clearIntervalos();
-            this.reestablecerValores();
+            this.reestablecerValores();            
         }, 3000);
     }
-
-    gameWin(){
-
+    //Función que quita los fondos
+    quitarFondos(){
+        for(let i=0; i < this.arrayFondos.length; i++){
+            let fondoActual = i+1;
+            this.arrayFondos[i].classList.remove("fondo"+fondoActual);
+        }
     }
     //Función que checkea si agarro un huesito
     checkHuesito(huesoDiv){
-        console.log("entre");
         let intervalId = setInterval( () => {
             if(j == 0) intervalos.push(intervalId);
 
@@ -80,14 +100,13 @@ class Juego {
                         this.gameWin();
                     }
                     clearInterval(intervalId);
-                }
-                else {
+                } else {
                     if(this.huesitos[i].getPosX() < 20){
                         this.huesitos.pop(this.huesitos[i]);
                         if(huesoDiv.parentNode!=null){
                             this.juego.removeChild(huesoDiv);
                         }
-                        console.log("Removi el div");
+                        console.log("Removi el div hueso");
                     }
                 }
             } 
@@ -114,15 +133,17 @@ class Juego {
                     if(div.parentNode!=null){
                         this.juego.removeChild(div);
                     }
-                    console.log("Removi el div");
+                    console.log("Removi el div obs");
                     clearInterval(intervalId2);
                 }, 7000);
             }
         }, 100);
         
     }
+    //Función que empieza el juego
     empezarJuego(){
         this.jugador.run();
+        this.moverFondo();
         this.gameLoop();
     }
     //Función que es disparada al iniciar el juego    
@@ -130,42 +151,43 @@ class Juego {
         console.log("entre gameLoop");
         //Generador de obtaculos (lapidas o cuervos)
         let intervalId = setInterval(() => {
+            //Agrego el intervalo a un arreglo para limpiarlos en el game over
             if(j == 0) intervalos.push(intervalId);
-            if(this.isGameOver){
+            //Si el juego termino
+            if(this.isGameOver || this.isGameWin){  
+                //Limpio el intervalo y retorno para cortar la ejecución
                 clearInterval(intervalId);
+                return;
             }
-            cant = Math.floor(Math.random() * (100 - 0)) + 0;
-            console.log("Dentro del interval del gameloop");
+            //Para que la producción de lapidas y cuervos sea aleatoria usamos mathrandom
+            cant = Math.floor(Math.random() * (100 - 1)) + 1;
+            //Si es par crea una lapida y sino un cuervo
             if(cant%2==0){
+                //Creo el div
                 let div = document.createElement('div');
                 this.juego.appendChild(div);
                 div.classList = 'lapida';
-                let lapidaDiv = document.querySelector(".lapida");
+                //Creo el obstaculo y lo agrego al arreglo
                 let obstLapida = new Obstaculo(1400, 375, 0);
-                lapidaDiv.className = "lapida";
                 this.obstaculos.push(obstLapida);
+                //Checkeo si me lo choco o no
                 this.checkObstaculos(div);
             } else {
                 let div = document.createElement('div');
                 this.juego.appendChild(div);
                 div.classList = 'raven';
-                let cuervoDiv = document.querySelector(".raven");
                 let obstCuervo = new Obstaculo(1400, 480, 1);     
-                cuervoDiv.className = "raven";
                 this.obstaculos.push(obstCuervo);
                 console.log("inserte un cuervo");
                 this.checkObstaculos(div);
             }
-            
         }, Math.floor(Math.random() * (8000 - 7000)) + 7000);
+        //Intervalo de los huesos
         let intervalId2 = setInterval(()=>{
             if(j == 0) intervalos.push(intervalId2);
-            if(this.isGameOver){
+            if(this.isGameOver || this.isGameWin){
                 clearInterval(intervalId);
-            }
-            if(cantidadHuesitos == 15){
-                this.gameWin();
-                clearInterval(intervalId);
+                return;
             }
             //Generador de huesitos
             let div = document.createElement('div');
@@ -179,18 +201,25 @@ class Juego {
             j++;
         }, Math.floor(Math.random() * (9000 - 6000)) + 6000);
     }
-
+    //Función que limpia los intervalos
     clearIntervalos(){
         for(let i=0; i < intervalos.length; i++){
             clearInterval(intervalos[i]);
         }
     }
-
+    //Función que restablece los valores
     reestablecerValores(){
         cantidadHuesitos = 0;
         cant = 0;
         j = 0;
         intervalos = [];
     }
-
+    //Función que mueve el fondo
+    moverFondo(){
+        this.fondos.classList.remove("fondoEstatico");
+        for(let i=0; i < this.arrayFondos.length; i++){
+            let fondoActual = i+1;
+            this.arrayFondos[i].classList.add("fondo"+fondoActual);
+        }
+    }
 }

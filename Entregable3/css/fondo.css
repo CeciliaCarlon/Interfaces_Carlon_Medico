@@ -10,6 +10,13 @@
     z-index: 0;
 }
 
+.fondoEstatico {
+    width: 1400px;
+    height: 700px;
+    position: absolute; 
+    background: url("../img/fondo/fondo.png");
+}
+
 .fondo{
     width: 1400px;
     height: 700px;
@@ -20,7 +27,8 @@
 }
 
 .fondo1 {
-    background-image: url("../img/fondo/fondo_piso.png");
+    background: url("../img/fondo/fondo_piso.png");
+    background-size: cover;
     animation: scroll 7s infinite linear;
     z-index: 0;
 }

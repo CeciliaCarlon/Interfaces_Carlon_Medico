@@ -22,21 +22,6 @@ body {
 .puntaje-animation {
     animation: blink 1s steps(4, start) infinite;
 }
-   
-/* #character {
-    width:547px;
-    height:481px;
-    margin:auto;  
-    position:relative;
-    background: url(img/spritesheetsDIE.png) repeat-x;
-    animation:walk 2s steps(8) infinite;
-} */
-
-/* @keyframes walk {
-    0% { background-position:0 }
-    100% { background-position:-4376px }
-} */
-/* tamaño normal / 6 */
 
 .character {
     width:130px;
@@ -93,7 +78,7 @@ body {
 }
 
 .gameOver {
-    margin: 200px;
+    padding: 200px;
     font-family: arcade;
     font-size: 100px;
     color: white;
@@ -102,6 +87,17 @@ body {
     2px 0 0 #91fcfe,
     4px 0 0 #4405fc;
     animation: blink 1s steps(4, start) infinite;
+}
+
+.contador {
+    text-align: center;
+    font-family: arcade;
+    font-size: 20px;
+    color: white;
+    text-shadow: -2px 0 0 #fdff2a,
+    -4px 0 0 #df4a42,
+    2px 0 0 #91fcfe,
+    4px 0 0 #4405fc;
 }
 
 .juego {
