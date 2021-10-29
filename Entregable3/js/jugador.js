@@ -52,9 +52,9 @@ class Jugador {
         setTimeout(() => {
             this.personaje.style.diplay = "none";
             this.personaje.style.visibility = "hidden";
-        }, 2000);
+        }, 950);
     }
-    
+
     //Función que se encarga de cambiar el spritesheet cuando se desliza
     slide(personajeSeleccionado){
         //Si en el backgroun no se esta deslizando
