@@ -1,0 +1,72 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #EEEEEF;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.icono {
+    color: white;
+}
+li {
+    padding-top: 14px;
+}
+/*Estilo del menú superior*/
+header {
+    background-color: #7884B9;
+    width: auto;
+    height: 60px;
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    z-index: 1030;
+    overflow: hidden;
+}
+
+ul.menuSup {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fa-bars {
+    margin-right: 19px;
+}
+
+.logoBlanco {
+    margin-left: 19px;
+    width: 100px;
+    height: 32px;
+}
+/*Estilo del menu inferior*/
+nav {
+    background-color: #7884B9;
+    width: auto;
+    height: 60px;
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1030;
+    overflow: hidden;
+    /*margin-top: 520px;*/
+}
+
+ul.menuInfer {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+/*Estilo de la página principal*/
+.main {
+    margin-top: 60px;
+    height: 1000px;
+    overflow: auto;
+}
