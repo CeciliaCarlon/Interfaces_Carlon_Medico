@@ -1,0 +1,16 @@
+body {
+    margin: 15px;
+    background-color: #7884B9;
+    color: white;
+}
+div{
+    margin: 50px;
+}
+a{
+    color: white;
+}
+footer{
+    margin: 0;
+    background-color: #4C5990;
+    color: white;
+}
