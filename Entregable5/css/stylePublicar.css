@@ -1,0 +1,46 @@
+.publicacion {
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 15px;
+    color: #565151;
+}
+
+.crear { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+    height: 40px;
+    border-bottom: 1.5px solid #56515183;
+}
+
+.persona {
+    margin-top: 15px;
+    width: auto;
+    height: 330px;
+    display: grid;
+    grid-template-areas: "foto nombre"
+                         "foto cargo"
+                         "escribir escribir";
+    justify-content: start;
+    border-bottom: 1.5px solid #56515183;
+}
+
+.a{
+    grid-area: foto;
+}
+.b{
+    grid-area: nombre;
+}
+.c{
+    grid-area: cargo;
+}
+.d{
+    margin-top: 20px;
+    grid-area: escribir;
+    height: 270px;
+}

@@ -1,19 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
     background-color: #EEEEEF;
-    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+li {
+    padding-top: 14px;
+}
+
+img {
+    width: 50px;
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+::placeholder {
+    padding-left: 5px;
 }
 
 .icono {
     color: white;
 }
-li {
-    padding-top: 14px;
-}
+
 /*Estilo del menú superior*/
 header {
     background-color: #7884B9;
@@ -36,13 +52,35 @@ ul.menuSup {
 
 .fa-bars {
     margin-right: 19px;
+    display: unset;
+}
+
+.menuEscondido {
+    display: none;
 }
 
 .logoBlanco {
     margin-left: 19px;
     width: 100px;
     height: 32px;
+    padding: 0;
 }
+
+/*Menu desplazado*/
+.menuDesplazado {
+    position: fixed;
+    z-index: 1030;
+    background-color: #4C5990;
+    right: 19px;
+    padding: 5px;
+    color: white;
+}
+
+.iconoDesplazado {
+    padding: 5px;
+    background-color: #4C5990;
+}
+
 /*Estilo del menu inferior*/
 nav {
     background-color: #7884B9;
@@ -54,7 +92,6 @@ nav {
     bottom: 0px;
     z-index: 1030;
     overflow: hidden;
-    /*margin-top: 520px;*/
 }
 
 ul.menuInfer {
@@ -64,9 +101,32 @@ ul.menuInfer {
     justify-content: space-around;
     align-items: flex-end;
 }
+
 /*Estilo de la página principal*/
 .main {
     margin-top: 60px;
     height: 1000px;
     overflow: auto;
+}
+
+/*Estilo para poder publicar*/
+.publicar {
+    background-color: white;
+    display: flex;
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    top: 60px;
+    z-index: 10;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.inputPublicacion {
+    border-radius: 12px;
+    border: #7884B9 solid 2px;
+    height: 30px;
+    width: 280px;
+    align-self: center;
+    box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.1);
 }

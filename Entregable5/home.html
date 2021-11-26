@@ -13,12 +13,26 @@
     <header>
         <ul class="menuSup">
             <li><img class="logoBlanco" src="img/LogoBlanco.png" alt="logo de la página"></li>
-            <li><i class="fas fa-bars icono fa-2x"></i></li>
+            <li id="menuDesplegable">
+                <i id="inconoMenu" class="fas fa-bars icono fa-2x"></i>
+                <div id="divMenu" class="menuEscondido">
+                    <ul>
+                        <li><i class="fas fa-question-circle"></i> Ayuda y asistencia</li>
+                        <li><i class="fas fa-cog"></i> Configuracion y privacidad</li>
+                        <li id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</li>
+                    </ul>
+                </div>
+            </li>
+            <li id="liMenu" style="display: none;">
+                <i class="fas fa-bars icono fa-2x iconoDesplazado"></i>
+                
+            </li>
         </ul>
     </header>
     <section class="main">
         <div class="publicar">
-            
+            <img src="img/pictures/profilePicture.png" alt="">
+            <input placeholder="¿Qué estas pensando?" class="inputPublicacion" id="inputPublicar">
         </div>
         <div>
             
@@ -32,5 +46,8 @@
             <li><i class="fas fa-user icono fa-2x"></i></li>
         </ul>
     </nav>
+
+    <script src="js/menu.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>
