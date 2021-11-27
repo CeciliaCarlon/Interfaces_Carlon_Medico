@@ -7,6 +7,7 @@
     <title>Vetgram</title>
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleMuro.css">
     <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -24,8 +25,7 @@
                 </div>
             </li>
             <li id="liMenu" style="display: none;">
-                <i class="fas fa-bars icono fa-2x iconoDesplazado"></i>
-                
+                <i class="fas fa-bars icono fa-2x iconoDesplazado"></i>             
             </li>
         </ul>
     </header>
@@ -34,13 +34,27 @@
             <img src="img/pictures/profilePicture.png" alt="">
             <input placeholder="¿Qué estas pensando?" class="inputPublicacion" id="inputPublicar">
         </div>
-        <div>
-            
+        <div class="publicacion">
+            <div class="publiUno">
+                <img class="a"src="img/pictures/profilePicture3.png" alt="">
+                <h2 class="b">Miranda Ferret</h2>
+                <p class="k">Hace 1 hora</p>
+                <i class="c fas fa-ellipsis-v fa-2x"></i>
+                <p class="d">Estoy muy contenta, hoy me entere que voy a ser abuela, mi gata va a tener gatitos. 
+                    Ya estoy yendo a comprarle todo lo necesario!</p>
+                <i class="e far fa-heart fa-2x"></i>
+                <i class="f far fa-comments fa-2x"></i>
+                <i class="g far fa-share-square fa-2x"></i>
+                <i class="h far fa-bookmark fa-2x"></i>
+                <!--Falta cant mg y cant comentarios-->
+                <input placeholder="Añade un comentario" class="i inputComentar" type="text">
+                <button class="j">Comentar</button>
+            </div>
         </div>
     </section>
     <nav>
         <ul class="menuInfer">
-            <li><i class="fas fa-home icono fa-2x"></i></li>
+            <li><i id="home" class="fas fa-home icono fa-2x"></i></li>
             <li><i class="fas fa-search icono fa-2x"></i></li>
             <li><i class="fas fa-comment-dots icono fa-2x"></i></li>
             <li><i class="fas fa-user icono fa-2x"></i></li>

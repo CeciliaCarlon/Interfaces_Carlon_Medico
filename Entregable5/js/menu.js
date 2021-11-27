@@ -19,6 +19,10 @@ function inicio(){
     document.getElementById("cerrarSesion").addEventListener("click", ()=> {
         location.href = "login_registrar.html";
     });
+
+    document.getElementById("home").addEventListener("click", ()=> {
+        location.href = "home.html";
+    });
 }
 
 document.addEventListener("DOMContentLoaded", inicio());

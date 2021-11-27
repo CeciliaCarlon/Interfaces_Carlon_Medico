@@ -1,0 +1,70 @@
+/*Rstilo publicaciones*/
+.publicacion {
+    margin-top: 80px;
+    color: #565151;
+    
+}
+
+.publiUno {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: white;
+    height: 300px;
+    display: grid;
+    grid-template-areas: "image name none more"
+                         "image time none more"
+                         "text text text text"
+                         "like coment share save"
+                         "input input input button";
+}
+
+.a {
+    grid-area: image;
+}
+.b {
+    grid-area: name;
+    height: 40px;
+}
+.c {
+    grid-area: more;
+}
+.d {
+    grid-area: text;
+}
+.e {
+    grid-area: like;
+}
+.f {
+    grid-area: coment;
+}
+.g {
+    grid-area: share;
+}
+.h {
+    grid-area: save;
+}
+.i {
+    grid-area: input;
+}
+.j {
+    grid-area: button;
+    width: auto;
+    height: 30px;
+    border: none;
+    background: #7884B9;
+    border-radius: 12px;
+    margin-left: 10px;
+    color: white;
+}
+.k {
+    height: 10px;
+    grid-area: time;
+}
+
+.inputComentar {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    border: none;
+    width: auto;
+    height: 30px;
+}
