@@ -17,10 +17,14 @@ function inicio(){
     });
 
     document.getElementById("cerrarSesion").addEventListener("click", ()=> {
-        location.href = "login_registrar.html";
+        location.href = "loginRegistrar.html";
     });
 
     document.getElementById("home").addEventListener("click", ()=> {
+        location.href = "home.html";
+    });
+
+    document.getElementById("logoHome").addEventListener("click", ()=> {
         location.href = "home.html";
     });
 }

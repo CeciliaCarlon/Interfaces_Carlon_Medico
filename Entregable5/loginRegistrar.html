@@ -26,7 +26,7 @@
             <li>
                 <div>
                     <p>Contraseña</p>
-                    <input id="inputContraseña" type="text" placeholder="Insertar contraseña">
+                    <input id="inputContraseña" type="password" placeholder="Insertar contraseña">
                     <p id="error2" class="mensajeInputOculto"></p>
                     <p class="link">¿Has olvidado la contraseña?</p>
                 </div>
@@ -48,28 +48,28 @@
                 <div>
                     <p>E-mail</p>
                     <input id="inputEmail" type="text" placeholder="Insertar e-mail">
-                    <p id="error1" class="mensajeInputOculto"></p>
+                    <p id="mError1" class="mensajeInputOculto"></p>
                 </div>
             </li>
             <li>
                 <div>
                     <p>Usuario</p>
                     <input id="inputUsuario" type="text" placeholder="Insertar usuario">
-                    <p id="error2" class="mensajeInputOculto"></p>
+                    <p id="mError2" class="mensajeInputOculto"></p>
                 </div>
             </li>
             <li>
                 <div>
                     <p>Contraseña</p>
-                    <input id="inputContraseñaValida" type="text" placeholder="Insertar contraseña">
-                    <p id="error3" class="recomendacionContra">Debe tener al menos un caracter especial y una mayuscula</p>
+                    <input id="inputContraseñaValida" type="password" placeholder="Insertar contraseña">
+                    <p id="mError3" class="recomendacionContra">Debe tener al menos un caracter especial y una mayuscula</p>
                 </div>
             </li>
             <li>
                 <div>
                     <p>Confirmar contraseña</p>
-                    <input id="inputRepetirContraseña" type="text" placeholder="Insertar nuevamente la contraseña">
-                    <p id="error4" class="mensajeInputOculto"></p>
+                    <input id="inputRepetirContraseña" type="password" placeholder="Insertar nuevamente la contraseña">
+                    <p id="mError4" class="mensajeInputOculto"></p>
                 </div>
             </li>
             <li><button id="btnRegistrarse" class="btnIngresar">Registrarse</button></li>
@@ -79,10 +79,16 @@
 
     <nav>
         <ul class="menuInfer">
-            <li><i class="fas fa-arrow-left icono fa-2x"></i></li>
+            <li id= "iconoVolver"><i class="fas fa-arrow-left icono fa-2x"></i></li>
         </ul>
     </nav>
 
+    <section id="pantallaCarga" class="sectionOculta">
+        <p>Cargando...</p>
+        <div id="loading" class="cargando"></div>
+    </section>
+    
     <script src="js/login.js"></script>
+
 </body>
 </html>
