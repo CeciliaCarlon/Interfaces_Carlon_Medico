@@ -7,10 +7,18 @@ function inicio(){
 
     document.getElementById("crearComent").addEventListener("click", ()=>{
         let div = document.getElementById("coment");
-        div.style.visibility = "visible";
-        div.style.height = "44px";
+        let oculto = document.getElementById("ocultos");
         let publi = document.getElementById("publiUno");
-        publi.style.height = "514px";
+
+        div.classList.remove("no-visible");
+        div.classList.add("visible");
+        div.style.height = "44px";
+        
+        if(oculto.classList.contains("visible")){
+            publi.style.height = "646px";
+        } else {
+            publi.style.height = "514px";
+        }
     });
 
     document.getElementById("like").addEventListener("click", ()=>{
@@ -71,17 +79,27 @@ function inicio(){
     document.getElementById("verComentarios").addEventListener("click", ()=>{
         let div = document.getElementById("ocultos");
         let publi = document.getElementById("publiUno");
+        let p = document.getElementById("ver");
+        let coment = document.getElementById("coment");
 
         if(div.classList.contains("no-visible")) {
             div.classList.remove("no-visible");
             div.classList.add("visible");
             div.style.height = "132px";
-            publi.style.height = "646px";
+            if(coment.classList.contains("no-visible")){
+                publi.style.height = "602px";
+            } else {
+                publi.style.height = "646px";
+            }
+            p.innerHTML = "";
+            p.innerHTML = "Ocultar comentarios..."
         } else {
             div.classList.remove("visible");
             div.classList.add("no-visible");
             div.style.height = "0px";
             publi.style.height = "514px";
+            p.innerHTML = "";
+            p.innerHTML = "Ver 3 comentarios más..."
         }
     });
 }
