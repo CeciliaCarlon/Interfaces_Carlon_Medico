@@ -27,14 +27,14 @@ body{
 /*Estilo del centro*/
 .persona {
     margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 15px;
     width: auto;
-    height: 330px;
+    height: 60px;
     display: grid;
     grid-template-areas: "foto nombre"
-                         "foto cargo"
-                         "escribir escribir";
+                         "foto cargo";
     justify-content: start;
-    border-bottom: 1.5px solid #56515183;
 }
 
 .a{
@@ -42,14 +42,32 @@ body{
 }
 .b{
     grid-area: nombre;
+    height: 25px;
 }
 .c{
     grid-area: cargo;
+    height: 15px;
 }
+
+.publicacion {
+    height: 260px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #56515183;
+}
+
 .d{
-    margin-top: 20px;
-    grid-area: escribir;
-    height: 270px;
+    margin-top: 10px;
+    padding-left: 15px;
+    width: 280px;
+    height: auto;
+    border: none;
+    
+}
+
+.img {
+    visibility: hidden;
+    width: auto;
+    height: 160px;
 }
 /*Estilo parte de abajo*/
 .agregar{
