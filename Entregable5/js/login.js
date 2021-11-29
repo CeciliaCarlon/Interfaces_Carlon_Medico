@@ -91,7 +91,7 @@ function inicio(){
             email.classList.add("error");
             mensajeError1.classList.remove("mensajeInputOculto");
             mensajeError1.classList.add("mensajeInput");
-            mensajeError1.innerHTML = "E-mail debe contener @. Por favor intente nuevamente";
+            mensajeError1.innerHTML = "Por favor insertar un email valido";
         }
         //Chequeo si el usuario es valido
         if(userName.value == "Cecilia" || userName.value == "Magali"){
@@ -125,16 +125,16 @@ function inicio(){
             contraseñaValida.classList.add("error");
             mensajeError3.classList.remove("mensajeInputOculto");
             mensajeError3.classList.add("mensajeInput");
-            mensajeError3.innerHTML = "Debe contener un caracter especial y una mayuscula";
+            mensajeError3.innerHTML = "Debe tener un caracter especial y una mayuscula";
         }
         //Chequeo si la contraseña repetida es valida
         if(contraseñaRepetida.value !== contraseñaValida.value){
+            //Contraseña invalida, modifico las clases y creo un mensaje de error
             contraseñaRepetida.classList.add("error");
             mensajeError4.classList.remove("mensajeInputOculto");
             mensajeError4.classList.add("mensajeInput");
-            mensajeError4.innerHTML = "Las contraseñas no coinciden. Intente nuevamente";
+            mensajeError4.innerHTML = "Las contraseñas no coinciden";
         } else {
-            //Contraseña invalida, modifico las clases y creo un mensaje de error
             //Contraseña valida, modifico las clases y seteo el booleano en true
             contraseñaRepetida.classList.remove("error");
             mensajeError4.classList.add("mensajeInputOculto");
@@ -159,6 +159,7 @@ function inicio(){
             location.href = "home.html";
         }, 3000);
     }
+    
 }
 
 document.addEventListener("DOMContentLoaded", inicio());

@@ -18,7 +18,7 @@
     margin-top: 70px;
     padding: 15px;
     background-color: white;
-    height: 300px;
+    height: 470px;
 }
 /*Estilo de quien hace la publicación*/
 .persona {
@@ -50,6 +50,40 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+/*Estilo del carrousel*/
+.carrousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn {
+    color: #565151;
+    border: none;
+    background-color: white;
+}
+.no-visible{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+.img1 {
+    width: auto;
+    height: 160px;
+}
+
+.img2 {   
+    width: 0px;
+    height: 160px;
+}
+
+.img3 {
+    width: 0px;
+    height: 160px;
+}
 /*Estilo de los iconos*/
 .izq {
     padding-right: 5px;
@@ -59,6 +93,44 @@
     position: absolute;
     left: 325px;
     top: 300px;
+}
+/*Estilo comentarios ocultos*/
+.ocultos {
+    width: auto;
+    height: 0px;
+    display: grid;
+    grid-template-areas: "foto nombre"
+                         "foto comentario"
+                         "foto2 nombre2"
+                         "foto2 comentario2"
+                         "foto3 nombre3"
+                         "foto3 comentario3";
+    justify-content: start;
+}
+
+.h{
+    grid-area: foto2;
+    width: 30px;
+    height: 30px;
+}
+.i{
+    grid-area: nombre2;
+}
+.j{
+    grid-area: comentario2;
+    font-size: 14px;
+}
+.k{
+    grid-area: foto3;
+    width: 30px;
+    height: 30px;
+}
+.l{
+    grid-area: nombre3;
+}
+.m{
+    grid-area: comentario3;
+    font-size: 14px;
 }
 /*Estilo de los comentarios y comentar*/
 .ver {
