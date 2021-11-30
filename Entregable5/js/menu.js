@@ -27,6 +27,10 @@ function inicio(){
     document.getElementById("logoHome").addEventListener("click", ()=> {
         location.href = "home.html";
     });
+
+    document.getElementById("busqueda").addEventListener("click", ()=> {
+        location.href = "busqueda.html";
+    });
 }
 
 document.addEventListener("DOMContentLoaded", inicio());

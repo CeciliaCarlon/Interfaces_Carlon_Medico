@@ -6,7 +6,7 @@ function inicio(){
     });
 
     document.getElementById("publicar").addEventListener("click", ()=>{
-        location.href = "home.html";
+        location.href = "home2.html";
     });
 
     document.getElementById("insertarFoto").addEventListener("click", ()=>{
