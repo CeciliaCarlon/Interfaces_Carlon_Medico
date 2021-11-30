@@ -102,6 +102,25 @@ function inicio(){
             p.innerHTML = "Ver 3 comentarios más..."
         }
     });
+
+    document.getElementById("cerrar").addEventListener("click", ()=>{
+        let sec = document.getElementById("ampliar");
+        sec.style.height = "0px";
+        sec.style.marginTop = "0px";
+        sec.style.padding = "0px";
+        sec.style.visibility = "hidden";
+    });
+
+    document.getElementById("ampliar").addEventListener("click", ()=>{
+        let div = document.getElementById("agregar");
+        if(div.classList.contains("fa-user-plus")) {
+            div.classList.remove("fa-user-plus");
+            div.classList.add("fa-user-clock");
+        } else {
+            div.classList.remove("fa-user-clock");
+            div.classList.add("fa-user-plus");
+        }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", inicio());

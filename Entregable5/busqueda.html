@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vetgram</title>
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleBusqueda.css">
     <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -28,7 +28,96 @@
             </li>
         </ul>
     </header>
-
+    <section>
+        <ul class="busqueda">
+            <li>
+                <input placeholder="Buscando..." class="inputBusqueda" id="inputBuscar">
+                <button><i id="buscar" class="fas fa-search icono fa-2x"></i></button>
+            </li>
+            <li>
+                <div class="filtros">
+                    <p>¿Qué estas buscando?</p>
+                    <select name="" id="">
+                        <option value="">-</option>
+                        <option value="">Perfil</option>
+                        <option value="">Publicación</option>
+                        <option value="">Hashtag</option>
+                        <option value="">Empresa</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <div class="filtros">
+                    <p>Filtrar por ciudad</p>
+                    <select name="" id="">
+                        <option value="">-</option>
+                        <option value="">Tandil</option>
+                        <option value="">Buenos Aires</option>
+                        <option value="">La Plata</option>
+                        <option value="">Cordoba</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <div class="filtros">
+                    <p>Filtrar por especialidad</p>
+                    <select name="" id="">
+                        <option value="">-</option>
+                        <option value="">Oncologo</option>
+                        <option value="">Radiologo</option>
+                        <option value="">Cirujano</option>
+                        <option value="">Pediatra</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <section id="sectionResultados" class="hidden">
+        <ul class="tags">
+            <li class="tag">Tandil <i class="fas fa-times iconoEspecial"></i></li>
+            <li class="tag">Pediatra <i class="fas fa-times iconoEspecial"></i></li>
+        </ul>
+        <ul class="resultados">
+            <h3>Resultados</h3>
+            <hr/>
+            <li>
+                <div class="persona">
+                    <div class="fotoNombre">
+                        <img class="border"src="img/pictures/profilePicture7.png" alt="">
+                        <pW> Vete Pepe Guerra</p>
+                    </div>
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+            </li>
+            <li>
+                <div class="persona">
+                    <div class="fotoNombre">
+                        <img class="border" src="img/pictures/profilePicture10.png" alt="">
+                        <p>Clínica Veterinaria Pro-Vet</p>
+                    </div>
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+            </li>
+            <li>
+                <div class="persona">
+                    <div class="fotoNombre">
+                        <img class="border" src="img/pictures/profilePicture1.png" alt="">
+                        <p>Andrés Veterani</p>
+                    </div>
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+            </li>
+            <li>
+                <div class="persona">
+                    <div class="fotoNombre">
+                        <img class="border" src="img/pictures/profilePicture9.png" alt="">
+                        <p>Carmen Vetania Juanita de Costabrava Cortez</p>
+                    </div>
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+            </li>
+        </ul>
+    </section>
     <nav>
         <ul class="menuInfer">
             <li><i id="home" class="fas fa-home icono fa-2x"></i></li>
@@ -39,5 +128,6 @@
     </nav>
 
     <script src="js/menu.js"></script>
+    <script src="js/busqueda.js"></script>
 </body>
 </html>

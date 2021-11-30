@@ -1,6 +1,7 @@
 /*Estilo publicaciones*/
 .main {
     color: #565151;
+    /*margin-bottom: 70px;*/
 }
 /*Publicación nuestra height 340px margin-top 70px y padding 15px*/
 .miPubli {
@@ -31,8 +32,8 @@
     width: auto;
     height: 60px;
     display: grid;
-    grid-template-areas: "foto nombre"
-                         "foto tiempo";
+    grid-template-areas: "foto nombre more"
+                         "foto tiempo more";
     justify-content: start;
 }
 
@@ -46,10 +47,14 @@
     grid-area: tiempo;
 }
 .d{
-    position: absolute;
+    grid-area: more;
+    position: relative;
     width: 10px;
-    left: 330px;
-    top: 150px;
+    left: 120px;
+    top: 10px;
+}
+.left{
+    left: 160px;
 }
 
 .escrito {
@@ -91,14 +96,31 @@
     height: 160px;
 }
 /*Estilo de los iconos*/
-.izq {
-    padding-right: 5px;
+.iconos {
+    width: auto;
+    height: 40px;
+    display: grid;
+    grid-template-areas: "like coment share save";
+    justify-content: start;
 }
 
-.guardar {
-    position: absolute;
-    left: 325px;
-    top: 300px;
+.ic1{
+    grid-area: like;
+    padding-right: 5px;
+}
+.ic2{
+    grid-area: coment;
+    padding-right: 5px;
+}
+.ic3{
+    grid-area: share;
+}
+.ic4{
+    grid-area: save;
+    position: relative;
+    width: 10px;
+    left: 180px;
+    top: 0px;
 }
 /*Estilo comentarios ocultos*/
 .ocultos {
@@ -192,4 +214,19 @@
     padding: 15px;
     background-color: white;
     height: 300px;
+}
+/*Estilo amplia tu red*/
+.recomendaciones {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: white;
+    height: 100px;
+}
+
+.ampliar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
