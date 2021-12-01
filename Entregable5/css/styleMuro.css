@@ -1,7 +1,7 @@
 /*Estilo publicaciones*/
 .main {
     color: #565151;
-    /*margin-bottom: 70px;*/
+    height: 1500px;
 }
 /*Publicación nuestra height 340px margin-top 70px y padding 15px*/
 .miPubli {
@@ -50,11 +50,11 @@
     grid-area: more;
     position: relative;
     width: 10px;
-    left: 120px;
+    left: 125px;
     top: 10px;
 }
 .left{
-    left: 160px;
+    left: 165px;
 }
 
 .escrito {
@@ -84,16 +84,19 @@
 .img1 {
     width: auto;
     height: 160px;
+    padding-right: 0px;
 }
 
 .img2 {   
     width: 0px;
     height: 160px;
+    padding-right: 0px;
 }
 
 .img3 {
     width: 0px;
     height: 160px;
+    padding-right: 0px;
 }
 /*Estilo de los iconos*/
 .iconos {
@@ -119,7 +122,7 @@
     grid-area: save;
     position: relative;
     width: 10px;
-    left: 180px;
+    left: 185px;
     top: 0px;
 }
 /*Estilo comentarios ocultos*/
@@ -228,5 +231,22 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
-    margin-right: 10px;
+    margin-right: 0px;
+}
+/*Estilo de la publicidad*/
+.publicidad {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: white;
+    height:280px;
+}
+
+.publicidad p {
+    font-style: italic;
+    padding-top: 7px;
+}
+
+.imgPubli {
+    width: auto;
+    height: 235px;
 }

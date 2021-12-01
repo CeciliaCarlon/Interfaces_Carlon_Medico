@@ -121,6 +121,14 @@ function inicio(){
             div.classList.add("fa-user-plus");
         }
     });
+
+    document.getElementById("cerrarPubli").addEventListener("click", ()=>{
+        let sec = document.getElementById("publi");
+        sec.style.height = "0px";
+        sec.style.marginTop = "0px";
+        sec.style.padding = "0px";
+        sec.style.visibility = "hidden";
+    });
 }
 
 document.addEventListener("DOMContentLoaded", inicio());
