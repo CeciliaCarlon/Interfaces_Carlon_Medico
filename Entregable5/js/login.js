@@ -2,6 +2,20 @@
 
 function inicio(){
 
+    function myFunction(x) {
+        let ul = document.getElementById("navInferior");
+        if (x.matches) {
+            ul.classList.add("navInf");
+            ul.classList.remove("sectionOculta");
+        } else {
+            ul.classList.remove("navInf");
+            ul.classList.add("sectionOculta");
+        }
+    }
+    var x = window.matchMedia("(max-width: 1000px)");
+    myFunction(x);
+    x.addEventListener("change", myFunction);
+
     document.getElementById("iconoVolver").addEventListener("click", ()=>{
         location.href = "loginRegistrar.html";
     })

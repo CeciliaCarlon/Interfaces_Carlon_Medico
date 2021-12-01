@@ -51,10 +51,14 @@ header {
     margin: 15px;
 }
 
-.logo {
+.logo1 {
     width: 82px;
     height: auto;
     animation: rotate 3s linear infinite;
+}
+
+.logo2 {
+    display: none;
 }
 
 @keyframes rotate {
@@ -66,7 +70,7 @@ header {
 }
 
 /*Estilo del menu inferior*/
-nav {
+.navInf {
     background-color: #7884B9;
     width: auto;
     height: 60px;
@@ -230,4 +234,92 @@ li.registrar {
     overflow: hidden;
     animation: scrollBackground 30s linear infinite;
     /*filter: blur(8px);*/
+}
+
+@media (min-width: 1000px) {
+
+    * {
+        font-size: 20px;
+    }
+
+    .interaccion {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    header {
+        display: flex;
+        justify-content: flex-start;
+        margin: 42px 0px 0px 54px;
+    }
+
+    .logo1 {
+        display: none;
+    }
+
+    .logo2 {
+        display: flex;
+        width: 660px;
+        height: auto;
+        animation: none;  
+    }
+
+    section {
+        border: #7884B9 solid 4px;
+        margin: 0px 111px 0px 44px;
+        padding: 17px 0px 17 0px;
+    }
+
+    ul {
+        list-style: none;
+        width: 480px;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-bottom: #000;
+    }
+
+    input {
+        border-radius: 20px;
+        border: #7884B9 solid 4px;
+        height: 35px;
+        width: 377px;
+        align-self: center;
+        box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.1);
+        margin: 0;
+        padding: 10px;
+    }
+
+    input.error {
+        border: #EC3C3C solid 4px;
+    }
+
+    .link {
+        font-size: 16px;
+        margin: 5px;
+        border-bottom: 1px solid;
+        height: auto;
+        width: 195px;
+    }
+
+    .mensajeInput {
+        margin: 5px 5px 0px 5px;
+        display: flex;
+        color: #EC3C3C;
+        font-size: 16px;
+    }
+
+    .pantallaCarga {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        height: 300px;
+        width: 300px;
+        margin-left: 550px;
+    }
+
 }

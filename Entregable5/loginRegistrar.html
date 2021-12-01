@@ -12,73 +12,76 @@
 <body>
     <div class="logo-wall" id="wall">
         <header>
-            <img class="logo" src="img/LogoColorSN.png" alt="logo de la página">
+            <img class="logo1" src="img/LogoColorSN.png" alt="logo de la página">
+            <img class="logo2" src="img/LogoColor.png" alt="logo de la página">
         </header>
-        <section id="sectionL">
-            <ul>
-                <li class="liTitulo"><img src="img/TituloColor.png" alt=""></li>
-                <li class="primero">
-                    <div>
-                        <p>E-mail o usuario</p>
-                        <input id="inputNombreUsuario" type="text" placeholder="Insertar e-mail o usuario">
-                        <p id="error1" class="mensajeInputOculto"></p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <p>Contraseña</p>
-                        <input id="inputContraseña" type="password" placeholder="Insertar contraseña">
-                        <p id="error2" class="mensajeInputOculto"></p>
-                        <p class="link">¿Has olvidado la contraseña?</p>
-                    </div>
-                </li>
-                <li><button id="btnIngresar" class="btnIngresar">Iniciar Sesión</button></li>
-            </ul>
-            <hr/>
-            <ul>
-                <li class="registrar"><p>¿No estas registrado?</p></li>
-                <li class="registrar"><button id="btnRegistrar" class="btnRegistrarse">Registrarse</button></li>
-                <li class="registrar"><p class="link linkS">¿Necesitas ayuda?</p></li>
-            </ul>
-        </section>
+        <div class="interaccion">
+            <section id="sectionL">
+                <ul>
+                    <li class="liTitulo"><img src="img/TituloColor.png" alt=""></li>
+                    <li class="primero">
+                        <div>
+                            <p>E-mail o usuario</p>
+                            <input id="inputNombreUsuario" type="text" placeholder="Insertar e-mail o usuario">
+                            <p id="error1" class="mensajeInputOculto"></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>Contraseña</p>
+                            <input id="inputContraseña" type="password" placeholder="Insertar contraseña">
+                            <p id="error2" class="mensajeInputOculto"></p>
+                            <p class="link">¿Has olvidado la contraseña?</p>
+                        </div>
+                    </li>
+                    <li><button id="btnIngresar" class="btnIngresar">Iniciar Sesión</button></li>
+                </ul>
+                <hr/>
+                <ul>
+                    <li class="registrar"><p>¿No estas registrado?</p></li>
+                    <li class="registrar"><button id="btnRegistrar" class="btnRegistrarse">Registrarse</button></li>
+                    <li class="registrar"><p class="link linkS">¿Necesitas ayuda?</p></li>
+                </ul>
+            </section>
+    
+            <section id="sectionR" class="sectionOculta">
+                <ul>
+                    <li class="liTitulo"><img src="img/TituloColor.png" alt=""></li>
+                    <li class="primero">
+                        <div>
+                            <p>E-mail</p>
+                            <input id="inputEmail" type="text" placeholder="Insertar e-mail">
+                            <p id="mError1" class="mensajeInputOculto"></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>Usuario</p>
+                            <input id="inputUsuario" type="text" placeholder="Insertar usuario">
+                            <p id="mError2" class="mensajeInputOculto"></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>Contraseña</p>
+                            <input id="inputContraseñaValida" type="password" placeholder="Insertar contraseña">
+                            <p id="mError3" class="recomendacionContra">Debe tener un caracter especial y una mayuscula</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>Confirmar contraseña</p>
+                            <input id="inputRepetirContraseña" type="password" placeholder="Insertar nuevamente la contraseña">
+                            <p id="mError4" class="mensajeInputOculto"></p>
+                        </div>
+                    </li>
+                    <li><button id="btnRegistrarse" class="btnIngresar">Registrarse</button></li>
+                    <li class="registrar"><p class="link linkS">¿Necesitas ayuda?</p></li>
+                </ul>
+            </section>
+        </div>
 
-        <section id="sectionR" class="sectionOculta">
-            <ul>
-                <li class="liTitulo"><img src="img/TituloColor.png" alt=""></li>
-                <li class="primero">
-                    <div>
-                        <p>E-mail</p>
-                        <input id="inputEmail" type="text" placeholder="Insertar e-mail">
-                        <p id="mError1" class="mensajeInputOculto"></p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <p>Usuario</p>
-                        <input id="inputUsuario" type="text" placeholder="Insertar usuario">
-                        <p id="mError2" class="mensajeInputOculto"></p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <p>Contraseña</p>
-                        <input id="inputContraseñaValida" type="password" placeholder="Insertar contraseña">
-                        <p id="mError3" class="recomendacionContra">Debe tener un caracter especial y una mayuscula</p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <p>Confirmar contraseña</p>
-                        <input id="inputRepetirContraseña" type="password" placeholder="Insertar nuevamente la contraseña">
-                        <p id="mError4" class="mensajeInputOculto"></p>
-                    </div>
-                </li>
-                <li><button id="btnRegistrarse" class="btnIngresar">Registrarse</button></li>
-                <li class="registrar"><p class="link linkS">¿Necesitas ayuda?</p></li>
-            </ul>
-        </section>
-
-        <nav>
+        <nav id="navInferior" class="navInf">
             <ul class="menuInfer">
                 <li id= "iconoVolver"><i class="fas fa-arrow-left icono fa-2x"></i></li>
             </ul>
