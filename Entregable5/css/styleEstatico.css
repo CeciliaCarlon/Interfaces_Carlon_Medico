@@ -1,0 +1,14 @@
+body{
+    background-color: white;
+}
+
+.imgPerfil {
+    width: 360px;
+    height: 580px;
+}
+
+.imgMensajes {
+    margin-top: 55px;
+    width: 360px;
+    height: 520px;
+}

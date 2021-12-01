@@ -6,7 +6,7 @@ function inicio(){
         let section = document.getElementById("sectionResultados");
         section.classList.remove("hidden");
         section.classList.add("secResultados");
-        document.getElementById("inputBuscar").placeholder = "Vet";
+        document.getElementById("inputBuscar").value = "Vet";
     });
 }
 

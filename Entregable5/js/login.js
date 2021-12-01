@@ -2,6 +2,7 @@
 
 function inicio(){
 
+    //Fucnion para ocultar el nav inferior en desktop
     function myFunction(x) {
         let ul = document.getElementById("navInferior");
         if (x.matches) {
@@ -16,9 +17,15 @@ function inicio(){
     myFunction(x);
     x.addEventListener("change", myFunction);
 
+    //Mostrar el formulario de login y ocultar el formulario para registrarse
+    document.getElementById("linkVolverLogin").addEventListener("click", ()=> {
+        document.getElementById("sectionL").classList.remove("sectionOculta");
+        document.getElementById("sectionR").classList.add("sectionOculta");
+    });
+
     document.getElementById("iconoVolver").addEventListener("click", ()=>{
         location.href = "loginRegistrar.html";
-    })
+    });
 
     //Ingresar a Vetgram
     document.getElementById("btnIngresar").addEventListener("click", ()=>{
@@ -38,6 +45,12 @@ function inicio(){
             mensajeError1.classList.remove("mensajeInput");
             mensajeError1.classList.add("mensajeInputOculto");
             isUserName = true;
+        } else if (userName.value.length == 0) {
+            //Usuario invalido, modifico las clases y creo el mensaje de error
+            userName.classList.add("error");
+            mensajeError1.classList.remove("mensajeInputOculto");
+            mensajeError1.classList.add("mensajeInput");
+            mensajeError1.innerHTML = "Campo vacío. Por favor completelo";
         } else {
             //Usuario invalido, modifico las clases y creo el mensaje de error
             userName.classList.add("error");
@@ -52,6 +65,12 @@ function inicio(){
             mensajeError2.classList.add("mensajeInputOculto");
             mensajeError2.classList.remove("mensajeInput");
             isContraseña = true;
+        } else if (contraseña.value.length == 0) {
+            //Contraseña invalida, modifico las clases y creo un mensaje de error
+            contraseña.classList.add("error");
+            mensajeError2.classList.remove("mensajeInputOculto");
+            mensajeError2.classList.add("mensajeInput");
+            mensajeError2.innerHTML = "Campo vacío. Por favor completelo";
         } else {
             //Contraseña invalida, modifico las clases y creo un mensaje de error
             contraseña.classList.add("error");
@@ -100,12 +119,18 @@ function inicio(){
             mensajeError1.classList.remove("mensajeInput");
             mensajeError1.classList.add("mensajeInputOculto");
             isEmail = true;
+        } else if (email.value.length == 0) {
+            //Usuario invalido, modifico las clases y creo el mensaje de error
+            email.classList.add("error");
+            mensajeError1.classList.remove("mensajeInputOculto");
+            mensajeError1.classList.add("mensajeInput");
+            mensajeError1.innerHTML = "Campo vacío. Por favor completelo";
         } else {
             //Usuario invalido, modifico las clases y creo el mensaje de error
             email.classList.add("error");
             mensajeError1.classList.remove("mensajeInputOculto");
             mensajeError1.classList.add("mensajeInput");
-            mensajeError1.innerHTML = "Por favor insertar un email valido";
+            mensajeError1.innerHTML = "Por favor insertar email tipo @gmail o @hotmail";
         }
         //Chequeo si el usuario es valido
         if(userName.value == "Cecilia" || userName.value == "Magali"){
@@ -134,6 +159,12 @@ function inicio(){
             mensajeError3.classList.add("mensajeInputOculto");
             mensajeError3.classList.remove("mensajeInput");
             isContraseñaValida = true;
+        } else if (contraseñaValida.value.length == 0) {
+            //Contraseña invalida, modifico las clases y creo un mensaje de error
+            contraseñaValida.classList.add("error");
+            mensajeError3.classList.remove("mensajeInputOculto");
+            mensajeError3.classList.add("mensajeInput");
+            mensajeError3.innerHTML = "Campo vacío. Por favor completelo";
         } else {
             //Contraseña invalida, modifico las clases y creo un mensaje de error
             contraseñaValida.classList.add("error");
@@ -148,6 +179,12 @@ function inicio(){
             mensajeError4.classList.remove("mensajeInputOculto");
             mensajeError4.classList.add("mensajeInput");
             mensajeError4.innerHTML = "Las contraseñas no coinciden";
+        } else if (contraseñaRepetida.value.length == 0) {
+            //Contraseña invalida, modifico las clases y creo un mensaje de error
+            contraseñaRepetida.classList.add("error");
+            mensajeError4.classList.remove("mensajeInputOculto");
+            mensajeError4.classList.add("mensajeInput");
+            mensajeError4.innerHTML = "Campo vacío. Por favor completelo";
         } else {
             //Contraseña valida, modifico las clases y seteo el booleano en true
             contraseñaRepetida.classList.remove("error");

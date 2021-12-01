@@ -1,6 +1,8 @@
 "use strict";
 
 function inicio(){
+
+    //Header superior
     document.getElementById("menuDesplegable").addEventListener("click", ()=>{
         let menu = document.getElementById("divMenu");
 
@@ -20,16 +22,25 @@ function inicio(){
         location.href = "loginRegistrar.html";
     });
 
-    document.getElementById("home").addEventListener("click", ()=> {
+    document.getElementById("logoHome").addEventListener("click", ()=> {
         location.href = "home.html";
     });
 
-    document.getElementById("logoHome").addEventListener("click", ()=> {
+    //Navegador inferior
+    document.getElementById("home").addEventListener("click", ()=> {
         location.href = "home.html";
     });
 
     document.getElementById("busqueda").addEventListener("click", ()=> {
         location.href = "busqueda.html";
+    });
+
+    document.getElementById("mensajes").addEventListener("click", ()=> {
+        location.href = "mensajes.html";
+    });
+
+    document.getElementById("perfil").addEventListener("click", ()=> {
+        location.href = "perfil.html";
     });
 }
 
