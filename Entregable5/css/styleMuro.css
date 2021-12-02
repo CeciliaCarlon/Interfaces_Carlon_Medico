@@ -21,12 +21,6 @@
     background-color: white;
     height: 470px;
 }
-.publiUnoMenorMargin {
-    margin-top: 10px;
-    padding: 15px;
-    background-color: white;
-    height: 470px;
-}
 /*Estilo de quien hace la publicación*/
 .persona {
     width: auto;
@@ -52,6 +46,7 @@
     width: 10px;
     left: 125px;
     top: 10px;
+    font-size: 25px;
 }
 .left{
     left: 165px;
@@ -101,29 +96,34 @@
 /*Estilo de los iconos*/
 .iconos {
     width: auto;
-    height: 40px;
+    height: 30px;
     display: grid;
     grid-template-areas: "like coment share save";
     justify-content: start;
+    margin-bottom: 5px;
 }
 
 .ic1{
     grid-area: like;
-    padding-right: 5px;
+    padding-right: 20px;
+    font-size: 25px;
 }
 .ic2{
     grid-area: coment;
-    padding-right: 5px;
+    padding-right: 20px;
+    font-size: 25px;
 }
 .ic3{
     grid-area: share;
+    font-size: 25px;
 }
 .ic4{
     grid-area: save;
     position: relative;
     width: 10px;
-    left: 185px;
+    left: 190px;
     top: 0px;
+    font-size: 25px;
 }
 /*Estilo comentarios ocultos*/
 .ocultos {

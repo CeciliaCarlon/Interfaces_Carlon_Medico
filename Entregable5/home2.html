@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleMuro.css">
+    <link rel="stylesheet" href="css/styleMuro2.css">
     <script src="https://kit.fontawesome.com/7f791b61f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -39,47 +40,52 @@
         <div class="miPubli">
             <div class="persona">
                 <img class="a"src="img/pictures/profilePicture.png" alt="">
-                <h2 class="b">Kim Sengho</h2>
+                <h2 class="b promo">Kim Sengho</h2>
                 <p class="c">Recién</p>
-                <i class="d fas fa-ellipsis-v fa-2x"></i>
+                <i class="d fas fa-ellipsis-v" id="more"></i>
+                <div id="divMore" class="moreEscondido">
+                    <ul>
+                        <li id="promocionar"><i class="fas fa-chart-line"></i> Promocionar</li>
+                        <li><i class="far fa-edit"></i> Editar</li>
+                        <li><i class="far fa-trash-alt"></i> Eliminar</li>
+                    </ul>
+                </div>
             </div>
             <p class="escrito">Amo a mis mascotas!</p>
             <img class="img" src="img/publicaciones/cats.jpg" alt="Imagen de dos gatos">
-            <!--Falta cant mg-->
-            <div>
-                <i class="ic1 far fa-heart fa-2x"></i>
-                <i class="ic2 far fa-comments fa-2x"></i>
-                <i class="ic3 far fa-share-square fa-2x"></i>
-                <i class="ic4 far fa-bookmark fa-2x"></i>
+            <div class="iconos" id="iconosPromo">
+                <i class="ic1 far fa-heart like" id="like"></i>
+                <i class="ic2 far fa-comments"></i>
+                <i class="ic3 far fa-share-square"></i>
+                <i class="ic4 far fa-bookmark" id="bookmark"></i>
             </div>
-            <div>
+            <div> 
                 <input placeholder="Añade un comentario" class="inputComentar" type="text">
                 <button class="comentar">Comentar</button>
             </div>
         </div>
-        <div class="publiUnoMenorMargin" id="publiUno">
+        <div class="publiUno" id="publiUno">
             <div class="persona">
                 <img class="a"src="img/pictures/profilePicture4.png" alt="">
                 <h2 class="b">Miranda Ferret</h2>
                 <p class="c">Hace 1 hora</p>
-                <i class="d fas fa-ellipsis-v fa-2x"></i>
+                <i class="d fas fa-ellipsis-v"></i>
             </div>
             <p class="escrito">El domingo tuve que trabajar con mis amigos en un perrito que necesitaba ayuda. 
                 Fue increible ver como el perrito se recuperaba. 
                 Al final mi amiga Fernanda terminó adoptando al perrito, ahora se llama Pepe. Amo mi trabajo :)</p>
-            <!--Falta cant mg-->
             <div class="carrousel">
-                <button class="btn" id="btnIzq"><i class="fas fa-chevron-left fa-2x"></i></button>
+                <button class="btn" id="btnIzq"><i class="fas fa-chevron-left" style="font-size: 25px;"></i></button>
                 <img class="visible img1" id="img1" src="img/publicaciones/pic2.jpeg" alt="Imagen de veterinarios con mascotas">
                 <img class="no-visible img2" id="img2" src="img/publicaciones/pic1.jpeg" alt="Imagen de veterinarios con mascotas">
                 <img class="no-visible img3" id="img3" src="img/publicaciones/pic3.jpeg" alt="Imagen de una persona con un perro">
-                <button class="btn" id="btnDer"><i class="fas fa-chevron-right fa-2x"></i></button>
+                <button class="btn" id="btnDer"><i class="fas fa-chevron-right" style="font-size: 25px;"></i></button>
             </div>
-            <div>
-                <i class="ic1 far fa-heart fa-2x" id="like"></i>
-                <i class="ic2 far fa-comments fa-2x"></i>
-                <i class="ic3 far fa-share-square fa-2x"></i>
-                <i class="ic4 far fa-bookmark fa-2x"></i>
+            <div class="iconos">
+                <i class="ic1 far fa-heart"></i>
+                <i class="ic2 far fa-comments"></i>
+                <i class="ic3 far fa-share-square"></i>
+                <i class="ic4 far fa-bookmark"></i>
             </div>
             <button class="btn" id="verComentarios">
                 <p class="ver" id="ver">Ver 3 comentarios más...</p>
@@ -113,13 +119,13 @@
         <section class="recomendaciones" id="ampliar">
             <div class="ampliar">
                 <h2>Amplia tu red...</h2>
-                <i id="cerrar" class="fas fa-times fa-2x"></i>
+                <i id="cerrar" class="fas fa-times" style="font-size: 25px;"></i>
             </div>
             <div class="persona">
                 <img class="a"src="img/pictures/profilePicture9.png" alt="">
                 <h2 class="b">Lisa Flores</h2>
                 <p class="c">Oncologa</p>
-                <button class="btn"><i class="d fas fa-user-plus fa-2x" id="agregar"></i></button>
+                <i class="d fas fa-user-plus" id="agregar"></i>
             </div>
         </section>
         <div class="publiDos">
@@ -127,17 +133,16 @@
                 <img class="a"src="img/pictures/profilePicture5.png" alt="">
                 <h2 class="b">Sam Smith</h2>
                 <p class="c">Hace 2 horas</p>
-                <i class="d fas fa-ellipsis-v fa-2x"></i>
+                <i class="d left fas fa-ellipsis-v"></i>
             </div>
             <p class="escrito">Estoy muy enojado!! Hoy me encontré con una persona que le gritaba a su mascota 
                 (era un perrito hermoso). Es muy decepcionante ver ese tipo de cosas, de verdad. 
                 No tengan perros si los van a tratar mal!!!!</p>
-            <!--Falta cant mg-->
-            <div>
-                <i class="ic1 far fa-heart fa-2x"></i>
-                <i class="ic2 far fa-comments fa-2x"></i>
-                <i class="ic3 far fa-share-square fa-2x"></i>
-                <i class="ic4 far fa-bookmark fa-2x"></i>
+            <div class="iconos">
+                <i class="ic1 far fa-heart"></i>
+                <i class="ic2 far fa-comments"></i>
+                <i class="ic3 far fa-share-square"></i>
+                <i class="ic4 far fa-bookmark"></i>
             </div>
             <p class="ver">Ver 1 comentario más...</p>
             <div class="comentarios">
@@ -150,13 +155,13 @@
                 <button class="comentar">Comentar</button>
             </div>
         </div>
-    </section>
-    <section class="publicidad" id="publi">
-        <div class="ampliar">
-            <p>Publicidad</p>
-            <i id="cerrarPubli" class="fas fa-times fa-2x"></i>
-        </div>
-        <img class="imgPubli" src="img/publicaciones/adopta.jpg" alt="No compres, adopta">
+        <section class="publicidad" id="publi">
+            <div class="ampliar">
+                <p>Publicidad</p>
+                <i id="cerrarPubli" class="fas fa-times" style="font-size: 25px;"></i>
+            </div>
+            <img class="imgPubli" src="img/publicaciones/adopta.jpg" alt="No compres, adopta">
+        </section>
     </section>
     <nav>
         <ul class="menuInfer">
@@ -169,6 +174,6 @@
 
     <script src="js/menu.js"></script>
     <script src="js/home.js"></script>
-
+    <script src="js/promocionar.js"></script>
 </body>
 </html>
