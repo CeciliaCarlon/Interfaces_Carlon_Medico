@@ -130,3 +130,69 @@ ul.menuInfer {
     align-self: center;
     box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.1);
 }
+
+.menuSupDescktop {
+    display: none;
+    visibility: hidden;
+}
+
+@media (min-width: 1000px) { 
+    nav {
+        display: none;
+        visibility: hidden;
+    }
+
+    .publicar {
+        display: none;
+        visibility: hidden;
+    }
+
+    .main {
+        display: none;
+        visibility: hidden;
+        z-index: -1;
+    }
+
+    ul.menuSup {
+        display: none;
+        visibility: hidden;
+    }
+
+    li {
+        padding-top: 13px;
+    }
+
+    .menuSupDescktop {
+        background-color: #7884B9;
+        display: block;
+        visibility: visible;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        height: 100px;
+    }
+
+    .logoBlanco {
+        align-items: flex-start;
+        padding-right: 400px;
+    }
+
+    .inputBusqueda {
+        border-radius: 12px;
+        border: #7884B9 solid 2px;
+        padding-left: 8px;
+        height: 30px;
+        width: 240px;
+        box-shadow: 3px 4px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .menuDer {
+        display: block;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        margin-left: 300px;
+        width: 300px;
+        justify-content: space-between;
+    }
+}

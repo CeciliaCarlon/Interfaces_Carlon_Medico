@@ -2,7 +2,7 @@
     margin-top: 10px;
 }
 
-.miPubli div i {
+.persona i {
     left: 155px;
 }
 
@@ -45,4 +45,18 @@ ul {
 
 .num {
     font-size: 22px;
+    width: 55px;
+    padding-right: 0px;
+}
+
+.ic4 {
+    left: 185px;
+}
+
+.left {
+    left: 125px;
+}
+
+.img {
+    padding-left: 10px;
 }

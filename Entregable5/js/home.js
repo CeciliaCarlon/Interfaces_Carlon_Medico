@@ -124,6 +124,8 @@ function inicio(){
 
     document.getElementById("cerrarPubli").addEventListener("click", ()=>{
         let sec = document.getElementById("publi");
+        let main = document.getElementById("main");
+
         sec.style.height = "0px";
         sec.style.marginTop = "0px";
         sec.style.padding = "0px";

@@ -208,7 +208,7 @@ function inicio(){
             carga.classList.add("sectionOculta");
             carga.classList.remove("pantallaCarga");
             location.href = "home.html";
-        }, 3000);
+        }, 2000);
     }
     
 }
