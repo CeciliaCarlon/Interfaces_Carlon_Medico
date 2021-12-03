@@ -1,14 +1,25 @@
 body{
     background-color: white;
+    margin: 0;
+    padding: 0;
 }
 
 .imgPerfil {
-    width: 360px;
-    height: 580px;
+    width: 355px;
+    height: 520px;
+    padding-top: 60px;
 }
 
 .imgMensajes {
     margin-top: 55px;
-    width: 360px;
+    width: 355px;
     height: 520px;
+}
+
+.iconoC {
+    color: #4C5990;
+}
+
+.iconoU {
+    color: #4C5990;
 }

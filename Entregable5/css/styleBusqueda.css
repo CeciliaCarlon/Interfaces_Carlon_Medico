@@ -6,6 +6,10 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.fa-search {
+    color: #4C5990;
+}
+
 body {
     background-color: white;
     color: #565151;

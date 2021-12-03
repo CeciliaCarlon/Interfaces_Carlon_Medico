@@ -30,31 +30,33 @@
         </ul>
         <ul class="menuSupDescktop">
             <li><img id="logoHome" class="logoBlanco" src="img/LogoBlanco.png" alt="logo de la página"></li>
-            <li>
+            <li class="busqueda">
                 <input placeholder="Buscando..." class="inputBusqueda" id="inputBuscar">
                 <i id="buscar" class="fas fa-search icono fa-2x"></i>
             </li>
             <div class="menuDer">
-                <li><i id="home" class="fas fa-home icono fa-2x"></i></li>
-                <li><i id="mensajes" class="fas fa-comment-dots icono fa-2x"></i></li>
-                <li><i id="perfil" class="fas fa-user icono fa-2x"></i></li>
-                <li id="menuDesplegable">
-                    <i id="inconoMenu" class="fas fa-bars icono fa-2x"></i>
-                    <div id="divMenu" class="menuEscondido">
-                        <ul>
-                            <li><i class="fas fa-question-circle"></i> Ayuda y asistencia</li>
-                            <li><i class="fas fa-cog"></i> Configuracion y privacidad</li>
-                            <li id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</li>
-                        </ul>
-                    </div>
-                </li>
-                <li id="liMenu" style="display: none;">
-                    <i class="fas fa-bars icono fa-2x iconoDesplazado"></i>             
-                </li>
+
+                <li class="botonera"><i id="home" class="fas fa-home iconoColor fa-2x"></i></li>
+                <li class="botonera"><i class="fas fa-comment-dots icono fa-2x"></i></li>
+                <li class="botonera"><i class="fas fa-user icono fa-2x"></i></li>
             </div>
+            <li id="menuDesplegable">
+                <i id="inconoMenu" class="fas fa-chevron-down icono fa-2x"></i>
+                <div id="divMenu" class="menuEscondido">
+                    <ul>
+                        <li><i class="fas fa-question-circle"></i> Ayuda y asistencia</li>
+                        <li><i class="fas fa-cog"></i> Configuracion y privacidad</li>
+                        <li id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</li>
+                    </ul>
+                </div>
+            </li>
+            <li id="liMenu" style="display: none;">
+                <i class="fas fa-bars icono fa-2x iconoDesplazado"></i>             
+            </li>
         </ul>
     </header>
     <section>
+        <div class="imageDesktop"><img style="width: 1440px; height: 1024px;" src="img/estaticas/home.png" alt=""></div>
         <div class="publicar">
             <img src="img/pictures/profilePicture.png" alt="">
             <input placeholder="¿Qué estas pensando?" class="inputPublicacion" id="inputPublicar">
@@ -162,7 +164,7 @@
     </section>
     <nav>
         <ul class="menuInfer">
-            <li><i id="home" class="fas fa-home icono fa-2x"></i></li>
+            <li><i id="home" class="fas fa-home fa-2x"></i></li>
             <li><i id="busqueda" class="fas fa-search icono fa-2x"></i></li>
             <li><i id="mensajes" class="fas fa-comment-dots icono fa-2x"></i></li>
             <li><i id="perfil" class="fas fa-user icono fa-2x"></i></li>
