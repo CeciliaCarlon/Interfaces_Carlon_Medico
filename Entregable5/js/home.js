@@ -19,6 +19,8 @@ function inicio(){
         } else {
             publi.style.height = "514px";
         }
+
+        document.getElementById("comentarioNuestro").value = "";
     });
 
     document.getElementById("like").addEventListener("click", ()=>{

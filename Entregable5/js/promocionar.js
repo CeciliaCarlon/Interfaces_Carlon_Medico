@@ -46,6 +46,10 @@ function inicio(){
         let like = document.getElementById("red");
         like.style.color = "red";
         book.classList.add("left");
+
+        let divMiPublicacion = document.getElementById("miPublicacion");
+        divMiPublicacion.classList.remove("miPubli");
+        divMiPublicacion.classList.add("miPubliMasGrande");
     });
 }
 
